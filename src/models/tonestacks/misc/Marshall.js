@@ -6,7 +6,7 @@ export class Marshall extends Bassman5F6A {
     return {
       id: 'mars',
       name: 'Marshall',
-      schematicFilename: 'bassman5f6-a',
+      schematicFilename: 'Bassman5F6-A',
       components: {
         RIN: 1300,
         R1: 33e3,
