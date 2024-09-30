@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between items-center border-b border-gray-800">
+  <div class="flex justify-between items-stretch gap-x-1 border-b border-gray-800">
     <div class="flex border-x border-t border-gray-800 rounded-none overflow-hidden">
       <button
         v-for="option in options"

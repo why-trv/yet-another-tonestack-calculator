@@ -154,11 +154,11 @@
         <!-- Controls and Components -->
         <div v-if="state.selectedTonestack">
           <div class="mb-4">
-            <div class="flex flex-wrap 2xl:flex-nowrap justify-between items-center gap-x-3 gap-y-2 mb-2">
-              <div class="flex">
+            <div class="flex flex-wrap 2xl:flex-nowrap justify-stretch md:justify-between items-center gap-x-3 gap-y-2 mb-2">
+              <div class="flex grow justify-stretch md:justify-start">
                 <!-- Tonestack Topology Select -->
                 <select :value="state.selectedTopology.id"
-                  class="topology-select w-[17.5rem] border border-gray-400 rounded-none px-2 py-1 text-base font-bold bg-white focus:border-r ring-focus"
+                  class="topology-select grow md:w-[17.5rem] border border-gray-400 rounded-none px-2 py-1 text-sm sm:text-base font-bold bg-white focus:border-r ring-focus"
                   @change="store.selectTopologyWithId($event.target.value)">
                   <optgroup v-for="(array, category) in store.topologies" :label="category">
                     <option v-for="topology in array" :key="topology.id" :value="topology.id">
@@ -185,7 +185,7 @@
               </div>
               <div class="flex flex-grow 2xl:justify-end gap-2">
                 <input type="text" v-model="state.selectedTonestack.label" placeholder="Label"
-                  class="max-w-56 2xl:max-w-60 flex-grow hover:cursor-text text-sm placeholder:italic placeholder:text-gray-300 bg-transparent border-b border-gray-300 hover:text-gray-700 focus:outline-none focus:ring-2 focus:border-slate-500" />
+                  class="2xl:max-w-60 flex-grow hover:cursor-text text-sm placeholder:italic placeholder:text-gray-300 bg-transparent border-b border-gray-300 hover:text-gray-700 focus:outline-none focus:ring-2 focus:border-slate-500" />
                 <GainControl v-model="state.selectedTonestack.gainOffset" />
               </div>
             </div>
@@ -209,7 +209,7 @@
 
             <!-- Component Values -->
             <div class="min-w-8">
-              <div class="grid grid-cols-3 gap-x-4 gap-y-1 md:grid-cols-1 md:gap-1">
+              <div class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-1 gap-x-4 gap-y-1 md:gap-1">
                 <ComponentValueEditor v-for="(value, name) in state.selectedTonestack.components" :key="name"
                   :name="name" :tonestack="state.selectedTonestack"
                   :highlightColor="store.getTonestackColor(state.selectedTonestackIndex)"
@@ -230,9 +230,9 @@
               { value: false, label: 'This Tonestack' },
               { value: true, label: 'Global' }
             ]" class="mb-2">
-              <div v-if="!state.globalControlEnabled">
+              <div v-if="!state.globalControlEnabled" class="max-w-[7.6rem] xs:max-w-max flex justify-end flex-wrap gap-x-1">
                 <select @change="updatePotAuxDisplayMode($event.target.value)"
-                  class="select mr-1 text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
+                  class="select text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
                   <optgroup label="Extra">
                     <option v-for="(value, key) in PotAuxDisplayMode" :key="value" :value="value"
                       :selected="state.potAuxDisplayMode === value">

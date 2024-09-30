@@ -1,5 +1,5 @@
 <template>
-  <div class="2xl:container mx-auto px-4 py-3">
+  <div class="min-w-[356px] 2xl:container mx-auto px-4 py-3">
     <nav>
       <div class="mb-3 flex items-center border-b border-black">
         <div class="mb-1.5 flex-1 flex items-center">

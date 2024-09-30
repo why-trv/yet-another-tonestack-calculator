@@ -10,7 +10,7 @@
 <script setup>
 import { ref, onMounted, watch, onUnmounted } from 'vue';
 import * as echarts from 'echarts';
-import { generateFrequencies } from '~/utils/utils';
+import { generateFrequencies, isMobileOrTablet } from '~/utils/utils';
 
 const props = defineProps({
   responses: Array,
@@ -43,14 +43,19 @@ function createCharts() {
     // Gonna synchronize zooming between magnitude and phase charts
     chart.group = 'responses';
 
-    // Enable click-and-drag zoom
-    chart.on('finished', () => {
-      chart.dispatchAction({
-        type: 'takeGlobalCursor',
-        key: 'dataZoomSelect',
-        dataZoomSelectActive: true,
+    // Don't enable click-and-drag zoom for mobiles and tablets, because it
+    // interferes with scrolling, AND there's an issue with double click to zoom out
+    // (see https://github.com/apache/echarts/issues/19341)
+    if (!isMobileOrTablet()) { 
+      // Enable click-and-drag zoom
+      chart.on('finished', () => {
+        chart.dispatchAction({
+          type: 'takeGlobalCursor',
+          key: 'dataZoomSelect',
+          dataZoomSelectActive: true,
+        });
       });
-    });
+    }
 
     // Add double-click event listeners to reset zoom
     let zr = chart.getZr();
