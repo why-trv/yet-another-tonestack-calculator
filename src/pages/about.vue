@@ -51,6 +51,12 @@
   </div>
 </template>
 
+<script setup>
+useHead({
+  title: 'About'
+})
+</script>
+
 <style>
 a {
   @apply font-medium text-indigo-600 hover:text-indigo-800;

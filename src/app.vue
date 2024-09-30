@@ -41,6 +41,13 @@
 import { ref } from 'vue';
 import ErrorBar from '~/components/ErrorBar.vue';
 
+useHead({
+  titleTemplate: (titleChunk) => {
+    const title = 'Yet Another Tonestack Calculator';
+    return titleChunk ? `${titleChunk} | ${title}` : title;
+  }
+});
+
 const errorMessage = ref('');
 
 const handleError = (message) => {
