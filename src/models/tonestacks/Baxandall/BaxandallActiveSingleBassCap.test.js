@@ -1,0 +1,71 @@
+import { BaxandallActiveSingleBassCap } from './BaxandallActiveSingleBassCap';
+import { testTonestack } from '../_testTonestack';
+
+testTonestack(BaxandallActiveSingleBassCap, function (controlValues) {
+  let {
+    RIN, R1, R2, R3, R4, R5, RF, CB, CT,
+    RT: [RT2, RT1],
+    RB: [RB2, RB1]
+  } = this.processComponentValues(controlValues);
+
+  RT2 += R5;
+  RT1 += R4;
+
+  // Transfer function denominator coefficients
+  const denAIm = 0;
+
+  const denBRe = (-CB*CT*RB2*RIN*RT1*RT2) - CB*CT*RB1*RIN*RT1*RT2 - CB*CT*R1*RB2*RT1*RT2
+    - CB*CT*R1*RB1*RT1*RT2 - CB*CT*RB1*RB2*RIN*RT2 - CB*CT*R3*RB2*RIN*RT2
+    - CB*CT*R1*RB2*RIN*RT2 - CB*CT*R3*RB1*RIN*RT2 - CB*CT*R1*RB1*RIN*RT2
+    - CB*CT*RB1*RB2*RIN*RT1 - CB*CT*R3*RB2*RIN*RT1 - CB*CT*R2*RB2*RIN*RT1
+    - CB*CT*R3*RB1*RIN*RT1 - CB*CT*R2*RB1*RIN*RT1 - CB*CT*R2*RB1*RB2*RT1
+    - CB*CT*R1*RB1*RB2*RT1 - CB*CT*R2*R3*RB2*RT1 - CB*CT*R1*R3*RB2*RT1
+    - CB*CT*R1*R2*RB2*RT1 - CB*CT*R2*R3*RB1*RT1 - CB*CT*R1*R3*RB1*RT1
+    - CB*CT*R1*R2*RB1*RT1 - CB*CT*R2*RB1*RB2*RIN - CB*CT*R1*RB1*RB2*RIN
+    - CB*CT*R2*R3*RB2*RIN - CB*CT*R1*R3*RB2*RIN - CB*CT*R1*R2*RB2*RIN
+    - CB*CT*R2*R3*RB1*RIN - CB*CT*R1*R3*RB1*RIN - CB*CT*R1*R2*RB1*RIN;
+
+  const denCIm = (-CT*RIN*RT1*RT2) - CT*RB1*RT1*RT2 - CT*R1*RT1*RT2 - CB*RB2*RIN*RT2
+    - CT*RB1*RIN*RT2 - CB*RB1*RIN*RT2 - CT*R3*RIN*RT2 - CT*R1*RIN*RT2
+    - CB*R1*RB2*RT2 - CB*R1*RB1*RT2 - CT*RB2*RIN*RT1 - CB*RB2*RIN*RT1
+    - CB*RB1*RIN*RT1 - CT*R3*RIN*RT1 - CT*R2*RIN*RT1 - CT*RB1*RB2*RT1
+    - CT*R3*RB2*RT1 - CT*R1*RB2*RT1 - CB*R1*RB2*RT1 - CT*R3*RB1*RT1
+    - CT*R2*RB1*RT1 - CB*R1*RB1*RT1 - CT*R2*R3*RT1 - CT*R1*R3*RT1 - CT*R1*R2*RT1
+    - CT*RB1*RB2*RIN - CT*R3*RB2*RIN - CB*R2*RB2*RIN - CT*R1*RB2*RIN
+    - CB*R1*RB2*RIN - CT*R3*RB1*RIN - CT*R2*RB1*RIN - CB*R2*RB1*RIN
+    - CB*R1*RB1*RIN - CT*R2*R3*RIN - CT*R1*R3*RIN - CT*R1*R2*RIN;
+
+  const denDRe = (-RIN*RT2) - RB1*RT2 - R1*RT2 - RIN*RT1 - RB1*RT1 - R1*RT1 - RB2*RIN
+    - RB1*RIN - R2*RIN - R1*RIN;
+
+  // Transfer function numerator coefficients
+  const numAIm = 0;
+
+  const numBRe = CB*CT*RB2*RF*RT1*RT2 + CB*CT*RB1*RF*RT1*RT2 + CB*CT*R2*RB2*RT1*RT2
+    + CB*CT*R2*RB1*RT1*RT2 + CB*CT*RB1*RB2*RF*RT2 + CB*CT*R3*RB2*RF*RT2
+    + CB*CT*R1*RB2*RF*RT2 + CB*CT*R3*RB1*RF*RT2 + CB*CT*R1*RB1*RF*RT2
+    + CB*CT*R2*RB1*RB2*RT2 + CB*CT*R1*RB1*RB2*RT2 + CB*CT*R2*R3*RB2*RT2
+    + CB*CT*R1*R3*RB2*RT2 + CB*CT*R1*R2*RB2*RT2 + CB*CT*R2*R3*RB1*RT2
+    + CB*CT*R1*R3*RB1*RT2 + CB*CT*R1*R2*RB1*RT2 + CB*CT*RB1*RB2*RF*RT1
+    + CB*CT*R3*RB2*RF*RT1 + CB*CT*R2*RB2*RF*RT1 + CB*CT*R3*RB1*RF*RT1
+    + CB*CT*R2*RB1*RF*RT1 + CB*CT*R2*RB1*RB2*RF + CB*CT*R1*RB1*RB2*RF
+    + CB*CT*R2*R3*RB2*RF + CB*CT*R1*R3*RB2*RF + CB*CT*R1*R2*RB2*RF
+    + CB*CT*R2*R3*RB1*RF + CB*CT*R1*R3*RB1*RF + CB*CT*R1*R2*RB1*RF;
+
+  const numCIm = CT*RF*RT1*RT2 + CT*RB2*RT1*RT2 + CT*R2*RT1*RT2 + CB*RB2*RF*RT2
+    + CT*RB1*RF*RT2 + CB*RB1*RF*RT2 + CT*R3*RF*RT2 + CT*R1*RF*RT2 + CT*RB1*RB2*RT2
+    + CT*R3*RB2*RT2 + CB*R2*RB2*RT2 + CT*R1*RB2*RT2 + CT*R3*RB1*RT2
+    + CT*R2*RB1*RT2 + CB*R2*RB1*RT2 + CT*R2*R3*RT2 + CT*R1*R3*RT2 + CT*R1*R2*RT2
+    + CT*RB2*RF*RT1 + CB*RB2*RF*RT1 + CB*RB1*RF*RT1 + CT*R3*RF*RT1 + CT*R2*RF*RT1
+    + CB*R2*RB2*RT1 + CB*R2*RB1*RT1 + CT*RB1*RB2*RF + CT*R3*RB2*RF + CB*R2*RB2*RF
+    + CT*R1*RB2*RF + CB*R1*RB2*RF + CT*R3*RB1*RF + CT*R2*RB1*RF + CB*R2*RB1*RF
+    + CB*R1*RB1*RF + CT*R2*R3*RF + CT*R1*R3*RF + CT*R1*R2*RF;
+
+  const numDRe = RF*RT2 + RB2*RT2 + R2*RT2 + RF*RT1 + RB2*RT1 + R2*RT1 + RB2*RF + RB1*RF
+    + R2*RF + R1*RF;
+
+  return [
+    [numDRe, numCIm, numBRe, numAIm],
+    [denDRe, denCIm, denBRe, denAIm]
+  ];
+});

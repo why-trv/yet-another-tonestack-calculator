@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{circuitikz}
+
+\begin{document}
+\begin{tikzpicture}
+	\draw (1, 7) to[sinusoidal voltage source, l=$V_{IN}$] (1, 4);
+
+	\draw (1, 10) to[european resistor, l=$R_{IN}$] (1, 7);
+	\draw (8, 9.5) to[european resistor, l_=$R_1$] (8, 5.5);
+	\draw (11, 3.5) to[european resistor, l_=$R_L$] (11, 1);
+
+	\draw (4, 6.25) to[european potentiometer, l_=$R_T$] (4, 4.75);
+	\draw (8, 5.5) to[european potentiometer, l_=$R_V$] (8, 1.5);
+
+	\draw (4, 8.75) to[capacitor, l_=$C_1$] (4, 6.25);
+	\draw (4, 4.75) to[capacitor, l_=$C_2$] (4, 2.25);
+	\draw (4, 10) to[capacitor, l_=$C_3$] (8, 10);
+
+	\draw (1, 10) -| (4, 10);
+	\draw (1, 4) -- (1, 1) -- (8, 1);
+	\draw (4, 10) -- (4, 8.75);
+	\draw (4, 2.25) -- (4, 1);
+	\draw (4.56, 5.5) -- (8, 5.5);
+	\draw (8, 1) -| (11, 1);
+	\draw (8, 1.5) -- (8, 1);
+	\draw (8, 10) -- (8, 9.5);
+	\draw (8.56, 3.5) -- (11, 3.5);
+	\draw (11, 5) -- (11, 3.5);
+
+	\node[vcc] at (11, 5) {$V_{OUT}$};
+	\node[circ] at (11, 3.5) {};
+	\node[circ] at (4, 1) {};
+	\node[circ] at (4, 10) {};
+	\node[circ] at (8, 1) {};
+	\node[circ] at (8, 5.5) {};
+
+\end{tikzpicture}
+\end{document}

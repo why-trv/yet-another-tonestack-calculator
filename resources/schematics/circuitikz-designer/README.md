@@ -1,0 +1,1 @@
+This is a collection of CirtuiTikZ Designer's own schematic format JSON files that were used as a starting point for further text-based editing of TeX files. Note that these can't have labels, and some of the schematics we further modified pretty far away from these JSONs.

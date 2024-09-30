@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+\begin{tikzpicture}
+	% Instances/Symbols:	
+	\draw (4, 10) to[european resistor, l=$R_{IN}$] (1.5, 10);	
+	\draw (4, 10) to[european resistor, l=$R_1$] (4, 7.5);
+	\draw (4, 3.5) to[european resistor, l=$R_2$] (4, 1);
+	\draw (4.5, 5.5) to[european resistor, l=$R_3$] (9.25, 5.5);
+	\draw (12.5, 10) to[european resistor, l=$R_4$] (12.5, 7);
+	\draw (12.5, 1) to[european resistor, l_=$R_5$] (12.5, 3.5);
+	\draw (9.25, 5.5) to[european resistor, l=$R_L$] (9.25, 1);
+	
+	\draw (2.5, 3.5) to[capacitor, l=$C_B$] (2.5, 7.5);
+	\draw (9.25, 5.5) to[capacitor, l=$C_T$] (12, 5.5);
+	
+	\draw (4, 7.5) to[european potentiometer, l_=$R_B$] (4, 3.5);
+	\draw (12.5, 4) to[european potentiometer, l_=$R_T$] (12.5, 7);
+
+	% Lines:
+	\draw (2.5, 7.5) -- (4, 7.5);
+	\draw (2.5, 3.5) -- (4, 3.5);
+	\draw (4, 1) -- (12.5, 1);
+	\draw (4, 10) -- (12.5, 10);
+	\draw (9.25, 5.5) |- (9.25, 6.5);
+	\draw (12.5, 3.5) -- (12.5, 4);	
+
+	% Nodes:
+	\node[ground] at (9.25, 1) {};
+
+	\node[circ] at (4, 10) {};
+	\node[circ] at (4, 7.5) {};
+	\node[circ] at (4, 3.5) {};
+	\node[circ] at (9.25, 1) {};
+	\node[circ] at (9.25, 5.5) {};
+
+	\node[ocirc, scale=1.2] at (1.5, 10) {};
+	\node[ocirc, scale=1.2] at (9.25, 6.5) {};
+
+	% Labels
+	\node[below=0cm of {1.5, 10}] {$V_{IN}$};
+	\node[above=0.05cm of {9.25, 6.5}] {$V_{OUT}$};
+
+\end{tikzpicture}
+\end{document}
