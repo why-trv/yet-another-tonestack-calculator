@@ -119,11 +119,11 @@ function initializeCharts() {
     axisLabel: {
       customValues: [1e1, 1e2, 1e3, 1e4, 1e5],
       formatter: (value) => formatFrequency(value),
-      fontFamily: 'Retni Sans, sans-serif'
+      fontFamily: 'retni-sans, sans-serif'
     },
     axisLine: { onZero: false },
     nameTextStyle: {
-      fontFamily: 'Retni Sans, sans-serif'
+      fontFamily: 'retni-sans, sans-serif'
     },
     axisTick: {
       show: false,
@@ -146,7 +146,7 @@ function initializeCharts() {
   function createCommonOptions(isMagnitude) {
     return {
       textStyle: {
-        fontFamily: 'Retni Sans, sans-serif'
+        fontFamily: 'retni-sans, sans-serif'
       },
       tooltip: {
         trigger: 'axis',
@@ -253,13 +253,13 @@ function initializeCharts() {
       max: props.plotRanges.magnitude[1] + 1,
       minInterval: 1,
       axisLabel: {
-        fontFamily: 'Retni Sans, sans-serif',
+        fontFamily: 'retni-sans, sans-serif',
         // Setting custom labels seems important to avoid labels with 
         // decimals when zooming in or
         customValues: generateLabelValues(6, props.plotRanges.magnitude),
       },
       nameTextStyle: {
-        fontFamily: 'Retni Sans, sans-serif',
+        fontFamily: 'retni-sans, sans-serif',
         align: 'right',
         verticalAlign: 'top',
         padding: [0, 0, 20, 0]
@@ -318,13 +318,13 @@ function initializeCharts() {
         }
       },
       axisLabel: {
-        fontFamily: 'Retni Sans, sans-serif',
+        fontFamily: 'retni-sans, sans-serif',
         // Setting custom labels seems important to avoid labels with 
         // decimals when zooming in
         customValues: generateLabelValues(30, PHASE_RANGE)
       },
       nameTextStyle: {
-        fontFamily: 'Retni Sans, sans-serif',
+        fontFamily: 'retni-sans, sans-serif',
         align: 'right',
         verticalAlign: 'top',
         padding: [0, 0, 20, 0]
