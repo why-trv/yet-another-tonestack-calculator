@@ -22,7 +22,7 @@ export class BaseTonestack {
     this.gainOffset = 0;
     this.visible = true;
     this.magnitudePlotRange = def.magnitudePlotRange || [-48, 0];
-    this.schematicFilename = def.schematicFilename || this.name.toLowerCase().replace(/[\s./]+/g, '');
+    this.schematicFilename = def.schematicFilename || this.name.replace(/[\s./]+/g, '');
     this.getNotesComponent = def.getNotesComponent || (() => false);
 
     // Components
