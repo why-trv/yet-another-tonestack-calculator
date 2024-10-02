@@ -3,7 +3,7 @@
 Browser-based tonestack calculator, available at [tonestack.yuriturov.com](https://tonestack.yuriturov.com/).
 
 Based on the legendary [Duncan Amps TSC](https://www.duncanamps.com/tsc/) and its web counterpart [TSC in the Web](https://www.guitarscience.net/tsc/info.htm).
-The current tonestack models have been adapted from [TSC in the Web repo](https://github.com/jatalahd/tsc) with some tweaks, including optimized calculations of the transfer function coefficients.
+Most of the tonestack models have been adapted from [TSC in the Web repo](https://github.com/jatalahd/tsc) with some tweaks, including optimized calculations of the transfer function coefficients, and a couple of new models added.
 More info [here](https://tonestack.yuriturov.com/about).
 
 
