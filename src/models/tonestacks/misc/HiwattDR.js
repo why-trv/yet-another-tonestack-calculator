@@ -1,11 +1,11 @@
 import { BaseTonestack } from '../BaseTonestack';
 import { Tapers } from '~/utils/components';
 
-export class Hiwatt extends BaseTonestack {
+export class HiwattDR extends BaseTonestack {
   static definition() {
     return {
       id: 'hwtt',
-      name: 'Hiwatt',
+      name: 'Hiwatt DR',
       components: {
         RIN: 48.4e3,
         RT: 220e3,

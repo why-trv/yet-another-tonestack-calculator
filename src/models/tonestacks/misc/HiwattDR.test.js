@@ -1,7 +1,7 @@
-import { Hiwatt } from './Hiwatt';
+import { HiwattDR } from './HiwattDR';
 import { testTonestack } from '../_testTonestack';
 
-testTonestack(Hiwatt, function (controlValues) {
+testTonestack(HiwattDR, function (controlValues) {
   const {
     RIN, R1, R2, R3, R4, RL, C1, C2, C3, C4, C5,
     RT: [RT2, RT1],

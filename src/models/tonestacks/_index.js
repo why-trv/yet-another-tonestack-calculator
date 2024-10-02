@@ -11,7 +11,8 @@ import { ProJunior } from './Fender/ProJunior';
 
 import { Marshall } from './misc/Marshall';
 import { Vox } from './misc/Vox';
-import { Hiwatt } from './misc/Hiwatt';
+import { HiwattDR } from './misc/HiwattDR';
+import { HiwattCP } from './misc/HiwattCP';
 import { FramusMidControl } from './misc/FramusMidControl';
 import { Crate } from './misc/Crate'
 import { Aria } from './misc/Aria'
@@ -58,7 +59,8 @@ export const topologies = {
   "—": [
     new Marshall(),
     new Vox(),
-    new Hiwatt(),    
+    new HiwattDR(),
+    new HiwattCP(),
     new FramusMidControl(),
     new Crate(),
     new Aria(),
