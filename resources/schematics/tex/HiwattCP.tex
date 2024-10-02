@@ -4,37 +4,39 @@
 \usetikzlibrary{positioning}
 
 \begin{document}
-\begin{tikzpicture}	
-	\draw (0, 10) to[european resistor, l=$R_{IN}$] (2, 10);	
-	\draw (4, 10) to[european resistor, l_=$R_1$] (4, 7);
-	\draw (4, 7) to[european resistor, l_=$R_2$] (4, 4);
-	\draw (10, 7) to[european resistor, l_=$R_L$] (10, 4);
-
-	\draw (7, 1) to[european potentiometer, l_=$R_B$] (7, 7);
-	\draw (7, 10) to[european potentiometer, l_=$R_T$] (7, 7);
+\begin{tikzpicture}
+	\draw (0, 10) to[european resistor, l=$R_{IN}$] (2, 10);
+	\draw (4, 10) to[european resistor, l_=$R_1$] (4, 7.5);
+	\draw (4, 5) to[european resistor, l=$R_2$] (4, 7.5);
+	\draw (9.5, 8.75) to[european resistor, l_=$R_L$] (9.5, 6.25);	
 
 	\draw (2, 10) to[capacitor, l=$C_1$] (4, 10);
-	\draw (4, 10) to[capacitor, l=$C_2$] (7, 10);
-	\draw (4, 1) to[capacitor, l=$C_3$] (4, 4);
-
-	\draw (7, 1) -- (4, 1);
-	\draw (4, 7) -- (7, 7);
-	\draw (4, 4) -| (6.44, 4);
-	\draw (7, 1) -| (10, 4);
-	\draw (7.56, 8.5) -| (10, 7);	
+	\draw (4, 10) to[capacitor, l=$C_2$] (7, 10);	
+	\draw (4, 2.5) to[capacitor, l=$C_3$] (4, 5);
 	
-	\node[ground] at (7, 1) {};	
+	\draw (7, 2.5) to[european potentiometer, l_=$R_B$] (7, 7.5);
+	\draw (7, 10) to[european potentiometer, l_=$R_T$] (7, 7.5);
+	
+	\draw (4, 2.5) -- (7, 2.5);
+	\draw (4, 5) -- (6.44, 5);
+	\draw (4, 7.5) -- (7, 7.5);
+	\draw (7.56, 8.75) -- (9.5, 8.75);
+
+	\node[ground] at (5.5, 2.5) {};
+	\node[tlground] at (9.5, 6.25) {};
+
+	\node[circ] at (4, 5) {};
+	\node[circ] at (4, 7.5) {};
 	\node[circ] at (4, 10) {};
-	\node[circ] at (4, 4) {};
-	\node[circ] at (4, 7) {};
-	\node[circ] at (7, 1) {};
-	\node[circ] at (7, 7) {};	
+	\node[circ] at (5.5, 2.5) {};
+	\node[circ] at (7, 7.5) {};
+
 	\node[ocirc, scale=1.2] at (0, 10) {};	
-	\node[ocirc, scale=1.2] at (10, 8.5) {};
+	\node[ocirc, scale=1.2] at (9.5, 8.75) {};
 
 	% Labels
 	\node[left=0cm of {0, 10}] {$V_{IN}$};
-	\node[above=0.05cm of {10, 8.5}] {$V_{OUT}$};
+	\node[above=0.05cm of {9.5, 8.75}] {$V_{OUT}$};
 
 \end{tikzpicture}
 \end{document}
