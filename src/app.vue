@@ -48,6 +48,10 @@ useHead({
   }
 });
 
+useSeoMeta({
+  desciption: 'Browser-based guitar amp/pedal tonestack response calculator'
+});
+
 const errorMessage = ref('');
 
 const handleError = (message) => {
