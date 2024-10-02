@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center space-x-2">
-    <label :for="name" class="text-sm font-medium w-5 flex-shrink-0">
+    <label :for="name" class="text-sm font-medium w-[1.375rem] flex-shrink-0">
       {{ tonestack.getComponentDisplayLetter(name) }}<sub>{{ tonestack.getComponentDisplaySubscript(name) }}</sub>
     </label>
     <div class="flex items-center flex-grow">

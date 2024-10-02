@@ -1,7 +1,9 @@
 import { Bassman5F6A } from './Fender/Bassman5F6A';
 import { FenderTMB } from './Fender/FenderTMB';
 import { FenderTB } from './Fender/FenderTB';
-import { Brownface } from './Fender/Brownface'
+import { Brownface } from './Fender/Brownface';
+import { Deluxe5E3Bright } from './Fender/Deluxe5E3Bright';
+import { Deluxe5E3Normal } from './Fender/Deluxe5E3Normal';
 import { ESeries } from './Fender/ESeries';
 import { Princeton5E2 } from './Fender/Princeton5E2';
 import { Princeton5F2A } from './Fender/Princeton5F2A';
@@ -46,6 +48,8 @@ export const topologies = {
     new FenderTMB(),
     new FenderTB(),
     new Brownface(),
+    new Deluxe5E3Bright(),
+    new Deluxe5E3Normal(),
     new ESeries(),
     new Princeton5E2(),
     new Princeton5F2A(),
