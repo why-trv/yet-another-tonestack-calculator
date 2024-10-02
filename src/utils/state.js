@@ -367,10 +367,14 @@ function setStateFromSavedData(data) {
 
     const controlValues = {};
 
-    Object.entries(data.components).forEach(([name, value]) => {
+    // Iterate tonestack components, not data.components, to avoid getting extraneous data
+    // in there (e.g. components that have since been renamed)
+    for (const name in ts.components) {
+      const value = data.components[name];
+
       if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
         // This is a control (potentiometer)
-        ts.components[name] = parseComponentValue(value.value, name);
+        ts.setComponentValue(name, value.value);        
 
         const taper = Object.keys(Tapers).find(id => id === value.taper);
         if (taper) {
@@ -380,9 +384,9 @@ function setStateFromSavedData(data) {
         controlValues[name] = value.control;
       } else {
         // This is a 'static' component
-        ts.components[name] = parseComponentValue(value, name);
+        ts.setComponentValue(name, value);        
       }
-    });
+    }
 
     ts.controlValues = controlValues;
 
@@ -405,10 +409,14 @@ function setStateFromCompactSavedData(data) {
 
     const controlValues = {};
 
-    Object.entries(data.c).forEach(([name, value]) => {
+    // Iterate tonestack components, not data.c, to avoid getting extraneous data
+    // in there (e.g. components that have since been renamed)
+    for (const name in ts.components) {
+      const value = data.c[name];
+
       if (Array.isArray(value)) {
         // This is a control (potentiometer)
-        ts.components[name] = parseComponentValue(value[0], name);
+        ts.setComponentValue(name, value[0]);        
 
         const taper = Object.keys(Tapers).find(id => id === value[1]);
         if (taper) {
@@ -418,9 +426,9 @@ function setStateFromCompactSavedData(data) {
         controlValues[name] = value[2];
       } else {
         // This is a 'static' component
-        ts.components[name] = parseComponentValue(value, name);
+        ts.setComponentValue(name, value);        
       }
-    });
+    }
 
     ts.controlValues = controlValues;
 

@@ -60,6 +60,10 @@ export class BaseTonestack {
     return getComponentSubscript(name);
   }
 
+  setComponentValue(name, value) {
+    this.components[name] = parseComponentValue(value || this.defaultComponents[name], name);
+  }
+
   hasDefaultComponentValue(name) {
     return areApproximatelyEqual(this.components[name], this.defaultComponents[name]);
   }

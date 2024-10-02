@@ -324,9 +324,10 @@ const visibleComponentNames = computed(() => {
 onMounted(() => {
   try {
     store.initialize();
-  } catch {
+  } catch (error) {
     store.reset();
-    emit('error', "Couldn't load configuration from URL or autosave, sticking to defaults");
+    console.warn('Unable to load configuration: ', error);
+    emit('error', 'Unable to load configuration from URL or autosave, sticking to defaults');
   }
 });
 
