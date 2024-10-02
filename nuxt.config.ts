@@ -9,5 +9,8 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  app: {
+    buildAssetsDir: '/_/',
   }
 })
