@@ -255,7 +255,10 @@
             <!-- Sliders -->
             <div class="grid grid-cols-1 gap-3 mb-2">
               <SliderBlock v-for="(taper, controlName) in state.currentControls" :key="controlName" :name="controlName"
-                v-model="state.currentControlValues[controlName]" :taper="taper" :is-global="state.globalControlEnabled"
+                v-model="state.currentControlValues[controlName]" 
+                :taper="taper"
+                :options="state.selectedTonestack.controlOptions[controlName]"
+                :is-global="state.globalControlEnabled"
                 :display-range="state.potDisplayRange" :aux-display-mode="state.potAuxDisplayMode"
                 :component-value="state.selectedTonestack.components[controlName]"
                 @update:taper="store.setSelectedTonestackControlTaper(controlName, $event)"

@@ -13,7 +13,7 @@
       <span class="leading-none text-xs text-gray-500 text-right">
         {{ auxDisplayValue1 }}
       </span>
-      <span v-if="auxDisplayMode === PotAuxDisplayMode.Values"
+      <span v-if="auxDisplayMode === PotAuxDisplayMode.Values && options.role === PotRole.Pot"
         class="leading-none text-xs text-gray-500 text-right border-t border-gray-400">
         {{ auxDisplayValue2 }}
       </span>
@@ -30,6 +30,7 @@ import {
   getComponentSubscript,
   formatComponentValue,
   Tapers,
+  PotRole,
   PotDisplayRanges,
   PotDisplayRangeID,
   PotAuxDisplayMode
@@ -45,6 +46,10 @@ const props = defineProps({
     required: true
   },
   taper: {
+    type: Object,
+    required: true
+  },
+  options: {
     type: Object,
     required: true
   },
@@ -80,6 +85,10 @@ const unnormalizedValue = computed(() => {
 
 const taperedValue = computed(() => {
   let v = props.taper.positionToValue(props.modelValue);
+  
+  if (props.options.reverse) {
+    v = 1 - v;
+  }
 
   if (props.auxDisplayMode !== PotAuxDisplayMode.Values) {
     return v;
@@ -103,7 +112,7 @@ const auxDisplayValue1 = computed(() => {
 });
 
 const auxDisplayValue2 = computed(() => {
-  if (props.auxDisplayMode !== PotAuxDisplayMode.Values) {
+  if (props.auxDisplayMode !== PotAuxDisplayMode.Values || props.options.role !== PotRole.Pot) {
     return '';
   }
 

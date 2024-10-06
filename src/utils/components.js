@@ -28,6 +28,11 @@ const Tapers = defineEnum({
   }
 });
 
+const PotRole = defineEnum({
+  Pot: 'P',
+  VR: 'V'
+});
+
 const PotDisplayRangeID = defineEnum({
   DEFAULT: 'D',
   TWEED: 'T',
@@ -62,7 +67,7 @@ const ComponentType = defineEnum({
   B: 'B' // transitor beta
 });
 
-export { Tapers, PotDisplayRanges, PotDisplayRangeID, PotAuxDisplayMode, ComponentType };
+export { Tapers, PotRole, PotDisplayRanges, PotDisplayRangeID, PotAuxDisplayMode, ComponentType };
 
 const componentSettings = {  
   [ComponentType.R]: {

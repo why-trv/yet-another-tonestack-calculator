@@ -20,10 +20,19 @@ import { BoneRay } from './misc/BoneRay'
 import { BlackstarHT5 } from './misc/BlackstarHT5';
 import { DrZ } from './misc/DrZ'
 import { Tilt } from './misc/Tilt'
-import { BigMuff } from './misc/BigMuff';
 import { NeveShelvingHiLo } from './misc/NeveShelvingHiLo';
 import { Bench } from './misc/Bench';
 import { Wah } from './misc/Wah';
+
+import { BigMuff } from './BigMuff/BigMuff';
+import { BigMuffHoof } from './BigMuff/BigMuffHoof';
+import { BigMuffMusket } from './BigMuff/BigMuffMusket';
+import { BigMuffPickle } from './BigMuff/BigMuffPickle';
+
+import { RCLowpass } from './Basic/RCLowpass';
+import { RCHighpass } from './Basic/RCHighpass';
+import { RCLowpassShelving } from './Basic/RCLowpassShelving';
+import { RCHighpassShelving } from './Basic/RCHighpassShelving';
 
 import { JamesPassiveDualBassCap } from './James/JamesPassiveDualBassCap';
 import { JamesActiveDualBassCap } from './James/JamesActiveDualBassCap';
@@ -68,10 +77,21 @@ export const topologies = {
     new BlackstarHT5(),
     new DrZ(),
     new Tilt(),
-    new BigMuff(),
     new NeveShelvingHiLo(),
     new Bench(),
     new Wah()
+  ],
+  Basic: [
+    new RCLowpass(),
+    new RCLowpassShelving(),
+    new RCHighpass(),    
+    new RCHighpassShelving()
+  ],
+  'Big Muff': [
+    new BigMuff(),
+    new BigMuffHoof(),
+    new BigMuffMusket(),
+    new BigMuffPickle(),
   ],
   James: [
     new JamesPassiveDualBassCap(),

@@ -22,7 +22,8 @@ export class BaseTonestack {
     this.gainOffset = 0;
     this.visible = true;
     this.magnitudePlotRange = def.magnitudePlotRange || [-48, 0];
-    this.schematicFilename = def.schematicFilename || this.name.replace(/[\s./]+/g, '');
+    // By default, use class name as the schematic filename
+    this.schematicFilename = def.schematicFilename || this.constructor.name;
     this.getNotesComponent = def.getNotesComponent || (() => false);
 
     // Components
@@ -36,14 +37,20 @@ export class BaseTonestack {
 
     // Controls and control values
     const controls = {};
+    const options = {};
     const cv = {};
     for (const name in def.controls) {
       const v = def.controls[name];
       controls[name] = v.taper || v; // Can be an object including taper or plain taper
+      options[name] = {
+        role: v.role || PotRole.Pot,
+        reverse: v.reverse || false
+      };
       cv[name] = v.default || 0.5; // Default can be part of the object, otherwise 0.5
       // NB: v.default of 0 is not really supported at the moment (YAGNI)
     }
     this.controls = controls;
+    this.controlOptions = options;
     this.controlValues = cv;
   }
 
@@ -91,7 +98,11 @@ export class BaseTonestack {
 
     const res = {};
     for (const name in c) {
-      res[name] = splitPotValue(this.components[name], c[name]);
+      const splitValues = splitPotValue(this.components[name], c[name]);
+      if (this.controlOptions[name].reverse) {
+        splitValues.reverse();
+      }
+      res[name] = splitValues;
     }
 
     return res;
@@ -103,13 +114,39 @@ export class BaseTonestack {
   //   RIN, R1, RL, C1, C2, C3,
   //   RT: [RT2, RT1],
   //   RB: [RB]
-  // } = this.extractValues(controlValues);
+  // } = this.processComponentValues(controlValues);
   //
   processComponentValues(controlValues) {
     const res = this.splitTaperedControlValues(controlValues);
 
     for (const name in this.components) {
       if (!res.hasOwnProperty(name)) {
+        res[name] = this.components[name];
+      }
+    }
+
+    return res;
+  }
+
+  // Extracts coefficient variables, adding <name>2 and <name>1 props for split controls
+  // Can be neatly destructured like this:
+  // const {
+  //   RIN, R1, RL, C1, C2, C3,
+  //   RT2, RT1, RT,
+  //   RB2, RB1, RB
+  // } = this.extractCoefficientVariables(controlValues);
+  //
+  extractCoefficientVariables(controlValues) {
+    const res = {};
+    const splitValues = this.splitTaperedControlValues(controlValues);
+
+    for (const name in this.components) {
+      if (splitValues.hasOwnProperty(name)) {
+        const [value2, value1] = splitValues[name];
+        res[`${name}2`] = value2;
+        res[`${name}1`] = value1;
+        res[name] = value2; // Redundant property with the same value as <name>2
+      } else {
         res[name] = this.components[name];
       }
     }
