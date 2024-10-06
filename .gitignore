@@ -24,4 +24,7 @@ logs
 !.env.example
 
 # ...
-/resources/schematics/text/output/
+/resources/schematics/tex/output/
+/resources/lcapy/.aux/
+/resources/lcapy/output/
+/.venv/

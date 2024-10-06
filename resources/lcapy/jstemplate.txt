@@ -1,0 +1,14 @@
+import { <%BaseClass%> } from '<%BaseClassPath%>';
+import { Tapers, PotRole } from '~/utils/components';
+
+export class <%ClassName%> extends <%BaseClass%> {
+  static definition() {
+    return <%Definition%>;
+  }
+<%ExistingCode%>
+  calculateCoefficients(controlValues) {
+    const { <%CoefficientVariables%> } = this.extractCoefficientVariables(controlValues);
+
+<%Calculations%>
+  }
+}
