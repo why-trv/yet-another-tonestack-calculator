@@ -23,7 +23,7 @@ export class BaseTonestack {
     this.visible = true;
     this.magnitudePlotRange = def.magnitudePlotRange || [-48, 0];
     // By default, use class name as the schematic filename
-    this.schematicFilename = def.schematicFilename || this.constructor.name;
+    this.schematicFilename = def.schematicFilename || this.name.replace(/[\s./]+/g, '');
     this.getNotesComponent = def.getNotesComponent || (() => false);
 
     // Components
