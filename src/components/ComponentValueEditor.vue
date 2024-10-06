@@ -1,6 +1,7 @@
 <template>
   <div class="flex items-center space-x-2">
-    <label :for="name" class="text-sm font-medium w-[1.375rem] flex-shrink-0">
+    <label :for="name" :class="{ 'font-medium': !isControl, 'font-bold': isControl }"
+      class="text-sm w-[1.375rem] flex-shrink-0">
       {{ tonestack.getComponentDisplayLetter(name) }}<sub>{{ tonestack.getComponentDisplaySubscript(name) }}</sub>
     </label>
     <div class="flex items-center flex-grow">
@@ -55,6 +56,7 @@ const startRepeatInterval = 350;
 const minRepeatInterval = 100;
 let repeatInterval = startRepeatInterval;
 
+const isControl = computed(() => props.tonestack.isControl(props.name));
 const highlighted = computed(() => !props.tonestack.hasDefaultComponentValue(props.name));
 
 watch(() => props.modelValue, (newValue) => {

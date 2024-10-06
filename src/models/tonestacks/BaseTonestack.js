@@ -75,6 +75,10 @@ export class BaseTonestack {
     return areApproximatelyEqual(this.components[name], this.defaultComponents[name]);
   }
 
+  isControl(name) {
+    return this.controls.hasOwnProperty(name);
+  }
+
   // Get control values with applied potentiometer tapers
   getControlTaperedValues(controlValues) {
     let res = {};
