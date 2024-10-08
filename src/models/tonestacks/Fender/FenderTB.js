@@ -7,7 +7,7 @@ export class FenderTB extends BaseTonestack {
       id: 'ftb',
       name: 'Fender Treble-Bass',      
       description: 'Same as Fender TMB, but with R<sub>M</sub> normally fixed at 6.8k (i.e. around 7.1 on 1–10 BF-style knobs)',
-      schematicFilename: 'FenderTB',
+      schematic: 'FenderTB',
       components: {
         RIN: 38e3,
         R1: 100e3,

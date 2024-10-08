@@ -6,7 +6,7 @@ export class BigMuffMusket extends BaseTonestack {
     return {
       id: 'muf2',
       name: 'Big Muff / Musket',
-      schematicFilename: 'BigMuffMusket',
+      schematic: 'BigMuffMusket',
       components: {
         RIN: 12e3,
         R1: 10e3,

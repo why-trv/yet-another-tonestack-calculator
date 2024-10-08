@@ -6,7 +6,7 @@ export class FenderTMB extends BaseTonestack {
     return {
       id: 'ftmb',
       name: 'Fender Treble-Mid-Bass',
-      schematicFilename: 'FenderTMB',
+      schematic: 'FenderTMB',
       components: {
         RIN: 38e3,
         R1: 100e3,

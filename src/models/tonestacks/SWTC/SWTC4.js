@@ -6,7 +6,7 @@ export class SWTC4 extends BaseTonestack {
     return {
       id: 'swt4',
       name: 'Stupidly Wonderful Tone Control 4',
-      schematicFilename: 'SWTC4',
+      schematic: 'SWTC4',
       components: {
         RIN: 1e3,
         RT: 10e3,

@@ -7,7 +7,7 @@ export class BigMuffPickle extends BaseTonestack {
       id: 'muf3',
       name: 'Big Muff / Pickle',
       description: 'A la Swollen Pickle (R<sub>M</sub> = Scoop, R<sub>C</sub> = Voice)',
-      schematicFilename: 'BigMuffPickle',
+      schematic: 'BigMuffPickle',
       components: {
         RIN: 15e3,
         R1: 33e3,

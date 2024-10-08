@@ -196,7 +196,7 @@
             <!-- SVG Schematic -->
             <div class="md:col-span-3 lg:col-span-2 xl:col-span-3">
               <div class="p-4 border bg-white border-gray-300">
-                <img :src="`/images/schematics/${state.selectedTonestack.schematicFilename}.svg`"
+                <img :src="`/images/schematics/${state.selectedTonestack.schematic}.svg`"
                   :alt="state.selectedTonestack.name + ' Tonestack Schematic'" class="w-full mx-auto max-h-96" />
               </div>
               <div v-if="state.selectedTonestack.description" v-html="state.selectedTonestack.description"

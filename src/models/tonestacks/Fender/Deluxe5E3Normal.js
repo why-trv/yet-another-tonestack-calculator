@@ -6,7 +6,7 @@ export class Deluxe5E3Normal extends Deluxe5E3Bright {
       ...Deluxe5E3Bright.definition(),
       id: '5e3n',
       name: 'Deluxe 5E3 (Normal)',
-      schematicFilename: 'Deluxe5E3Normal'
+      schematic: 'Deluxe5E3Normal'
     };
   }
 

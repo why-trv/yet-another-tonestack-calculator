@@ -6,7 +6,7 @@ export class Deluxe5E3Bright extends BaseTonestack {
     return {
       id: '5e3b',
       name: 'Deluxe 5E3 (Bright)',
-      schematicFilename: 'Deluxe5E3Bright',
+      schematic: 'Deluxe5E3Bright',
       components: {
         RINB: 20e3,
         RINN: 20e3,        

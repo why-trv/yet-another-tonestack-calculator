@@ -7,7 +7,7 @@ export class BigMuffHoof extends BaseTonestack {
       id: 'muf1',
       name: 'Big Muff / Hoof',
       description: 'A la EQD Hoof / <a href="https://www.muzique.com/lab/tone3.htm" rel="noopener noreferrer">AMZ Presence Control</a>',
-      schematicFilename: 'BigMuffHoof',
+      schematic: 'BigMuffHoof',
       components: {
         RIN: 15e3,
         R1: 39e3,
