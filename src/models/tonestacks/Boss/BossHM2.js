@@ -7,7 +7,9 @@ export class BossHM2 extends BaseTonestack {
       id: 'hm2',
       name: 'Boss HM-2',
       schematic: 'BossHM2',
-      description: 'Opamp bias voltage node V<sub>B</sub> is virtually equivalent to ground for the purpose of AC analysis',
+      description: 'Opamp bias voltage node V<sub>B</sub> is virtually equivalent to ground ' +
+        'for the purpose of AC analysis. <br>NB: Bias for OA1 not included here as it is ' +
+        'carried over from the previous stage.',
       components: {
         RIN: 1e3,
         RL: 10e3,
