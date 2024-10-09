@@ -491,8 +491,11 @@ def main():
     components = {}
     symbolic_cpts = []
     for (k, v) in defs.items():
-        if k != v:
-            components[cpt_alias(k)] = float(v)
+        if k != v and isinstance(v, (str, int, float)):
+            try:
+                components[cpt_alias(k)] = float(v)
+            except ValueError:
+                symbolic_cpts.append(cpt_alias(k))
         else:
             symbolic_cpts.append(cpt_alias(k))
     

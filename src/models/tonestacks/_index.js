@@ -52,6 +52,9 @@ import { SWTC2 } from './SWTC/SWTC2'
 import { SWTC3 } from './SWTC/SWTC3'
 import { SWTC4 } from './SWTC/SWTC4'
 
+import { BossFZ2EQ } from './Boss/BossFZ2EQ';
+import { BossHM2 } from './Boss/BossHM2'
+
 export const topologies = {
   Fender: [
     new Bassman5F6A(),
@@ -92,6 +95,10 @@ export const topologies = {
     new BigMuffHoof(),
     new BigMuffMusket(),
     new BigMuffPickle(),
+  ],
+  Boss: [
+    new BossFZ2EQ(),
+    new BossHM2(),
   ],
   James: [
     new JamesPassiveDualBassCap(),
