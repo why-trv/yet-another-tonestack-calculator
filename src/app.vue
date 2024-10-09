@@ -51,7 +51,10 @@ useHead({
   meta: [
     {name: 'description', content: description},
     {property: 'og:description', content: description},    
-  ]
+  ],
+  htmlAttrs: {
+    lang: 'en'
+  },
 });
 
 const errorMessage = ref('');
