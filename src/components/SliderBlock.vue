@@ -1,5 +1,5 @@
 <template>
-  <div v-if="modelValue || (modelValue === 0)" class="flex items-center h-6 space-x-3">
+  <div v-if="modelValue || (modelValue === 0)" class="flex items-center h-6 gap-x-2 sm:gap-x-3">
     <label :for="name" class="w-7 text-sm font-medium">{{ getComponentLetter(name) }}<sub>{{ getComponentSubscript(name)
         }}</sub></label>
     <select v-if="!isGlobal" :value="taper.name" @change="$emit('update:taper', $event.target.value)"
@@ -8,8 +8,8 @@
         {{ taperName }}
       </option>
     </select>
-    <span class="w-9 text-sm font-medium">{{ getDisplayValue() }}</span>
-    <div v-if="!isGlobal && auxDisplayMode !== PotAuxDisplayMode.None" class="w-10 flex flex-col">
+    <div class="inline-block w-7 text-sm font-medium">{{ getDisplayValue() }}</div>
+    <div v-if="!isGlobal && auxDisplayMode !== PotAuxDisplayMode.None" class="inline-block w-9 flex flex-col">
       <span class="leading-none text-xs text-gray-500 text-right">
         {{ auxDisplayValue1 }}
       </span>
@@ -19,7 +19,7 @@
       </span>
     </div>
     <input :id="name" @input="$emit('update:modelValue', normalizeValue(parseFloat($event.target.value)))" type="range"
-      :min="range[0]" :max="range[1]" :step="STEP" :value="unnormalizedValue" class="slider"
+      :min="range[0]" :max="range[1]" :step="STEP" :value="unnormalizedValue" class="slider grow"
       @wheel.prevent="handleWheel" />
   </div>
 </template>
@@ -146,8 +146,7 @@ function handleWheel(event) {
 
 <style scoped>
 .slider {
-  -webkit-appearance: none;
-  width: 100%;
+  -webkit-appearance: none;  
   @apply h-1.5 bg-gray-100 border border-solid border-gray-700;
   outline: none;
 }
