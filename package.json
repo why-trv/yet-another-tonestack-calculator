@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@jsonjoy.com/json-pack": "^1.1.0",
+    "@nuxtjs/fontaine": "^0.4.3",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "echarts": "^5.5.1",
     "nuxt": "^3.13.0",
