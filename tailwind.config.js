@@ -8,7 +8,7 @@ module.exports = {
     ],
     theme: {
       fontFamily: {
-        'sans': ['retni-sans', 'retni-sans fallback','-apple-system', 'BlinkMacSystemFont', '"Helvetica Neue"', 'sans-serif']
+        'sans': ['retni-sans', '"retni-sans fallback"','-apple-system', 'BlinkMacSystemFont', '"Helvetica Neue"', 'sans-serif']
       },
       extend: {
         screens: {
