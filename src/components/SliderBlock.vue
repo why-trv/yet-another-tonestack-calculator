@@ -3,6 +3,7 @@
     <label :for="name" class="w-7 text-sm font-medium">{{ getComponentLetter(name) }}<sub>{{ getComponentSubscript(name)
         }}</sub></label>
     <select v-if="!isGlobal" :value="taper.name" @change="$emit('update:taper', $event.target.value)"
+      aria-label="Taper"
       class="w-18 text-sm bg-transparent ring-focus">
       <option v-for="(taperOption, taperName) in Tapers" :key="taperName" :value="taperName">
         {{ taperName }}

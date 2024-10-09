@@ -157,7 +157,8 @@
             <div class="flex flex-wrap 2xl:flex-nowrap justify-stretch md:justify-between items-center gap-x-3 gap-y-2 mb-2">
               <div class="flex grow justify-stretch md:justify-start">
                 <!-- Tonestack Topology Select -->
-                <select :value="state.selectedTopology.id"
+                <select :value="state.selectedTopology.id" 
+                  aria-label="Tonestack Topology"
                   class="topology-select grow md:w-[17.5rem] border border-gray-400 rounded-none px-2 py-1 text-sm sm:text-base font-bold bg-white focus:border-r ring-focus"
                   @change="store.selectTopologyWithId($event.target.value)">
                   <optgroup v-for="(array, category) in store.topologies" :label="category">
@@ -167,7 +168,8 @@
                   </optgroup>
                 </select>
                 <!-- Previous Topology Button -->
-                <button @click="store.nudgeSelectedTopology(-1)"
+                <button @click="store.nudgeSelectedTopology(-1)" 
+                 aria-label="Previous Topology"
                   class="self-stretch px-2 py-1 -ml-px border border-solid border-gray-700 bg-gray-100 text-gray-700 text-xs rounded-none hover:bg-gray-700 hover:text-white ring-focus">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -175,7 +177,7 @@
                   </svg>
                 </button>
                 <!-- Next Topology Button -->
-                <button @click="store.nudgeSelectedTopology(1)"
+                <button @click="store.nudgeSelectedTopology(1)" aria-label="Next Topology"
                   class="self-stretch px-2 py-1 -ml-px border border-solid border-gray-700 bg-gray-100 text-gray-700 text-xs rounded-none hover:bg-gray-700 hover:text-white ring-focus">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -231,7 +233,9 @@
               { value: true, label: 'Global' }
             ]" class="mb-2">
               <div v-if="!state.globalControlEnabled" class="max-w-[7.6rem] xs:max-w-max flex justify-end flex-wrap gap-x-1">
-                <select @change="updatePotAuxDisplayMode($event.target.value)"
+                <select
+                  aria-label="Extra Display Value"
+                  @change="updatePotAuxDisplayMode($event.target.value)"
                   class="select text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
                   <optgroup label="Extra">
                     <option v-for="(value, key) in PotAuxDisplayMode" :key="value" :value="value"
@@ -240,7 +244,9 @@
                     </option>
                   </optgroup>
                 </select>
-                <select @change="updatePotDisplayRange($event.target.value)"
+                <select 
+                  aria-label="Slider Numbering"
+                  @change="updatePotDisplayRange($event.target.value)"
                   class="select text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
                   <optgroup label="Numbering">
                     <option v-for="(range, id) in PotDisplayRanges" :key="id" :value="id"

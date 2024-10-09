@@ -9,7 +9,7 @@
               <source srcset="~/assets/images/logo-abbrev.svg" media="(max-width: 500px)">
               <source srcset="~/assets/images/logo-narrow.svg" media="(max-width: 1024px)">
               <source srcset="~/assets/images/logo.svg">
-              <img src="~/assets/images/logo-narrow.svg" alt="Tonestack Calculator">
+              <img src="~/assets/images/logo-narrow.svg" alt="Yet Another Tonestack Calculator">
             </picture>
             <!-- So here's an alternative if anything goes wrong: -->
             <!-- <img src="~/assets/images/logo.svg" 
@@ -41,15 +41,17 @@
 import { ref } from 'vue';
 import ErrorBar from '~/components/ErrorBar.vue';
 
+const description = 'Guitar amp and pedal tonestack calculator web app. Tweak controls and component values and compare frequency responses in real time. Inspired by TSC in the web and Duncan Amps TSC.';
+
 useHead({
   titleTemplate: (titleChunk) => {
     const title = 'Yet Another Tonestack Calculator';
     return titleChunk ? `${titleChunk} | ${title}` : title;
-  }
-});
-
-useSeoMeta({
-  desciption: 'Browser-based guitar amp/pedal tonestack response calculator'
+  },
+  meta: [
+    {name: 'description', content: description},
+    {property: 'og:description', content: description},    
+  ]
 });
 
 const errorMessage = ref('');
