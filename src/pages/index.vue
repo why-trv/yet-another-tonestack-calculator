@@ -232,11 +232,11 @@
               { value: false, label: 'This Tonestack' },
               { value: true, label: 'Global' }
             ]" class="mb-2">
-              <div v-if="!state.globalControlEnabled" class="max-w-[7.6rem] xs:max-w-max flex justify-end flex-wrap gap-x-1">
+              <div v-if="!state.globalControlEnabled" class="max-w-[7.7rem] xs:max-w-max flex justify-end flex-wrap gap-x-1">
                 <select
                   aria-label="Extra Display Value"
                   @change="updatePotAuxDisplayMode($event.target.value)"
-                  class="select text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
+                  class="select grow text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
                   <optgroup label="Extra">
                     <option v-for="(value, key) in PotAuxDisplayMode" :key="value" :value="value"
                       :selected="state.potAuxDisplayMode === value">
