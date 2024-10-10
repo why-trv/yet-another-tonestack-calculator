@@ -9,8 +9,27 @@
 
 <script setup>
 import { ref, onMounted, watch, onUnmounted } from 'vue';
-import * as echarts from 'echarts';
 import { generateFrequencies, isMobileOrTablet } from '~/utils/utils';
+import * as echarts from 'echarts/core';
+import { LineChart } from 'echarts/charts';
+import { CanvasRenderer } from 'echarts/renderers';
+import {
+  GridComponent,
+  DataZoomComponent,
+  TitleComponent,
+  ToolboxComponent,
+  TooltipComponent,
+} from 'echarts/components';
+
+echarts.use([
+  LineChart,
+  CanvasRenderer,
+  GridComponent,
+  DataZoomComponent,
+  TitleComponent,
+  ToolboxComponent,
+  TooltipComponent
+]);
 
 const props = defineProps({
   responses: Array,
