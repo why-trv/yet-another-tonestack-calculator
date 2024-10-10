@@ -194,12 +194,12 @@
           </div>
 
           <div
-            class="pb-3 mb-3 border-b border-gray-400 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 items-start gap-4">
+            class="pb-3 mb-3 border-b border-gray-400 grid grid-cols-1 md:grid-cols-[1fr_10rem] items-start gap-4">
             <!-- SVG Schematic -->
-            <div class="md:col-span-3 lg:col-span-2 xl:col-span-3">
-              <div class="p-4 border bg-white border-gray-300">
+            <div class="min-h-full h-full flex flex-col">
+              <div class="grow p-4 border bg-white border-gray-300">
                 <img :src="`/images/schematics/${state.selectedTonestack.schematic}.svg`"
-                  :alt="state.selectedTonestack.name + ' Tonestack Schematic'" class="w-full mx-auto max-h-96" />
+                  :alt="state.selectedTonestack.name + ' Tonestack Schematic'" class="mx-auto min-h-64 min-w-[50%] h-full" />
               </div>
               <div v-if="state.selectedTonestack.description" v-html="state.selectedTonestack.description"
                 class="mt-2 text-xs text-gray-600">
