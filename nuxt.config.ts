@@ -4,7 +4,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/fontaine'
   ],
-  css: ['~/assets/css/main.css'],
+  tailwindcss: {
+    cssPath: '~/assets/css/main.css',
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
