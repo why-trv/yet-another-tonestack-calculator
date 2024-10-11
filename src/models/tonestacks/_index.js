@@ -1,6 +1,7 @@
 import { Bassman5F6A } from './Fender/Bassman5F6A';
 import { FenderTMB } from './Fender/FenderTMB';
 import { FenderTB } from './Fender/FenderTB';
+import { Bandmaster6G7 } from './Fender/Bandmaster6G7';
 import { Brownface } from './Fender/Brownface';
 import { Deluxe5E3Bright } from './Fender/Deluxe5E3Bright';
 import { Deluxe5E3Normal } from './Fender/Deluxe5E3Normal';
@@ -60,6 +61,7 @@ export const topologies = {
     new Bassman5F6A(),
     new FenderTMB(),
     new FenderTB(),
+    new Bandmaster6G7(),
     new Brownface(),
     new Deluxe5E3Bright(),
     new Deluxe5E3Normal(),

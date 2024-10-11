@@ -255,13 +255,14 @@ def generate_js_code(analysis_results, input_file, frontmatter, js_dir=None, ove
         definition += f"{idt3}controls: {{\n"
         for control, control_info in frontmatter['controls'].items():
             if isinstance(control_info, dict):
-                taper = control_info.get('taper', 'Linear')
-                role = control_info.get('role', 'Pot')
+                taper = control_info.get('taper', 'Linear')                
                 definition += f"{idt4}{control}: {{\n{idt5}taper: Tapers.{taper},\n"
                 if 'role' in control_info:
                     definition += f"{idt5}role: PotRole.{control_info['role']},\n"
                 if 'reverse' in control_info:
                     definition += f"{idt5}reverse: {'true' if control_info['reverse'] else 'false'},\n"
+                if 'default' in control_info:
+                    definition += f"{idt5}default: {control_info['default']},\n"
                 definition += f"{idt4}}},\n"
             else:
                 definition += f"{idt4}{control}: Tapers.{control_info},\n"
@@ -417,8 +418,10 @@ def circuit_for_analysis(cct):
         # Replace potentiometer (RV) components with two separate resistors
         if cpt.startswith('RV'):
             old_component = anCct[cpt]
-            name = cpt_alias(cpt)
-            # TODO: this breaks on RV_V, fix it
+            # We cannot do RV_V -> RV at this point (because lcapy will think it's an
+            # anonymous pot), so do RV_V -> R_V for now, and do R_V -> RV later for
+            # coefficient expressions
+            name = rv_analysis_alias(cpt)
             nodes = old_component.nodes
 
             flip = ('*' in old_component.opts)
@@ -441,6 +444,16 @@ def circuit_for_analysis(cct):
             anCct[cpt].opts.clear()
             
     return anCct
+
+def rv_analysis_alias(cpt):
+    # Takes lcapy component name and returns the name that will be used for
+    # RV replacement with two resistors in the analysis netlist
+    if cpt.startswith('RV_'):
+        return 'R_' + cpt[3:]
+    elif cpt.startswith('RV'):
+        return 'R_' + cpt[2:]
+    else:
+        return cpt
 
 def cpt_alias(cpt):
     # Takes lcapy component name and returns the name that will be used in the model
@@ -517,10 +530,13 @@ def main():
             is_vr = 'variable' in cct[cpt].opts
             # BTW, automatically set the role for variable resistors (as opposed to potentiometers)
             if is_vr and alias in controls:
-                controls[alias] = {
-                    'taper': controls[alias],
-                    'role': 'VR'
-                }
+                if isinstance(controls[alias], str):
+                    controls[alias] = {
+                        'taper': controls[alias]
+                    }
+
+                controls[alias]['role'] = 'VR'
+                
                 if '*' in cct[cpt].opts:
                     controls[alias]['reverse'] = True
             
