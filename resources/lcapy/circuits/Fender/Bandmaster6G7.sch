@@ -1,6 +1,7 @@
 ---
 id: 6g7
 name: Bandmaster 6G7
+description: Vibrato channel tonestack. Normal channel is the same except for the lack of C<sub>4</sub> bright cap. The bright cap is effectively bypassed with R<sub>V</sub> on maximum
 controls:
   RB: LogA
   RT: Linear
