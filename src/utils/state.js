@@ -1,5 +1,6 @@
 import { Tapers, PotDisplayRangeID, PotDisplayRanges, PotAuxDisplayMode } from '~/utils/components';
 import { topologies, defaultTopology } from '~/models/tonestacks/_index';
+import { deepFreeze } from '~/utils/js';
 import {
   saveToLocalStorage,
   loadFromLocalStorage,
@@ -19,6 +20,16 @@ const flatTopologies = Object.values(topologies).flat();
 const responses = [];
 let autosaveDebounceTimer;
 
+const DEFAULTS = {
+  responseSettings: {
+    magnitude: true,
+    phase: true,
+    scope: false,
+    scopeFrequency: 100,
+  },
+};
+deepFreeze(DEFAULTS);
+
 // App state
 // Note that tonestacks is an array of tonestack instances added and possibly
 // edited by the user, while topologies are tonestacks in their default states,
@@ -30,6 +41,7 @@ const state = reactive({
   globalControlEnabled: false,
   globalControls: {},
   globalControlValues: {},
+  responseSettings: DEFAULTS.responseSettings,
   potDisplayRange: PotDisplayRanges[PotDisplayRangeID.DEFAULT],
   potAuxDisplayMode: PotAuxDisplayMode.Values,
   selectedTonestack: computed(() => state.tonestacks[state.selectedTonestackIndex]),
@@ -65,11 +77,13 @@ const state = reactive({
         return null;
       }
 
-      const response = ts.calculateResponse(overrideValues, responses[index]);
+      const response = ts.calculateResponse(state.responseSettings,
+                                            overrideValues,
+                                            responses[index]);
       return {
         // tonestack index as the id for ECharts 
         // (crucial to be able to delete chart series)
-        id: index,
+        id: index.toFixed(0),
         label: ts.displayLabel,
         response,
         color: getTonestackColor(index)
@@ -108,7 +122,8 @@ state.selectedTonestackIndex,
 state.globalControlEnabled,
 state.globalControlValues,
 state.potDisplayRange,
-state.potAuxDisplayMode],
+state.potAuxDisplayMode,
+state.responseSettings],
   () => {
     // Debounce auto-saving to local storage
     clearTimeout(autosaveDebounceTimer);
@@ -271,6 +286,7 @@ function getStateDataToSave() {
     globalControlValues: state.globalControlValues,
     potDisplayRange: state.potDisplayRange.id,
     potAuxDisplayMode: state.potAuxDisplayMode,
+    responseSettings: state.responseSettings,
     tonestacks: state.tonestacks.map(ts => {
       const obj = {
         id: ts.id,
@@ -310,12 +326,18 @@ function getStateDataToSave() {
 // 'Compact' serialization (short keys, control properties are packed as arrays)
 // intended for URL generation, packing maximum amount of data into minimum text
 function getCompactStateDataToSave() {
-  return {
-    s: state.selectedTonestackIndex,
-    g: state.globalControlEnabled,
+  const stateData = {
+    ...(state.selectedTonestackIndex !== 0 && { s: state.selectedTonestackIndex }),
+    ...(state.globalControlEnabled !== false && { g: state.globalControlEnabled }),
     v: state.globalControlValues,
-    r: state.potDisplayRange.id,
-    x: state.potAuxDisplayMode,
+    ...(state.potDisplayRange.id !== PotDisplayRangeID.DEFAULT && { r: state.potDisplayRange.id }),
+    ...(state.potAuxDisplayMode !== PotAuxDisplayMode.None && { x: state.potAuxDisplayMode }),
+    rs: { 
+      ...(state.responseSettings.scope !== DEFAULTS.responseSettings.scope && { s: state.responseSettings.scope }),
+      ...(state.responseSettings.magnitude !== DEFAULTS.responseSettings.magnitude && { m: state.responseSettings.magnitude }),
+      ...(state.responseSettings.phase !== DEFAULTS.responseSettings.phase && { p: state.responseSettings.phase }),
+      ...(state.responseSettings.scopeFrequency !== DEFAULTS.responseSettings.scopeFrequency && { f: state.responseSettings.scopeFrequency }),
+    },
     t: state.tonestacks.map(ts => {
       const obj = {
         i: ts.id,
@@ -350,6 +372,9 @@ function getCompactStateDataToSave() {
       return obj;
     })
   };
+
+
+  return stateData;
 }
 
 // 'Regular' deserialization
@@ -359,6 +384,10 @@ function setStateFromSavedData(data) {
   state.globalControlValues = data.globalControlValues || {};
   state.potDisplayRange = PotDisplayRanges[data.potDisplayRange] || PotDisplayRanges[PotDisplayRangeID.DEFAULT];
   state.potAuxDisplayMode = data.potAuxDisplayMode || PotAuxDisplayMode.None;
+  state.responseSettings = {
+    ...DEFAULTS.responseSettings,
+    ...data.responseSettings,
+  };
   state.tonestacks = data.tonestacks.map(data => {
     const ts = createNewTonestackWithId(data.id);
     ts.label = data.label || '';
@@ -401,6 +430,12 @@ function setStateFromCompactSavedData(data) {
   state.globalControlValues = data.v || {};
   state.potDisplayRange = state.potDisplayRange = PotDisplayRanges[data.r] || PotDisplayRanges[PotDisplayRangeID.DEFAULT];
   state.potAuxDisplayMode = data.x || PotAuxDisplayMode.None;
+  state.responseSettings = {
+    magnitude: data.rs?.m !== undefined ? data.rs.m : DEFAULTS.responseSettings.magnitude,
+    phase: data.rs?.p !== undefined ? data.rs.p : DEFAULTS.responseSettings.phase,
+    scope: data.rs?.s !== undefined ? data.rs.s : DEFAULTS.responseSettings.scope,
+    scopeFrequency: data.rs?.f !== undefined ? data.rs.f : DEFAULTS.responseSettings.scopeFrequency,
+  };
   state.tonestacks = data.t.map(data => {
     const ts = createNewTonestackWithId(data.i);
     ts.label = data.l || '';

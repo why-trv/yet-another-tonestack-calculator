@@ -276,7 +276,11 @@
 
       <!-- Right Column: Plots -->
       <div class="md:sticky md:top-4">
-        <ResponseChart :responses="state.responses" :plotRanges="state.plotRanges" />
+        <ResponseChart 
+          v-model:responseSettings="state.responseSettings"
+          :responses="state.responses" 
+          :plotRanges="state.plotRanges"           
+        />
       </div>
     </div>
     <ShareLinkModal :is-open="isShareLinkModalOpen" :link="shareableLink" @close="isShareLinkModalOpen = false" />

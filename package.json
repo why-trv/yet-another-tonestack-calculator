@@ -16,6 +16,7 @@
     "@nuxtjs/fontaine": "^0.4.3",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "echarts": "^5.5.1",
+    "fft.js": "^4.0.4",
     "nuxt": "^3.13.0",
     "pako": "^2.1.0",
     "vue": "latest",

@@ -76,6 +76,52 @@
   } */
 }
 
+@layer components {
+  input[type="checkbox"] {
+    @apply h-5 w-5 border border-gray-500 rounded-none focus:ring-indigo-500 appearance-none;
+    @apply focus:outline-none focus:z-50 focus-visible:ring-2 ring-blue-400;
+    background-color: white;
+  }
+
+  input[type="checkbox"]:checked {
+    @apply bg-gray-700 border-gray-900;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='white' stroke-width='1.5'%3E%3Cpath d='M4 10l4 4 8-8'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;  
+    @apply h-1.5 bg-gray-100 border border-solid border-gray-700;
+    outline: none;
+  }
+  
+  input[type="range"]:hover {
+    @apply bg-gray-200 border-gray-800;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    @apply w-6 h-4 bg-gray-700 border border-solid border-gray-900 rounded-none;
+    cursor: pointer;
+  }
+  
+  .input[type="range"]::-webkit-slider-thumb:hover {
+    @apply bg-gray-900;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    @apply w-6 h-4 bg-gray-700 border border-solid border-gray-900 rounded-none;
+    cursor: pointer;
+  }
+  
+  input[type="range"]::-moz-range-thumb:hover {
+    @apply bg-gray-900;
+  }
+}
+
 @layer utilities {
   .ring-focus {
     @apply focus:outline-none focus:z-50 focus-visible:ring-2 ring-blue-400;

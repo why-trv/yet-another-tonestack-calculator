@@ -20,7 +20,7 @@
       </span>
     </div>
     <input :id="name" @input="$emit('update:modelValue', normalizeValue(parseFloat($event.target.value)))" type="range"
-      :min="range[0]" :max="range[1]" :step="STEP" :value="unnormalizedValue" class="slider grow"
+      :min="range[0]" :max="range[1]" :step="STEP" :value="unnormalizedValue" class="grow"
       @wheel.prevent="handleWheel" />
   </div>
 </template>
@@ -144,35 +144,3 @@ function handleWheel(event) {
   emit('update:modelValue', value);
 }
 </script>
-
-<style scoped>
-.slider {
-  -webkit-appearance: none;  
-  @apply h-1.5 bg-gray-100 border border-solid border-gray-700;
-  outline: none;
-}
-
-.slider:hover {
-  @apply bg-gray-200 border-gray-800;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  @apply w-6 h-4 bg-gray-700 border border-solid border-gray-900 rounded-none;
-  cursor: pointer;
-}
-
-.slider::-webkit-slider-thumb:hover {
-  @apply bg-gray-900;
-}
-
-.slider::-moz-range-thumb {
-  @apply w-6 h-4 bg-gray-700 border border-solid border-gray-900 rounded-none;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb:hover {
-  @apply bg-gray-900;
-}
-</style>
