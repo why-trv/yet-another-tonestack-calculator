@@ -14,7 +14,7 @@
       <span class="leading-none text-xs text-gray-500 text-right">
         {{ auxDisplayValue1 }}
       </span>
-      <span v-if="auxDisplayMode === PotAuxDisplayMode.Values && options.role === PotRole.Pot"
+      <span v-if="auxDisplayMode === PotAuxDisplayMode.Values && options?.role === PotRole.Pot"
         class="leading-none text-xs text-gray-500 text-right border-t border-gray-400">
         {{ auxDisplayValue2 }}
       </span>
@@ -51,8 +51,7 @@ const props = defineProps({
     required: true
   },
   options: {
-    type: Object,
-    required: true
+    type: Object,    
   },
   isGlobal: {
     type: Boolean,
@@ -87,7 +86,7 @@ const unnormalizedValue = computed(() => {
 const taperedValue = computed(() => {
   let v = props.taper.positionToValue(props.modelValue);
   
-  if (props.options.reverse) {
+  if (props.options?.reverse) {
     v = 1 - v;
   }
 
@@ -113,7 +112,7 @@ const auxDisplayValue1 = computed(() => {
 });
 
 const auxDisplayValue2 = computed(() => {
-  if (props.auxDisplayMode !== PotAuxDisplayMode.Values || props.options.role !== PotRole.Pot) {
+  if (props.auxDisplayMode !== PotAuxDisplayMode.Values || props.options?.role !== PotRole.Pot) {
     return '';
   }
 
