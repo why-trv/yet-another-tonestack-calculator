@@ -36,8 +36,8 @@
       <div v-show="responseSettings.scope" class="mt-4 flex flex-col">
         <FrequencySlider v-model="responseSettings.scopeFrequency" />
         <div ref="scopeChartContainer" class="chart"></div>
-        <div class="self-center text-xs text-gray-500"
-          <p>Note: This is just a response of a linear tonestack model to square wave input.<br>
+        <div class="self-center text-xs text-gray-500">
+          <p>Note that this is just a response of a linear tonestack model to square wave input.</p>
           <p>Opamps, if present, are ideal opamps with infinite slew rate.</p>
           <p>This might break in edge cases, please <a href="https://github.com/why-trv/yet-another-tonestack-calculator/issues/new" target="_blank" rel=" noopener noreferrer">report</a> if you find any issues.</p>
         </div>
