@@ -221,10 +221,10 @@ function initializeCharts() {
     name: 'Time (ms)',
     nameLocation: 'middle',
     nameGap: 23,
-    min: (value) => value.min - 0.01,
-    max: (value) => value.max + 0.01,
+    min: (value) => value.min,
+    max: (value) => value.max,
     axisLabel: {
-      formatter: (value) => value.toFixed(2),
+      formatter: (value) => value.toFixed(2).replace(/\.?0+$/, ''),
       fontFamily: 'retni-sans, sans-serif'
     },
     axisLine: { onZero: false },
@@ -238,10 +238,7 @@ function initializeCharts() {
     splitLine: {
       show: true,
       lineStyle: {
-        color: makeColorPattern([
-          'rgba(0, 0, 0, 0.25)', 1,
-          'rgba(0, 0, 0, 0.05)', 4
-        ])
+        color: 'rgba(0, 0, 0, 0.15)'
       }
     }
   };
@@ -491,31 +488,6 @@ function initializeCharts() {
 
   const timeOption = {
     ...createCommonOptions('scope'),
-    xAxis: {
-      type: 'value',
-      name: 'Time (ms)',
-      nameLocation: 'middle',
-      nameGap: 23,
-      min: (value) => value.min,
-      max: (value) => value.max,
-      axisLabel: {
-        formatter: (value) => value.toFixed(2).replace(/\.?0+$/, ''),
-        fontFamily: 'retni-sans, sans-serif'
-      },
-      axisLine: { onZero: false },
-      nameTextStyle: {
-        fontFamily: 'retni-sans, sans-serif'
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: makeColorPattern([
-            'rgba(0, 0, 0, 0.25)', 1,
-            'rgba(0, 0, 0, 0.05)', 4
-          ])
-        }
-      }
-    },
     yAxis: {
       name: 'Voltage',
       nameLocation: 'middle',
