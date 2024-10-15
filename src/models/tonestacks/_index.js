@@ -89,7 +89,7 @@ export const topologies = {
   Basic: [
     new RCLowpass(),
     new RCLowpassShelving(),
-    new RCHighpass(),    
+    new RCHighpass(),
     new RCHighpassShelving()
   ],
   'Big Muff': [
@@ -113,9 +113,9 @@ export const topologies = {
     new BaxandallPassiveSingleBassCap(),
     new BaxandallActiveDualBassCap(),
     new BaxandallActiveSingleBassCap()
-  ],    
+  ],
   Dumble: [
-    new DumbleJazz(),    
+    new DumbleJazz(),
     new DumbleRock()
   ],
   SWTC: [

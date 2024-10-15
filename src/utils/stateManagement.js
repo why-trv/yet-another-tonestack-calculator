@@ -8,7 +8,7 @@ const maxAllowedUrlParameterLength = 2048;
 
 // State encoding and decoding for URL sharing.
 // JSON -> CBOR -> zlib (pako) -> URL-safe base64
-export function encodeForUrlParameter(object) {    
+export function encodeForUrlParameter(object) {
   const encoder = new CborEncoder();
   const cbor = encoder.encode(object);
   const compressed = pako.deflate(cbor, { level: 9 });
@@ -29,7 +29,7 @@ export function decodeFromUrlParameter(encodedObject) {
 }
 
 // Local storage functions (using regular JSON)
-export function saveToLocalStorage(object) {  
+export function saveToLocalStorage(object) {
   localStorage.setItem(autosaveLocalStorageKey, JSON.stringify(object));
 }
 
@@ -48,7 +48,7 @@ export function loadFromLocalStorage() {
 }
 
 // File functions (using regular JSON)
-export function saveToFile(object, filename) {  
+export function saveToFile(object, filename) {
   const jsonString = JSON.stringify(object, null, 2);  // Pretty-print with 2-space indentation
   const blob = new Blob([jsonString], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -64,7 +64,7 @@ export function loadFromFile(file) {
     const reader = new FileReader();
     reader.onload = (event) => {
       try {
-        resolve(JSON.parse(event.target.result));        
+        resolve(JSON.parse(event.target.result));
       } catch (error) {
         reject(error);
       }
@@ -82,7 +82,7 @@ export function generateUrl(stateData) {
   return url.toString();
 }
 
-export function loadFromUrl() {  
+export function loadFromUrl() {
   const url = new URL(window.location.href);
   const encodedState = url.searchParams.get('s');
   if (encodedState && encodedState.length <= maxAllowedUrlParameterLength) {

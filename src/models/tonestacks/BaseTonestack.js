@@ -16,10 +16,10 @@ export class BaseTonestack {
     if (!def) {
       throw new Error('Derived classes must implement static definition() method');
     }
-    
+
     this.id = def.id;
     this.name = def.name;
-    this.description = def.description;    
+    this.description = def.description;
     this.gainOffset = 0;
     this.visible = true;
     this.magnitudePlotRange = def.magnitudePlotRange || [-48, 0];
@@ -91,10 +91,10 @@ export class BaseTonestack {
     return res;
   }
 
-  // Get potentiometer values split in two parts according to tapers and 
+  // Get potentiometer values split in two parts according to tapers and
   // passed @param controlValues. Can be destructured like this:
-  // const {    
-  //   RT: [RT2, RT1],    
+  // const {
+  //   RT: [RT2, RT1],
   //   RB: [RB2, RB1]
   // } = this.splitTaperedControlValues(controlValues);
   //
@@ -113,7 +113,7 @@ export class BaseTonestack {
     return res;
   }
 
-  // Groups the output of splitTaperedControlValues() and 'constant' component 
+  // Groups the output of splitTaperedControlValues() and 'constant' component
   // values in a single object to be neatly desctructured like this:
   // const {
   //   RIN, R1, RL, C1, C2, C3,
@@ -177,9 +177,11 @@ export class BaseTonestack {
     }
 
     if (options.scope === true) {
-      // TODO: Perhaps there's a better way to determine when to use Fourier vs. ODE?
-      const useFourier = coeffs[1].length > 5;
-      response = this.calculateSquareWaveResponse(coeffs, options.scopeFrequency, response, useFourier);
+      // TODO: Perhaps there's a better way to determine when to use Fourier vs. ODE
+      // than checking the order of the denominator?
+      const useFourier = coeffs[1].length > 5; 
+      response = useFourier ? this.calculateSquareWaveResponseFourier(coeffs, options.scopeFrequency, response)
+                            : this.calculateSquareWaveResponseStateSpace(coeffs, options.scopeFrequency, response);
     }
 
     return response;
@@ -321,11 +323,6 @@ export class BaseTonestack {
     }
 
     return [sumRe, sumIm];
-  }
-
-  calculateSquareWaveResponse(coeffs, fundamental = 100, response = null, useFourier = true) {
-    return useFourier ? this.calculateSquareWaveResponseFourier(coeffs, fundamental, response)
-                      : this.calculateSquareWaveResponseStateSpace(coeffs, fundamental, response);
   }
 
   calculateSquareWaveResponseFourier(coeffs, fundamental = 100, response = null) {

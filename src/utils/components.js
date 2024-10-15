@@ -69,7 +69,7 @@ const ComponentType = defineEnum({
 
 export { Tapers, PotRole, PotDisplayRanges, PotDisplayRangeID, PotAuxDisplayMode, ComponentType };
 
-const componentSettings = {  
+const componentSettings = {
   [ComponentType.R]: {
     decimalPattern: /^(\d+(?:\.\d+)?)\s*([KkMmGg]?).*$/,
     rkmPattern: /^(\d*)([RrKkMmGg])(\d*)$/,
@@ -136,7 +136,7 @@ export function formatComponentValue(value) {
   return formatter.format(value);
 }
 
-// typeOrName could be R, C, L, B or component name like R1, CIN, LF 
+// typeOrName could be R, C, L, B or component name like R1, CIN, LF
 // - what matters is the first letter
 export function parseComponentValue(input, typeOrName) {
   // Bypass if already a number
@@ -148,7 +148,7 @@ export function parseComponentValue(input, typeOrName) {
 
   // Normalize the input: replace ',' with '.' for decimal separator
   input = input.replace(',', '.');
-  
+
   let decimalPattern = componentSettings[type].decimalPattern;
   let rkmPattern = componentSettings[type].rkmPattern;
 
@@ -158,19 +158,19 @@ export function parseComponentValue(input, typeOrName) {
   // Decimal notation matching
   let match = input.match(decimalPattern);
   if (match) {
-    number = parseFloat(match[1]); 
+    number = parseFloat(match[1]);
     letter = match[2];
   } else {
     // RKM matching (e.g. 4K7, R47, 47K3, etc.)
     match = input.match(rkmPattern);
-    if (match) {      
+    if (match) {
       // Combine and parse digits before and after the letter
-      number = parseFloat((match[1] || '0') + '.' + (match[3] || 0));    
+      number = parseFloat((match[1] || '0') + '.' + (match[3] || 0));
       letter = match[2];
     }
-  } 
+  }
 
-  
+
   if (letter === 'M' && (type === ComponentType.C || type === ComponentType.L)) {
     // For capacitors and inductors, 'M' is kinda ok, but it sure isn't mega
     letter = 'm';
@@ -184,8 +184,8 @@ export function parseComponentValue(input, typeOrName) {
   }
 
   // If no scale provided, default to something depending on the component type
-  switch (type) {    
-    case ComponentType.C:      
+  switch (type) {
+    case ComponentType.C:
       return number * componentScales.p; // pF
     default:
       return number;
@@ -197,13 +197,13 @@ export function testComponentValueInputChar(input, typeOrName) {
   return componentSettings[type].allowedCharPattern.test(input);
 }
 
-export function sanitizeComponentValueInput(input, typeOrName) {  
+export function sanitizeComponentValueInput(input, typeOrName) {
   const type = getComponentLetter(typeOrName);
   return input.replace(componentSettings[type].sanitationPattern, '');
 }
 
 export function getComponentLetter(name) {
-  return name.substring(0, 1);  
+  return name.substring(0, 1);
 }
 
 export function getComponentSubscript(name) {
@@ -227,7 +227,7 @@ export function formatGain(x) {
     res = "0.0";
   } else {
     res = x.toFixed(1)
-    
+
     if (x > 0 ) {
       res = "+" + res;
     }
@@ -245,6 +245,6 @@ export function testGainInputChar(input) {
   return /[0-9.,\+\-]/.test(input);
 }
 
-export function sanitizeGainInput(input) {    
+export function sanitizeGainInput(input) {
   return input.replace(/[^0-9.,\+\-]/g, '');
 }

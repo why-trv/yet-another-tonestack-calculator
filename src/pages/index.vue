@@ -157,7 +157,7 @@
             <div class="flex flex-wrap 2xl:flex-nowrap justify-stretch md:justify-between items-center gap-x-3 gap-y-2 mb-2">
               <div class="flex grow justify-stretch md:justify-start">
                 <!-- Tonestack Topology Select -->
-                <select :value="state.selectedTopology.id" 
+                <select :value="state.selectedTopology.id"
                   aria-label="Tonestack Topology"
                   class="topology-select grow md:w-[17.5rem] border border-gray-400 rounded-none px-2 py-1 text-sm sm:text-base font-bold bg-white focus:border-r ring-focus"
                   @change="store.selectTopologyWithId($event.target.value)">
@@ -168,7 +168,7 @@
                   </optgroup>
                 </select>
                 <!-- Previous Topology Button -->
-                <button @click="store.nudgeSelectedTopology(-1)" 
+                <button @click="store.nudgeSelectedTopology(-1)"
                  aria-label="Previous Topology"
                   class="self-stretch px-2 py-1 -ml-px border border-solid border-gray-700 bg-gray-100 text-gray-700 text-xs rounded-none hover:bg-gray-700 hover:text-white ring-focus">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -244,7 +244,7 @@
                     </option>
                   </optgroup>
                 </select>
-                <select 
+                <select
                   aria-label="Slider Numbering"
                   @change="updatePotDisplayRange($event.target.value)"
                   class="select grow text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
@@ -261,7 +261,7 @@
             <!-- Sliders -->
             <div class="grid grid-cols-1 gap-3 mb-2">
               <SliderBlock v-for="(taper, controlName) in state.currentControls" :key="controlName" :name="controlName"
-                v-model="state.currentControlValues[controlName]" 
+                v-model="state.currentControlValues[controlName]"
                 :taper="taper"
                 :options="state.selectedTonestack.controlOptions[controlName]"
                 :is-global="state.globalControlEnabled"
@@ -276,10 +276,10 @@
 
       <!-- Right Column: Plots -->
       <div class="md:sticky md:top-4">
-        <ResponseChart 
+        <ResponseChart
           v-model:responseSettings="state.responseSettings"
-          :responses="state.responses" 
-          :plotRanges="state.plotRanges"           
+          :responses="state.responses"
+          :plotRanges="state.plotRanges"
         />
       </div>
     </div>

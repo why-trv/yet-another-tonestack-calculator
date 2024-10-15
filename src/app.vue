@@ -3,7 +3,7 @@
     <nav>
       <div class="mb-3 flex items-center border-b border-black">
         <div class="mb-1.5 flex-1 flex items-center">
-          <NuxtLink to="/" class="ring-focus">            
+          <NuxtLink to="/" class="ring-focus">
             <!-- This may cause "[Vue warn]: Hydration attribute mismatch", haven't figured it out yet -->
             <picture class="h-8 w-auto opacity-85 hover:opacity-100">
               <source srcset="~/assets/images/logo-abbrev.svg" media="(max-width: 500px)">
@@ -12,10 +12,10 @@
               <img src="~/assets/images/logo-narrow.svg" alt="Yet Another Tonestack Calculator">
             </picture>
             <!-- So here's an alternative if anything goes wrong: -->
-            <!-- <img src="~/assets/images/logo.svg" 
+            <!-- <img src="~/assets/images/logo.svg"
                  alt="Yet Another Tonestack Calculator"
                  class="hidden lg:block h-8 w-auto opacity-85 hover:opacity-100">
-            <img src="~/assets/images/logo-narrow.svg" 
+            <img src="~/assets/images/logo-narrow.svg"
                  alt="Yet Another Tonestack Calculator"
                  class="hidden xs:block lg:hidden h-8 w-auto opacity-85 hover:opacity-100">
             <img src="~/assets/images/logo-abbrev.svg"
@@ -50,7 +50,7 @@ useHead({
   },
   meta: [
     {name: 'description', content: description},
-    {property: 'og:description', content: description},    
+    {property: 'og:description', content: description},
   ],
   htmlAttrs: {
     lang: 'en'

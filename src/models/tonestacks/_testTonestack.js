@@ -4,7 +4,7 @@ import { areApproximatelyEqual } from '~/utils/js';
 expect.extend({
   toBeCloseEnoughTo(received, expected) {
     const { isNot } = this
-    return {      
+    return {
       // There may be some accumulated floating-point discrepancy,
       // but at the very least it's not critical for plotting
       pass: areApproximatelyEqual(received, expected, 32 * Number.EPSILON),
@@ -16,7 +16,7 @@ expect.extend({
 // Test that optimized tonestack coefficient calculations results match the unoptimized
 // reference function
 export function testTonestack(TonestackClass, referenceCalculateCoefficients) {
-  test(`${TonestackClass.name}: optimized calculation coefficients match the reference`, () => {    
+  test(`${TonestackClass.name}: optimized calculation coefficients match the reference`, () => {
     const ts = new TonestackClass();
     const cv = ts.controlValues;
     const values = [0, 0.5, 1];
@@ -32,7 +32,7 @@ export function testTonestack(TonestackClass, referenceCalculateCoefficients) {
       expect(Array.isArray(optimizedCoefs)).toBe(true);
       expect(Array.isArray(referenceCoefs)).toBe(true);
       expect(optimizedCoefs.length).toBe(referenceCoefs.length);
-      
+
       optimizedCoefs.forEach((array, i) => {
         expect(Array.isArray(array)).toBe(true);
         expect(Array.isArray(referenceCoefs[i])).toBe(true);
