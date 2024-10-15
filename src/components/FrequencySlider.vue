@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-x-2 mt-2 mb-1 ml-11 mr-5">
+  <div class="flex items-center gap-x-2 mt-2 mb-1 ml-10">
     <div class="w-56 text-sm leading-none text-gray-700">Square Wave Frequency: <strong class="ml-2">{{ formatFrequency(modelValue) }}</strong></div>
     <input
      @input="updateFrequency(parseInt($event.target.value))"
@@ -9,7 +9,7 @@
      :step="1"
      :value="currentIndex"
      class="grow"
-     @wheel.prevent="handleWheel" />    
+     @wheel.prevent="handleWheel" />
   </div>
 </template>
 
@@ -44,9 +44,9 @@ function handleWheel(event) {
 
 function formatFrequency(freq) {
   if (freq >= 1000) {
-    return (freq / 1000).toFixed(1) + 'kHz';
+    return `${(freq / 1000).toFixed(1)}\u00a0kHz`;
   } else {
-    return freq.toFixed(0) + ' Hz';
+    return `${freq.toFixed(0)}\u00a0Hz`;
   }
 }
 

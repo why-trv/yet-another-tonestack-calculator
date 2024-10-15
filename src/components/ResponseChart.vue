@@ -1,27 +1,27 @@
 <template>
   <div>
     <!-- Checkboxes -->
-    <div class="flex justify-center gap-x-8 mb-2">
+    <div class="flex justify-center gap-x-2 sm:gap-x-8 mb-2">
       <label class="flex items-center">
         <input
           type="checkbox"
           v-model="responseSettings.magnitude"
         >
-        <span class="ml-2 text-sm text-gray-700">Magnitude</span>
+        <span class="ml-1 sm:ml-2 text-sm text-gray-700">Magnitude</span>
       </label>
       <label class="flex items-center">
         <input
           type="checkbox"
           v-model="responseSettings.phase"
         >
-        <span class="ml-2 text-sm text-gray-700">Phase</span>
+        <span class="ml-1 sm:ml-2 text-sm text-gray-700">Phase</span>
       </label>
       <label class="flex items-center">
         <input
           type="checkbox"
           v-model="responseSettings.scope"
         >
-        <span class="ml-2 text-sm text-gray-700">Scope <small class="text-gray-400">(experimental)</small></span>
+        <span class="ml-1 sm:ml-2 text-sm leading-tight text-gray-700">Scope <small class="text-gray-400">(experimental)</small></span>
       </label>
     </div>
 
