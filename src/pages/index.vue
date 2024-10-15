@@ -236,7 +236,7 @@
                 <select
                   aria-label="Extra Display Value"
                   @change="updatePotAuxDisplayMode($event.target.value)"
-                  class="select grow text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
+                  class="grow text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
                   <optgroup label="Extra">
                     <option v-for="(value, key) in PotAuxDisplayMode" :key="value" :value="value"
                       :selected="state.potAuxDisplayMode === value">
@@ -247,7 +247,7 @@
                 <select
                   aria-label="Slider Numbering"
                   @change="updatePotDisplayRange($event.target.value)"
-                  class="select grow text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
+                  class="grow text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
                   <optgroup label="Numbering">
                     <option v-for="(range, id) in PotDisplayRanges" :key="id" :value="id"
                       :selected="state.potDisplayRange.id === id">
@@ -383,9 +383,6 @@ function clearCurrentState() {
 
 <style scoped>
 .topology-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.2rem center;
@@ -393,20 +390,6 @@ function clearCurrentState() {
 }
 
 .topology-select::-ms-expand {
-  display: none;
-}
-
-.select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.2rem center;
-  background-size: 1em;
-}
-
-.select::-ms-expand {
   display: none;
 }
 

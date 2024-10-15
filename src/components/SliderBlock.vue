@@ -4,7 +4,7 @@
         }}</sub></label>
     <select v-if="!isGlobal" :value="taper.name" @change="$emit('update:taper', $event.target.value)"
       aria-label="Taper"
-      class="w-18 text-sm bg-transparent ring-focus">
+      class="w-[3.8rem] bg-transparent text-sm ring-focus">
       <option v-for="(taperOption, taperName) in Tapers" :key="taperName" :value="taperName">
         {{ taperName }}
       </option>
