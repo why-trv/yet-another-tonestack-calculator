@@ -128,6 +128,7 @@ function createCharts() {
           key: 'dataZoomSelect',
           dataZoomSelectActive: true,
         });
+        chart.off('finished');
       });
     }
 
