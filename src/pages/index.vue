@@ -232,8 +232,8 @@
               { value: false, label: 'This Tonestack' },
               { value: true, label: 'Global' }
             ]" class="mb-2">
-              <div v-if="!state.globalControlEnabled" class="max-w-32 xs:max-w-max flex justify-end flex-wrap gap-x-1">
-                <select
+              <div class="max-w-32 xs:max-w-max flex justify-end flex-wrap gap-x-1">
+                <select v-if="!state.globalControlEnabled"
                   aria-label="Extra Display Value"
                   @change="updatePotAuxDisplayMode($event.target.value)"
                   class="grow text-sm border-x border-t border-gray-400 rounded-none px-2 py-1 bg-white ring-focus">
