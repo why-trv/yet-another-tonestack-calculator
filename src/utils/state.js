@@ -10,6 +10,8 @@ import {
   loadFromUrl
 } from '~/utils/stateManagement';
 
+import { toRaw } from 'vue';
+
 const colorPalette = [
   '#1d4ed8', '#dc2626', '#059669', '#f97316', '#6b21a8',
   '#60a5fa', '#f472b6', '#34d399', '#eab308', '#a855f7' 
@@ -152,14 +154,14 @@ function initialize() {
 
 function reset() {
   selectTopologyWithId(defaultTopology.id);
-  const tonestack = createNewTonestackWithSelectedTopology();
+  const tonestack = state.selectedTopology.newInstance();
   state.tonestacks = [tonestack];
   selectTonestack(0);  
 }
 
 function addTonestack() {
   // Use the currently selected topology
-  const tonestack = createNewTonestackWithSelectedTopology();
+  const tonestack = toRaw(state.selectedTonestack).clone();
 
   const index = state.tonestacks.push(tonestack) - 1;
   selectTonestack(index);
@@ -226,7 +228,7 @@ function selectTopology(index) {
     return;
   }
 
-  const tonestack = createNewTonestackWithSelectedTopology();
+  const tonestack = state.selectedTopology.newInstance();
   const tsIndex = state.selectedTonestackIndex;
   state.tonestacks.splice(tsIndex, 1, tonestack);
   selectTonestack(tsIndex);
@@ -264,12 +266,6 @@ function loadStateFromFile(file) {
 
 function generateShareableUrl() {
   return generateUrl(getCompactStateDataToSave());
-}
-
-function createNewTonestackWithSelectedTopology() {
-  const selectedTopology = flatTopologies[state.selectedTopologyIndex];
-  const constructor = selectedTopology.__proto__.constructor;
-  return new constructor();
 }
 
 function createNewTonestackWithId(id) {

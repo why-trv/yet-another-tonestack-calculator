@@ -55,6 +55,26 @@ export class BaseTonestack {
     this.controlValues = cv;
   }
 
+  newInstance() {
+    return new this.constructor();
+  }
+
+  clone() {
+    const clone = new this.constructor();
+    Object.assign(clone, this);
+    
+    clone.components = {};
+    Object.assign(clone.components, this.components);
+
+    clone.controls = {};
+    Object.assign(clone.controls, this.controls);
+
+    clone.controlValues = {};
+    Object.assign(clone.controlValues, this.controlValues);
+
+    return clone;
+  }
+
   get displayLabel() {
     // label if it's set, name otherwise
     return this.label || this.name;
