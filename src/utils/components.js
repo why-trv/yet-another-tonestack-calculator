@@ -35,6 +35,7 @@ const PotRole = defineEnum({
 
 const PotDisplayRangeID = defineEnum({
   DEFAULT: 'D',
+  TUFNEL: 'U',
   TWEED: 'T',
   FENDER: 'F'
 });
@@ -43,6 +44,10 @@ const PotDisplayRanges = defineDict({
   [PotDisplayRangeID.DEFAULT]: {
     name: 'Default (0–10)',
     range: [0, 10]
+  },
+  [PotDisplayRangeID.TUFNEL]: {
+    name: 'Tufnel (0–11)',
+    range: [0, 11]
   },
   [PotDisplayRangeID.TWEED]: {
     name: 'Tweed (1–12)',
