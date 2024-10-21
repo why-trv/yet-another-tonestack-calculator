@@ -1,5 +1,5 @@
 import { BaseTonestack } from '../BaseTonestack';
-import { Tapers } from '~/utils/components';
+import { Tapers, PotRole } from '~/utils/components';
 
 export class FenderTMB extends BaseTonestack {
   static definition() {
@@ -19,7 +19,10 @@ export class FenderTMB extends BaseTonestack {
         C3: 47e-9  
       },
       controls: {
-        RB: Tapers.LogA,
+        RB: {
+          taper: Tapers.LogA,
+          role: PotRole.VR
+        },
         RM: Tapers.Linear,
         RT: Tapers.LogA
       }
@@ -28,11 +31,8 @@ export class FenderTMB extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1, C2, C3,
-      RT: [RT2, RT1],
-      RM: [RM],
-      RB: [RB]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, RL, C1, C2, C3, RT2, RT1, RM, RB      
+    } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

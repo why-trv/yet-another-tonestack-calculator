@@ -1,5 +1,5 @@
 import { BaseTonestack } from '../BaseTonestack';
-import { Tapers } from '~/utils/components';
+import { Tapers, PotRole } from '~/utils/components';
 
 export class BlackstarHT5 extends BaseTonestack {
   static definition() {
@@ -25,8 +25,14 @@ export class BlackstarHT5 extends BaseTonestack {
         CIN: 22e-6
       },
       controls: {
-        RB: Tapers.LogA,
-        RM: Tapers.Linear,
+        RB: {
+          taper: Tapers.LogA,
+          role: PotRole.VR,
+        },
+        RM: {
+          taper: Tapers.Linear,
+          role: PotRole.VR,
+        },
         RT: Tapers.Linear,
         RISF: Tapers.LogA
       }

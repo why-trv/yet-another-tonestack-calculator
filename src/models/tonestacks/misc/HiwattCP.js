@@ -27,10 +27,8 @@ export class HiwattCP extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, RL, C1, C2, C3,
-      RT: [RT2, RT1],      
-      RB: [RB2, RB1]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, R2, RL, C1, C2, C3, RT2, RT1, RB2, RB1
+    } = this.extractCoefficientVariables(controlValues);
 
     // Expanded coefficients refactored using sympy to reduce the number of operations.
     // Original operations: 889 (*, +, -)

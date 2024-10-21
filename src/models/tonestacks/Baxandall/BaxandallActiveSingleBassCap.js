@@ -29,10 +29,8 @@ export class BaxandallActiveSingleBassCap extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     let {
-      RIN, R1, R2, R3, R4, R5, RF, CB, CT,
-      RT: [RT2, RT1],
-      RB: [RB2, RB1]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, R2, R3, R4, R5, RF, CB, CT, RT2, RT1, RB2, RB1
+    } = this.extractCoefficientVariables(controlValues);    
 
     RT2 += R5;
     RT1 += R4;

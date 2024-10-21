@@ -25,9 +25,8 @@ export class Tilt extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, RF1, RF2, C1, C2,
-      RT: [RT2, RT1]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, R2, RF1, RF2, C1, C2, RT2, RT1      
+    } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

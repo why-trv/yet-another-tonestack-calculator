@@ -22,9 +22,8 @@ export class FramusMidControl extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1, C2,
-      RM: [RM2, RM1]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, RL, C1, C2, RM2, RM1      
+    } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

@@ -1,5 +1,5 @@
 import { BaseTonestack } from '../BaseTonestack';
-import { Tapers } from '~/utils/components';
+import { Tapers, PotRole } from '~/utils/components';
 
 export class DumbleRock extends BaseTonestack {
   static definition() {
@@ -24,8 +24,14 @@ export class DumbleRock extends BaseTonestack {
         C6: 220e-12
       },
       controls: {
-        RB: Tapers.LogB,
-        RM: Tapers.LogB,
+        RB: {
+          taper: Tapers.LogB,
+          role: PotRole.VR
+        },
+        RM: {
+          taper: Tapers.LogB,
+          role: PotRole.VR
+        },
         RT: Tapers.LogA,
         RV: {
           taper: Tapers.LogA,
@@ -36,13 +42,9 @@ export class DumbleRock extends BaseTonestack {
   }
 
   calculateCoefficients(controlValues) {
-    let {
-      RIN, R1, R2, R3, RL, C1, C2, C3, C4, C5, C6,
-      RT: [RT2, RT1],
-      RM: [RM],
-      RB: [RB],
-      RV: [RV2, RV1]
-    } = this.processComponentValues(controlValues);
+    const {
+      RIN, R1, R2, R3, RL, C1, C2, C3, C4, C5, C6, RT2, RT1, RM, RB, RV2, RV1
+    } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

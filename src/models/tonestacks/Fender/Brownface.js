@@ -1,5 +1,5 @@
 import { BaseTonestack } from '../BaseTonestack';
-import { Tapers } from '~/utils/components';
+import { Tapers, PotRole } from '~/utils/components';
 
 export class Brownface extends BaseTonestack {
   static definition() {
@@ -20,7 +20,10 @@ export class Brownface extends BaseTonestack {
         C4: 5e-9
       },
       controls: {
-        RB: Tapers.LogA,
+        RB: {
+          taper: Tapers.LogA,
+          role: PotRole.VR
+        },
         RT: Tapers.LogA
       }
     };

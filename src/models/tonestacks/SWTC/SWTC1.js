@@ -16,18 +16,16 @@ export class SWTC1 extends BaseTonestack {
         C1: 10e-9,
       },
       controls: {
-        RV: Tapers.LogA,
-        RT: Tapers.Linear
+        RT: Tapers.Linear,
+        RV: Tapers.LogA,        
       }
     };
   }
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1,
-      RT: [RT2, RT1],
-      RV: [RV2, RV1]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, RL, C1, RT2, RT1, RV2, RV1      
+    } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

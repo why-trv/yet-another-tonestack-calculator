@@ -31,11 +31,8 @@ export class Aria extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, RT3, RM3, RB3, RB4, RL, CT1, CT2, CB1,
-      RT: [RT2, RT1],
-      RM: [RM2, RM1],
-      RB: [RB2, RB1]
-    } = this.processComponentValues(controlValues);
+      RIN, RT3, RM3, RB3, RB4, RL, CT1, CT2, CB1, RT2, RT1, RM2, RM1, RB2, RB1      
+    } = this.extractCoefficientVariables(controlValues);
     
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

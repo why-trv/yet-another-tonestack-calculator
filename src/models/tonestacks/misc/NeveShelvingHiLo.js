@@ -35,10 +35,8 @@ export class NeveShelvingHiLo extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, R3, R4, R5, R6, RF, C1, C2, C3, C4, C5, C6, CF,
-      RT: [RT2, RT1],
-      RB: [RB2, RB1]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, R2, R3, R4, R5, R6, RF, C1, C2, C3, C4, C5, C6, CF, RT2, RT1, RB2, RB1 
+    } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations.

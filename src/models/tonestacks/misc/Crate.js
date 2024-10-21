@@ -1,5 +1,5 @@
 import { BaseTonestack } from '../BaseTonestack';
-import { Tapers } from '~/utils/components';
+import { Tapers, PotRole } from '~/utils/components';
 
 export class Crate extends BaseTonestack {
   static definition() {
@@ -22,8 +22,14 @@ export class Crate extends BaseTonestack {
         C4: 4.7e-9
       },
       controls: {
-        RB: Tapers.LogA,
-        RM: Tapers.LogA,
+        RB: {
+          taper: Tapers.LogA,
+          role: PotRole.VR
+        },
+        RM: {
+          taper: Tapers.LogA,
+          role: PotRole.VR
+        },
         RT: Tapers.Linear
       }
     };
@@ -31,11 +37,8 @@ export class Crate extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     let {
-      RIN, R1, R2, R3, R4, RL, C1, C2, C3, C4,
-      RT: [RT2, RT1],
-      RM: [RM],
-      RB: [RB]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, R2, R3, R4, RL, C1, C2, C3, C4, RT2, RT1, RM, RB      
+    } = this.extractCoefficientVariables(controlValues);
 
     RB += R4;
     RT1 = RT1 + R3;

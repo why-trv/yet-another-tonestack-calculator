@@ -28,10 +28,8 @@ export class ProJunior extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, R3, RL, C1, C2, C3, C4,
-      RT: [RT2, RT1],
-      RV: [RV2, RV1],
-    } = this.processComponentValues(controlValues);
+      RIN, R1, R2, R3, RL, C1, C2, C3, C4, RT2, RT1, RV2, RV1      
+    } = this.extractCoefficientVariables(controlValues);
 
     // Transfer function coefficients
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc

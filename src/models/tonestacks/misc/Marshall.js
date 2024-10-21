@@ -1,5 +1,5 @@
 import { Bassman5F6A } from '../Fender/Bassman5F6A';
-import { Tapers } from '~/utils/components';
+import { Tapers, PotRole } from '~/utils/components';
 
 export class Marshall extends Bassman5F6A {
   static definition() {
@@ -19,7 +19,10 @@ export class Marshall extends Bassman5F6A {
         C3: 22e-9
       },
       controls: {
-        RB: Tapers.LogB,
+        RB: {
+          taper: Tapers.LogB,
+          role: PotRole.VR
+        },
         RM: Tapers.Linear,
         RT: Tapers.Linear
       }

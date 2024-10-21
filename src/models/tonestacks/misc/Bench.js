@@ -28,11 +28,8 @@ export class Bench extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R4, R5, C1, C2, L1, L2,
-      RT: [RT2, RT1],
-      RM: [RM2, RM1],
-      RB: [RB2, RB1]
-    } = this.processComponentValues(controlValues);
+      RIN, R4, R5, C1, C2, L1, L2, RT2, RT1, RM2, RM1, RB2, RB1
+    } = this.extractCoefficientVariables(controlValues);
     
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

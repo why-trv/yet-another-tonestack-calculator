@@ -12,11 +12,8 @@ export class Deluxe5E3Normal extends Deluxe5E3Bright {
 
   calculateCoefficients(controlValues) {
     const {
-      RINN, RINB, RL, C1, C2, C3, C4,
-      RT: [RT2, RT1],
-      RVN: [RVN2, RVN1],
-      RVB: [RVB2, RVB1]
-    } = this.processComponentValues(controlValues);
+      RINN, RINB, RL, C1, C2, C3, C4, RT2, RT1, RVN2, RVN1, RVB2, RVB1
+    } = this.extractCoefficientVariables(controlValues);
 
     // Expanded coefficients refactored using sympy to reduce the number of operations.
     // Original operations: 2501 (*, +, -)

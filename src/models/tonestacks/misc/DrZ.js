@@ -6,6 +6,7 @@ export class DrZ extends BaseTonestack {
     return {
       id: 'drz',
       name: 'Dr. Z',
+      description: 'Ghia / Stangray tonestack. Apparently, they use quite different part values, but the resulting curve is quite similar',
       components: {
         RIN: 38e3,
         R1: 330e3,
@@ -24,9 +25,8 @@ export class DrZ extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, RL, C1, C2, C3,
-      RT: [RT2, RT1]
-    } = this.processComponentValues(controlValues);
+      RIN, R1, R2, RL, C1, C2, C3, RT2, RT1
+    } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
     // and refactored using sympy to reduce the number of operations. 

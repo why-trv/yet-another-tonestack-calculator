@@ -32,7 +32,9 @@ export class Bandmaster6G7 extends BaseTonestack {
   }
 
   calculateCoefficients(controlValues) {
-    const { RIN, R1, R2, RB1, RB2, RT1, RT2, RV1, RV2, RL, C1, C2, C3, C4 } = this.extractCoefficientVariables(controlValues);
+    const { 
+      RIN, R1, R2, RB1, RB2, RT1, RT2, RV1, RV2, RL, C1, C2, C3, C4
+    } = this.extractCoefficientVariables(controlValues);
 
     // Automatic circuit analysis done using Lcapy.
     // Expanded coefficients refactored using sympy to reduce the number of operations.
