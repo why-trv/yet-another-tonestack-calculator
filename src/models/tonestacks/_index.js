@@ -6,6 +6,7 @@ import { Brownface } from './Fender/Brownface';
 import { Deluxe5E3Bright } from './Fender/Deluxe5E3Bright';
 import { Deluxe5E3Normal } from './Fender/Deluxe5E3Normal';
 import { ESeries } from './Fender/ESeries';
+import { Twin5D8 } from './Fender/Twin5D8';
 import { Princeton5E2 } from './Fender/Princeton5E2';
 import { Princeton5F2A } from './Fender/Princeton5F2A';
 import { ProJunior } from './Fender/ProJunior';
@@ -66,6 +67,7 @@ export const topologies = {
     new Deluxe5E3Bright(),
     new Deluxe5E3Normal(),
     new ESeries(),
+    new Twin5D8(),
     new Princeton5E2(),
     new Princeton5F2A(),
     new ProJunior()
