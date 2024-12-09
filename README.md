@@ -11,3 +11,5 @@ More info [here](https://tonestack.yuriturov.com/about).
 - Vitest for a bit of testing.
 - CircuiTikZ for SVG schematics.
 - SymPy for calculation optimization (factor, collect, CSE).
+
+The project was somewhat haphazardly hacked together to just work, so it sure isn't an example of good software engineering practices.
