@@ -401,9 +401,9 @@ function setStateFromSavedData(data) {
         // This is a control (potentiometer)
         ts.setComponentValue(name, value.value);        
 
-        const taper = Object.keys(Tapers).find(id => id === value.taper);
+        const taper = Object.values(Tapers).find(taper => taper.id === value.taper);
         if (taper) {
-          ts.controls[name] = Tapers[taper];
+          ts.controls[name] = taper;
         }
 
         controlValues[name] = value.control;
@@ -449,9 +449,9 @@ function setStateFromCompactSavedData(data) {
         // This is a control (potentiometer)
         ts.setComponentValue(name, value[0]);        
 
-        const taper = Object.keys(Tapers).find(id => id === value[1]);
+        const taper = Object.values(Tapers).find(taper => taper.id === value[1]);
         if (taper) {
-          ts.controls[name] = Tapers[taper];
+          ts.controls[name] = taper;
         }
 
         controlValues[name] = value[2];
