@@ -6,7 +6,7 @@ export class ESeries extends BaseTonestack {
     return {
       id: 'eser',
       name: 'E-Series',
-      // description: 'Found in the tweed amps like the Tweed LP Twin, Super and Pro (5e4-8)',
+      description: 'Found in tweed amps like <a href="https://schematicheaven.net/fenderamps/bandmaster_5e7_schem.pdf" rel="noopener noreferrer">Bandmaster 5E7</a>, <a href="https://schematicheaven.net/fenderamps/twin_5e8a_schem.pdf" rel="noopener noreferrer">Twin 5E8-A</a>, <a href="https://schematicheaven.net/fenderamps/pro_5e5a_schem.pdf" rel="noopener noreferrer">Pro 5E5-A</a>, <a href="https://schematicheaven.net/fenderamps/super_5e4a_schem.pdf" rel="noopener noreferrer">Super 5E4-A</a>. Component values can be slightly different.',      
       components: {
         RIN: 1300,
         R2: 220e3,

@@ -61,7 +61,7 @@ def draw_circuit(cct, input_file, formats=None, draft=False):
         'label_nodes': 'none',
         'draw_nodes': 'connections',
         'label_flip': True,
-        'node_spacing': 2.7
+        'node_spacing': 2.25,        
     }
 
     for fmt in formats:
@@ -230,6 +230,11 @@ def generate_js_code(analysis_results, input_file, frontmatter, js_dir=None, ove
     definition += f"{idt3}name: '{frontmatter.get('name', '')}',\n"
     if 'description' in frontmatter:
         definition += f"{idt3}description: '{frontmatter['description']}',\n"
+
+    if 'schematic' in frontmatter:
+        definition += f"{idt3}schematic: '{frontmatter['schematic']}',\n"
+    elif frontmatter.get('name', '') != class_name:
+        definition += f"{idt3}schematic: '{class_name}',\n"
 
     # Components
     if 'components' in frontmatter:
@@ -400,10 +405,13 @@ def circuit_from_netlist(netlist):
               opts['l_'] = f"R_{{{cpt[2:].strip('_')}}}"
 
     # Auto-add labels for input and output nodes
-    if (not 'A_IN' in cct.symbols):
+    if (not 'A_IN' in cct.cpts):
       cct.add('A_IN IN; l=V_{IN}, anchor=south')
-    if (not 'A_OUT' in cct.symbols):
+    if (not 'A_OUT' in cct.cpts):
       cct.add('A_OUT OUT; l=V_{OUT}, anchor=south')
+      # A bit of a hack to make lcapy draw a 'single' (i.e. visually at least) ocirc for the
+      # output node - a port with both terminals at the same node.
+      cct.add('P_OUT OUT OUT; down')
 
     return cct
 

@@ -3,6 +3,7 @@ import subprocess
 import argparse
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+import os
 
 class NetlistHandler(FileSystemEventHandler):
     def __init__(self, process_circuit_args):
@@ -19,7 +20,9 @@ class NetlistHandler(FileSystemEventHandler):
             self.run_process_circuit(event.src_path)
 
     def run_process_circuit(self, file_path):
-        cmd = ['python', 'process-circuit.py', file_path] + self.process_circuit_args
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        process_script = os.path.join(script_dir, 'process-circuit.py')
+        cmd = ['python', process_script, file_path] + self.process_circuit_args
         try:
             subprocess.run(cmd, check=True)
             print(f"Process-circuit script ran successfully for {file_path}")
@@ -47,7 +50,13 @@ def main():
     # Add any unknown arguments
     process_circuit_args.extend(unknown)
 
-    path = "circuits"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(script_dir, "circuits")
+    
+    if not os.path.exists(path):
+        print(f"Error: Circuits directory not found at {path}")
+        exit(1)
+
     event_handler = NetlistHandler(process_circuit_args)
     observer = Observer()
     observer.schedule(event_handler, path, recursive=True)
@@ -55,6 +64,7 @@ def main():
 
     print(f"Watching for changes in {path} directory and its subdirectories...")
     print(f"Flags to be passed to process-circuit.py: {' '.join(process_circuit_args)}")
+
     try:
         while True:
             time.sleep(1)
