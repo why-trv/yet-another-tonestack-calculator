@@ -4,10 +4,8 @@
 \usetikzlibrary{positioning}
 
 \begin{document}
-\begin{tikzpicture}
-	\draw (1, 3) to[sinusoidal voltage source, l_=$V_{IN}$] (1, 1);
-
-	\draw (1, 3) to[european resistor, l=$R_{IN}$] (1, 5);
+\begin{tikzpicture}	
+	\draw (1, 3.5) to[european resistor, l=$R_{IN}$] (1, 5.5);
 	\draw (6, 8) to[european resistor, l_=$R_{B1}$] (3, 8);
 	\draw (4.5, 3) to[european resistor, l_=$R_{B12}$] (4.5, 1);
 	\draw (12, 8) to[european resistor, l_=$R_{B2}$] (10, 8);
@@ -20,7 +18,7 @@
 
 	\draw (10, 6.25) to[european potentiometer, l_=$R_W$] (10, 4.5);
 
-	\draw (1, 5) to[capacitor, l=$C_{IN}$] (1, 7);
+	\draw (1, 5.5) to[capacitor, l=$C_{IN}$] (1, 7);
 	\draw (10, 6.25) to[capacitor, l=$C_2$] (10, 8);
 	\draw (12, 6.25) to[capacitor, l=$C_3$] (12, 8);
 	\draw (3, 3) to[curved capacitor, l_=$C_{B1}$] (3, 1);
@@ -31,8 +29,7 @@
 	\node[npn] at (13.5, 8) {$Q_2$};
 	\node[npn] at (8, 7) {$Q_1$};
 
-	\draw (7.16, 7) -- (1, 7);
-	\draw (1, 1) |- (3, 1);
+	\draw (7.16, 7) -- (1, 7);	
 	\draw (4.5, 3) -- (3, 3);
 	\draw (4.5, 1) -- (3, 1);
 	\draw (3, 3) -- (3, 8);
@@ -67,8 +64,10 @@
 	\node[circ] at (8, 8) {};
 	\node[ocirc, scale=1.2] at (10.75, 6.5) {};
 	\node[ocirc, scale=1.2] at (8, 10.5) {};
+	\node[ocirc, scale=1.2] at (1, 3.5) {};
 	\node[below=0.2cm of {11, 10}] {1K};
 	\node[above=0cm of {8, 10.5}] {$V_{CC}$};
+	\node[left=0.05cm of {1, 3.5}] {$V_{IN}$};
 	\node[below=-0.3cm of {11.3, 6.5}] {$V_{OUT}$};
 	\node[font=\tiny, above=0.0cm of {(12.9,8)}] {$B$};
 	\node[font=\tiny, above=0.0cm of {(7.4,7)}] {$B$};
