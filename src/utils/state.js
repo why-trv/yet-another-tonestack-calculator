@@ -14,7 +14,7 @@ import { toRaw } from 'vue';
 
 const colorPalette = [
   '#1d4ed8', '#dc2626', '#059669', '#f97316', '#6b21a8',
-  '#60a5fa', '#f472b6', '#34d399', '#eab308', '#a855f7' 
+  '#60a5fa', '#f472b6', '#34d399', '#eab308', '#a855f7'
 ];
 
 const flatTopologies = Object.values(topologies).flat();
@@ -83,7 +83,7 @@ const state = reactive({
                                             overrideValues,
                                             responses[index]);
       return {
-        // tonestack index as the id for ECharts 
+        // tonestack index as the id for ECharts
         // (crucial to be able to delete chart series)
         id: index.toFixed(0),
         label: ts.displayLabel,
@@ -156,7 +156,7 @@ function reset() {
   selectTopologyWithId(defaultTopology.id);
   const tonestack = state.selectedTopology.newInstance();
   state.tonestacks = [tonestack];
-  selectTonestack(0);  
+  selectTonestack(0);
 }
 
 function addTonestack() {
@@ -178,7 +178,7 @@ function deleteTonestack(index) {
     // If it's the selected tonestacked that was deleted, default to the first one
     selectTonestack(0);
   } else if (state.selectedTonestackIndex > index) {
-    // Make sure the selected tonestack stay selected, despite its index changing    
+    // Make sure the selected tonestack stay selected, despite its index changing
     selectTonestack(state.selectedTonestackIndex - 1);
   }
 }
@@ -328,7 +328,7 @@ function getCompactStateDataToSave() {
     v: state.globalControlValues,
     ...(state.potDisplayRange.id !== PotDisplayRangeID.DEFAULT && { r: state.potDisplayRange.id }),
     ...(state.potAuxDisplayMode !== PotAuxDisplayMode.None && { x: state.potAuxDisplayMode }),
-    rs: { 
+    rs: {
       ...(state.responseSettings.scope !== DEFAULTS.responseSettings.scope && { s: state.responseSettings.scope }),
       ...(state.responseSettings.magnitude !== DEFAULTS.responseSettings.magnitude && { m: state.responseSettings.magnitude }),
       ...(state.responseSettings.phase !== DEFAULTS.responseSettings.phase && { p: state.responseSettings.phase }),
@@ -399,7 +399,7 @@ function setStateFromSavedData(data) {
 
       if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
         // This is a control (potentiometer)
-        ts.setComponentValue(name, value.value);        
+        ts.setComponentValue(name, value.value);
 
         const taper = Object.values(Tapers).find(taper => taper.id === value.taper);
         if (taper) {
@@ -409,7 +409,7 @@ function setStateFromSavedData(data) {
         controlValues[name] = value.control;
       } else {
         // This is a 'static' component
-        ts.setComponentValue(name, value);        
+        ts.setComponentValue(name, value);
       }
     }
 
@@ -447,7 +447,7 @@ function setStateFromCompactSavedData(data) {
 
       if (Array.isArray(value)) {
         // This is a control (potentiometer)
-        ts.setComponentValue(name, value[0]);        
+        ts.setComponentValue(name, value[0]);
 
         const taper = Object.values(Tapers).find(taper => taper.id === value[1]);
         if (taper) {
@@ -457,7 +457,7 @@ function setStateFromCompactSavedData(data) {
         controlValues[name] = value[2];
       } else {
         // This is a 'static' component
-        ts.setComponentValue(name, value);        
+        ts.setComponentValue(name, value);
       }
     }
 

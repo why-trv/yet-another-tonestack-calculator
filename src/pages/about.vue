@@ -7,7 +7,7 @@
         <strong>Yet Another Tonestack Calculator</strong> (<em>YATSC? </em>&#x1f914;) is a web app based on the legendary <a href="https://www.duncanamps.com/tsc/">Duncan Amps TSC</a> and its web counterpart <a href="https://www.guitarscience.net/tsc/info.htm">TSC in the Web</a>.
         Most of the tonestack models have been adapted from <a href="https://github.com/jatalahd/tsc">TSC in the Web repo</a> with some modifications, including optimized calculations of the transfer function coefficients, and a couple of new models added. The source code is available in the <a href="https://github.com/why-trv/yet-another-tonestack-calculator">GitHub repo</a>.
       </p>
-    </div>    
+    </div>
 
     <div class="mb-6">
       <h3>A Little Backstory</h3>
@@ -16,7 +16,7 @@
         For many years, I've been using <strong>TSC in the Web</strong> on and off as an incredible resource for a deeper understanding of tone controls without having to reach out for heavy-duty tools like SPICE.
       </p>
       <p class="mb-3">
-        One day I found myself repeatedly overlaying screenshots of different tonestack responses and clicking too many buttons to edit component values. Thinking "this could be a bit smoother", I looked through the original code. 
+        One day I found myself repeatedly overlaying screenshots of different tonestack responses and clicking too many buttons to edit component values. Thinking "this could be a bit smoother", I looked through the original code.
         Realizing that the changes I had in mind would probably be too much to ask, I thought it would be a fun little project to hack together my own implementation in a couple of days. As usual, it went a <em>little</em> bit further and took a <em>little</em> bit longer, but here it is.
       </p>
     </div>
@@ -28,7 +28,7 @@
       <ul class="list-disc list-outside ml-4 mb-6">
         <li><strong>Multiple tonestack instances</strong> whose magnitude and phase responses are visualized on a single plot.
           Unlike static snapshots, component and control values can be edited at any time.</li>
-        <li>Enter component values manually using shorthand (250k, 1M, 1.5u) 
+        <li>Enter component values manually using shorthand (250k, 1M, 1.5u)
           or RKM notation (2K2, R47), <strong>or cycle through</strong> standard values
           using the +/- buttons or mouse scroll wheel.</li>
         <li>Tonestack controls can be tweaked individually, or simultaneously using the <strong>Global</strong>
@@ -38,7 +38,7 @@
         <li>The whole thing is statically hosted, so all calculations, saving and even the link recognition happens on your local machine.</li>
       </ul>
     </div>
-    
+
     <div class="mb-6">
       <h3>Supporting YATSC</h3>
       <p>If you find the app useful or fun, you might want to consider:</p>

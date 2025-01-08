@@ -44,7 +44,7 @@ def get_aux_path(filepath, suffix):
     output_dir = os.path.join(script_dir, '.aux')
     os.makedirs(output_dir, exist_ok=True)
 
-    return os.path.join(output_dir, f'{os.path.splitext(os.path.basename(filepath))[0]}{suffix}')    
+    return os.path.join(output_dir, f'{os.path.splitext(os.path.basename(filepath))[0]}{suffix}')
 
 def get_aux_netlist_path(filepath):
     return get_aux_path(filepath, '_netlist.txt')
@@ -73,6 +73,7 @@ def draw_circuit(cct, input_file, formats=None, draft=False):
     if formats is None:
         formats = ['tex', 'svg']
 
+    # TODO: Allow .sch to override node_spacing or ctp_size?
     args = {
         'style': 'european',
         'autoground': 'tlground',
@@ -106,8 +107,8 @@ def sort_symbols(symbols):
             return (4, symbol_str)
     return sorted(symbols, key=custom_sort_key)
 
-def analyze_circuit(cct, input_file, subs=None):    
-    H = cct.transfer(('IN', 0), 'RL')    
+def analyze_circuit(cct, input_file, subs=None):
+    H = cct.transfer(('IN', 0), 'RL')
     H = H.simplify()
 
     # If the final expressions should have different names for components, substitute:
@@ -131,7 +132,7 @@ def analyze_circuit(cct, input_file, subs=None):
     }
 
     analysis_file = get_aux_analysis_path(input_file)
-    
+
     with open(analysis_file, 'w') as f:
         json.dump(analysis_results, f, indent=2)
 
@@ -437,7 +438,7 @@ def circuit_from_netlist(netlist):
 
     return cct
 
-def circuit_for_drawing(cct):
+def circuit_for_drawing(cct):    
     return cct.sympify()
 
 def circuit_for_analysis(cct):
@@ -463,7 +464,7 @@ def circuit_for_analysis(cct):
             # Remove the original RV component
             anCct.remove(cpt)
         elif cpt.startswith('A'):
-            # Remove annonations 
+            # Remove annonations
             # (again, not necessary, but might prevent unnecessary re-analysis)
             anCct.remove(cpt)
         else:
@@ -472,7 +473,7 @@ def circuit_for_analysis(cct):
             # cosmetic changes (e.g. changing label position or ground type).
             # Console output looks a bit cleaner too.
             anCct[cpt].opts.clear()
-            
+
     return anCct
 
 def rv_analysis_alias(cpt):
@@ -541,14 +542,14 @@ def main():
                 symbolic_cpts.append(cpt_alias(k))
         else:
             symbolic_cpts.append(cpt_alias(k))
-    
+
     if len(symbolic_cpts) > 0:
         print(f"\033[1;33mWarning: {len(symbolic_cpts)} component "
               f"value{'' if len(symbolic_cpts) == 1 else 's'} missing: "
               f"{', '.join(symbolic_cpts)}!\033[0m")
 
     frontmatter['components'] = components
-     
+
     if 'controls' in frontmatter:
         controls = frontmatter['controls']
 
@@ -569,7 +570,7 @@ def main():
                 
                 if '*' in cct[cpt].opts:
                     controls[alias]['reverse'] = True
-            
+
             if is_vr or cpt.startswith('RV'):
                 if not cpt_alias(cpt) in controls:
                     print(f"\033[1;33mWarning: no control is defined for {cpt} in the frontmatter!\033[0m")
