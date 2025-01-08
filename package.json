@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "npm run optimize-schematics",
     "build": "nuxt build",
+    "predev": "npm run optimize-schematics",
     "dev": "nuxt dev",
     "pregenerate": "npm run optimize-schematics",
     "generate": "nuxt generate",
