@@ -1,12 +1,11 @@
 \documentclass{standalone}
 \usepackage{tikz}
 \usepackage{circuitikz}
+\usetikzlibrary{positioning}
 
 \begin{document}
 \begin{tikzpicture}
-	\draw (1, 5) to[sinusoidal voltage source, l_=$V_{IN}$] (1, 1);
-
-	\draw (1, 5) to[european resistor, l=$R_{IN}$] (1, 9);
+	\draw (1, 9) to[european resistor, l=$R_{IN}$] (3, 9);
 	\draw (10, 7) to[european resistor, l_=$R_4$] (10, 9);
 	\draw (10, 3) to[european resistor, l=$R_5$] (10, 1);
 
@@ -20,8 +19,8 @@
 	\draw (7.5, 3) to[american inductor, l_=$L_1$] (10, 3);
 	\draw (7.5, 5) to[american inductor, l_=$L_2$] (10, 5);
 
-	\draw (10, 1) -- (1, 1);
-	\draw (1, 9) -- (10, 9);
+	\draw (10, 1) -- (3, 1);
+	\draw (3, 9) -- (10, 9);
 	\draw (3, 5) -- (3, 9);
 	\draw (3.56, 3) -- (5, 3);
 	\draw (5, 5.75) -- (5, 9);
@@ -30,16 +29,23 @@
 	\draw (10, 7) -- (10, 3);
 	\draw (10, 5) -- (11, 5);
 
+	\node[ground] at (6.5, 1) {};
 	\node[ground] at (5, 4.25) {};
 	\node[ground] at (7, 6.25) {};
-	\node[vcc] at (11, 5) {$V_{OUT}$};
 	\node[circ] at (10, 3) {};
 	\node[circ] at (10, 5) {};
 	\node[circ] at (10, 7) {};
-	\node[circ] at (3, 1) {};
+	\node[circ] at (6.5, 1) {};
 	\node[circ] at (3, 9) {};
 	\node[circ] at (5, 9) {};
 	\node[circ] at (7, 9) {};
+
+	\node[ocirc, scale=1.2] at (1, 9) {};	
+	\node[ocirc, scale=1.2] at (11, 5) {};
+
+	% Labels
+	\node[above=0.05cm of {1, 9}] {$V_{IN}$};
+	\node[above=0.05cm of {11, 5}] {$V_{OUT}$};
 
 \end{tikzpicture}
 \end{document}
