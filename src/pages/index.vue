@@ -199,7 +199,7 @@
             <div class="min-h-full h-full flex flex-col">
               <div class="grow p-4 border bg-white border-gray-300">
                 <img :src="`/images/schematics/${state.selectedTonestack.schematic}.svg`"
-                  :alt="state.selectedTonestack.name + ' Tonestack Schematic'" class="mx-auto min-h-64 min-w-[50%] h-full" />
+                  :alt="state.selectedTonestack.name + ' Tonestack Schematic'" class="object-contain mx-auto min-h-64 min-w-[50%] h-full" />
               </div>
               <div v-if="state.selectedTonestack.description" v-html="state.selectedTonestack.description"
                 class="mt-2 text-xs text-gray-600">
