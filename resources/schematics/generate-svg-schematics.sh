@@ -16,8 +16,8 @@ mkdir -p "$DVI_DIR"
 
 for file in *.tex; do
   [ -f "$file" ] || continue
-  latexmk -dvi -pdf- -latex="dvilualatex --shell-escape %O %S" -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir="output" "$file"
-  # latex -interaction=nonstopmode -output-directory="$DVI_DIR" -output-format=dvi "$file"
+  # latexmk -dvi -pdf- -latex="dvilualatex --shell-escape %O %S" -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir="$DVI_DIR" "$file"
+  latex -interaction=nonstopmode -output-directory="$DVI_DIR" -output-format=dvi "$file"
 done
 
 cd "$DVI_DIR"
@@ -29,8 +29,19 @@ mkdir -p "$SVG_DIR"
 for file in *.dvi; do
   [ -f "$file" ] || continue
   noextension="${file%.*}"  
-  dvisvgm --no-fonts --libgs=/opt/homebrew/lib/libgs.dylib --optimize --output="$SVG_DIR/$noextension.svg" "$file"
-  echo "$noextension.svg"
+  svg_path="$SVG_DIR/$noextension.svg"
+  dvisvgm --no-fonts --libgs=/opt/homebrew/lib/libgs.dylib --optimize --output="$svg_path" "$file"
+  echo "Generated $noextension.svg"
+  
+  # Optimize the SVG using svgo
+  node -e "
+    import { optimize } from 'svgo';
+    import { promises as fs } from 'fs';
+    const svg = await fs.readFile('$svg_path', 'utf8');
+    const result = await optimize(svg, { path: '$svg_path', multipass: true });
+    await fs.writeFile('$svg_path', result.data);
+  "
+  echo "Optimized $noextension.svg"
 done
 
 echo "--- DONE! ---"
