@@ -4,12 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prebuild": "npm run optimize-schematics",
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "pregenerate": "npm run optimize-schematics",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "test": "vitest",
+    "optimize-schematics": "node scripts/optimize-schematics.js"
   },
   "dependencies": {
     "@jsonjoy.com/json-pack": "^1.1.0",
