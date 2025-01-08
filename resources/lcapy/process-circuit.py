@@ -9,6 +9,7 @@ import shutil
 import math
 import time
 from lcapy import Circuit
+import subprocess
 
 # Output directories
 FMT_OUTPUT_DIRS = {
@@ -51,6 +52,23 @@ def get_aux_netlist_path(filepath):
 def get_aux_analysis_path(filepath):
     return get_aux_path(filepath, '_analysis.json')
 
+def optimize_svg(svg_path):
+    try:
+        print(f"Optimizing SVG file...")
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        # Navigate up to the project root where package.json is located
+        project_root = os.path.dirname(os.path.dirname(script_dir))
+        svgo_path = os.path.join(project_root, 'node_modules', '.bin', 'svgo')
+        
+        if not os.path.exists(svgo_path):
+            print("\033[1;33mWarning: svgo not found. Install project dependencies with: npm install\033[0m")
+            return
+            
+        subprocess.run([svgo_path, svg_path], check=True)
+        print(f"SVG optimization complete")
+    except subprocess.CalledProcessError as e:
+        print(f"\033[1;33mWarning: SVG optimization failed: {e}\033[0m")
+
 def draw_circuit(cct, input_file, formats=None, draft=False):
     if formats is None:
         formats = ['tex', 'svg']
@@ -68,6 +86,10 @@ def draw_circuit(cct, input_file, formats=None, draft=False):
         output_file = get_output_path(input_file, fmt, draft)
         cct.draw(output_file, **args)
         pretty_print_path("Circuit schematic saved to", output_file)
+        
+        # Add SVG optimization after drawing
+        if fmt == 'svg':
+            optimize_svg(output_file)
 
 def sort_symbols(symbols):
     def custom_sort_key(symbol):
