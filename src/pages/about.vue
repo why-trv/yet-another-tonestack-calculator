@@ -48,6 +48,14 @@
         <li><a href="https://ko-fi.com/yuriturov">Tipping me on Ko-fi</a></li>
       </ul>
     </div>
+
+    <div class="mb-6">
+      <h3>Contact Me</h3>
+      <p>
+        Questions, comments, suggestions, bugs?<br>
+        <NuxtLink to="https://github.com/why-trv/yet-another-tonestack-calculator/issues">Open an issue on GitHub</NuxtLink> or contact me at <a href="mailto:contact@yuriturov.com">contact@yuriturov.com</a>.
+      </p>
+    </div>
   </div>
 </template>
 

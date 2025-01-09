@@ -2,7 +2,7 @@
   <!-- Use ClientOnly on Teleport to avoid 'Hydration children mismatch' with Nuxt -->
   <ClientOnly>
     <Teleport to="#nav-slot">
-      <div class="col-span-3 flex justify-center space-x-4">
+      <div class="col-span-3 flex justify-center gap-x-3 sm:gap-x-4">
         <button @click="clearCurrentState"
           class="flex flex-col items-center p-1 text-gray-800 stroke-gray-800 hover:text-black hover:stroke-black group relative ring-focus"
           title="New List">
