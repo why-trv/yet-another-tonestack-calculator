@@ -8,14 +8,14 @@ export class BaxandallActiveDualBassCap extends BaseTonestack {
       name: 'Baxandall Active Dual Bass Cap',
       components: {
         RIN: 600,
+        RB: 100e3,
+        RT: 100e3,
+        RF: 600,
         R1: 22e3,
         R2: 22e3,
         R3: 22e3,
         R4: 10e3,
         R5: 10e3,
-        RB: 100e3,
-        RT: 100e3,
-        RF: 600,
         CB1: 47e-9,
         CB2: 47e-9,
         CT: 560e-12,
@@ -37,7 +37,7 @@ export class BaxandallActiveDualBassCap extends BaseTonestack {
     RT1 += R4;
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 1051 (*, +, -)
     // Optimized operations: 179 (5.87x less)
     const t0 = R2 + RT2;

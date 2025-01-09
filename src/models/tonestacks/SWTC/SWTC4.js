@@ -9,27 +9,27 @@ export class SWTC4 extends BaseTonestack {
       schematic: 'SWTC4',
       components: {
         RIN: 1e3,
+        RL: 1e6,
         RT: 10e3,
         RV: 100e3,
         R1: 4.7e3,
-        RL: 1e6,
         C1: 3.3e-9,
         C2: 22e-9
       },
       controls: {
         RT: Tapers.Linear,
-        RV: Tapers.LogA,       
+        RV: Tapers.LogA,
       }
     };
   }
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1, C2, RT2, RT1, RV2, RV1      
+      RIN, R1, RL, C1, C2, RT2, RT1, RV2, RV1
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 227 (*, +, -)
     // Optimized operations: 32 (7.09x less)
     const t0 = RL*RV2;

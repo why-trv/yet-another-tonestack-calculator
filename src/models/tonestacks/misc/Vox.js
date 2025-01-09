@@ -8,11 +8,11 @@ export class Vox extends BaseTonestack {
       name: 'Vox',
       components: {
         RIN: 717,
+        RL: 600e3,
+        RB: 1e6,
+        RT: 1e6,
         R1: 100e3,
         R2: 10e3,
-        RT: 1e6,
-        RB: 1e6,
-        RL: 600e3,
         C1: 47e-12,
         C2: 22e-9,
         C3: 22e-9
@@ -33,7 +33,7 @@ export class Vox extends BaseTonestack {
     } = this.processComponentValues(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 1153 (*, +, -)
     // Optimized operations: 165 (6.99x less)
     const t0 = R2*RB2;

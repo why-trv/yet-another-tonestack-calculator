@@ -8,10 +8,10 @@ export class Princeton5E2 extends BaseTonestack {
       name: 'Princeton 5E2',
       components: {
         RIN: 38e3,
+        RL: 1e6,
         RT: 250e3,
         RV: 1e6,
         R1: 100e3,
-        RL: 1e6,
         C1: 500e-12,
         C2: 5e-9,
         C3: 20e-9
@@ -25,11 +25,11 @@ export class Princeton5E2 extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1, C2, C3, RT2, RT1, RV2, RV1      
+      RIN, R1, RL, C1, C2, C3, RT2, RT1, RV2, RV1
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 429 (*, +, -)
     // Optimized operations: 71 (6.04x less)
     const t0 = R1*RT1;

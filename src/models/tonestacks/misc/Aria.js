@@ -8,14 +8,14 @@ export class Aria extends BaseTonestack {
       name: 'Aria',
       components: {
         RIN: 1e3,
-        RT: 100e3,
+        RL: 1e6,
         RB: 100e3,
         RM: 100e3,
+        RT: 100e3,
         RT3: 220e3,
         RM3: 1e6,
         RB3: 33e3,
         RB4: 100e3,
-        RL: 1e6,
         CT1: 1e-9,
         CT2: 1e-9,
         CB1: 220e-9
@@ -31,11 +31,11 @@ export class Aria extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, RT3, RM3, RB3, RB4, RL, CT1, CT2, CB1, RT2, RT1, RM2, RM1, RB2, RB1      
+      RIN, RT3, RM3, RB3, RB4, RL, CT1, CT2, CB1, RT2, RT1, RM2, RM1, RB2, RB1
     } = this.extractCoefficientVariables(controlValues);
-    
+
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 11571 (*, +, -)
     // Optimized operations: 708 (16.34x less)
     const t0 = RM2*RM3;

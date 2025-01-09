@@ -8,10 +8,10 @@ export class BigMuff extends BaseTonestack {
       name: 'Big Muff',
       components: {
         RIN: 15e3,
+        RL: 100e3,
+        RT: 100e3,
         R1: 39e3,
         R2: 22e3,
-        RT: 100e3,
-        RL: 100e3,
         C1: 10e-9,
         C2: 4e-9,
         C3: 1e-6,

@@ -9,11 +9,11 @@ export class Deluxe5E3Bright extends BaseTonestack {
       schematic: 'Deluxe5E3Bright',
       components: {
         RINB: 20e3,
-        RINN: 20e3,        
+        RINN: 20e3,
+        RL: 1e6,
         RT: 1e6,
         RVB: 1e6,
-        RVN: 1e6,            
-        RL: 1e6,
+        RVN: 1e6,
         C1: 100e-9,
         C2: 100e-9,
         C3: 500e-12,
@@ -107,7 +107,7 @@ export class Deluxe5E3Bright extends BaseTonestack {
 
     return [
       [b0, b1, b2, b3, b4],
-      [a0, a1, a2, a3, a4]      
+      [a0, a1, a2, a3, a4]
     ];
   }
 }

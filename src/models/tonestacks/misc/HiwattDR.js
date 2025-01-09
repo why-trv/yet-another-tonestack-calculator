@@ -8,14 +8,14 @@ export class HiwattDR extends BaseTonestack {
       name: 'Hiwatt DR',
       components: {
         RIN: 48.4e3,
-        RT: 220e3,
+        RL: 220e3,
         RB: 470e3,
         RM: 100e3,
+        RT: 220e3,
         R1: 100e3,
         R2: 220e3,
         R3: 22e3,
         R4: 22e3,
-        RL: 220e3,
         C1: 47e-9,
         C2: 1e-9,
         C3: 47e-9,
@@ -42,7 +42,7 @@ export class HiwattDR extends BaseTonestack {
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 7461 (*, +, -)
     // Optimized operations: 679 (10.99x less)
     const t0 = R4 + RL;

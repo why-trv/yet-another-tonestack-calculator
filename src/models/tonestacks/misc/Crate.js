@@ -8,14 +8,14 @@ export class Crate extends BaseTonestack {
       name: 'Crate',
       components: {
         RIN: 1e3,
-        RT: 250e3,
+        RL: 1e6,
         RB: 250e3,
         RM: 50e3,
+        RT: 250e3,
         R1: 68e3,
         R2: 47e3,
         R3: 22e3,
         R4: 10e3,
-        RL: 1e6,
         C1: 220e-12,
         C2: 47e-9,
         C3: 220e-9,
@@ -37,7 +37,7 @@ export class Crate extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     let {
-      RIN, R1, R2, R3, R4, RL, C1, C2, C3, C4, RT2, RT1, RM, RB      
+      RIN, R1, R2, R3, R4, RL, C1, C2, C3, C4, RT2, RT1, RM, RB
     } = this.extractCoefficientVariables(controlValues);
 
     RB += R4;
@@ -45,7 +45,7 @@ export class Crate extends BaseTonestack {
     RM = RM * R2 / (RM + R2);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 1059 (*, +, -)
     // Optimized operations: 153 (6.92x less)
     const t0 = R1*RIN;

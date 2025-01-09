@@ -8,14 +8,14 @@ export class BaxandallActiveSingleBassCap extends BaseTonestack {
       name: 'Baxandall Active Single Bass Cap',
       components: {
         RIN: 600,
+        RB: 100e3,
+        RT: 100e3,
+        RF: 600,
         R1: 22e3,
         R2: 22e3,
         R3: 22e3,
         R4: 10e3,
         R5: 10e3,
-        RB: 100e3,
-        RT: 100e3,
-        RF: 600,
         CB: 47e-9,
         CT: 560e-12,
       },
@@ -30,13 +30,13 @@ export class BaxandallActiveSingleBassCap extends BaseTonestack {
   calculateCoefficients(controlValues) {
     let {
       RIN, R1, R2, R3, R4, R5, RF, CB, CT, RT2, RT1, RB2, RB1
-    } = this.extractCoefficientVariables(controlValues);    
+    } = this.extractCoefficientVariables(controlValues);
 
     RT2 += R5;
     RT1 += R4;
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 695 (*, +, -)
     // Optimized operations: 108 (6.44x less)
     const t0 = R2 + RT2;

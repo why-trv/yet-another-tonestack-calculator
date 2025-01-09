@@ -8,15 +8,15 @@ export class DumbleJazz extends BaseTonestack {
       name: 'Dumble Jazz',
       components: {
         RIN: 40e3,
-        RT: 270e3,
+        RL: 1e6,
         RB: 312e3,
         RM: 250e3,
+        RT: 270e3,
         RV: 1e6,
         R1: 150e3,
         R2: 10e3,
         R3: 4.7e6,
         R4: 100e3,
-        RL: 1e6,
         C1: 2e-9,
         C2: 100e-9,
         C3: 10e-9,
@@ -44,9 +44,9 @@ export class DumbleJazz extends BaseTonestack {
     const {
       RIN, R1, R2, R3, R4, RL, C1, C2, C3, C4, C5, C6, C7, RT2, RT1, RM, RB2, RB1, RV2, RV1
     } = this.extractCoefficientVariables(controlValues);
-     
+
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 131254 (*, +, -)
     // Optimized operations: 3069 (42.77x less)
     const t0 = R4*RT2;
@@ -816,7 +816,7 @@ export class DumbleJazz extends BaseTonestack {
     const numDRe = 0;
 
 return [
-    [ numDRe, numCIm, numBRe, numAIm, numXRe, numYIm, numZRe, numPIm ],            
+    [ numDRe, numCIm, numBRe, numAIm, numXRe, numYIm, numZRe, numPIm ],
     [ denDRe, denCIm, denBRe, denAIm, denXRe, denYIm, denZRe, denPIm ]
     ];
   }

@@ -9,13 +9,13 @@ export class Twin5D8 extends BaseTonestack {
       description: 'Apparently also used in 5D7 Bandmaster. This tonestack is like James with a couple extra parts. <a href="https://schematicheaven.net/fenderamps/twin_5d8_schem.pdf" rel="noopener noreferrer">Original schematic</a>',
       components: {
         RIN: 552,
+        RL: 1e6,
+        RB: 2e6,
+        RT: 1e6,
         R1: 270e3,
         R2: 56e3,
         R3: 270e3,
         R4: 270e3,
-        RB: 2e6,
-        RT: 1e6,
-        RL: 1e6,
         C1: 100e-9,
         CB1: 100e-12,
         CB2: 4.7e-9,
@@ -33,7 +33,7 @@ export class Twin5D8 extends BaseTonestack {
     const { RIN, R1, R2, R3, R4, RB1, RB2, RT1, RT2, RL, C1, CB1, CB2, CT1, CT2 } = this.extractCoefficientVariables(controlValues);
 
     // Automatic circuit analysis done using Lcapy.
-    // Expanded coefficients refactored refactored using sympy to reduce the number of operations. 
+    // Expanded coefficients refactored refactored using sympy to reduce the number of operations.
     // Original operations: 8469 (*, +, -)
     // Optimized operations: 676 (12.53x less)
     const t0 = R1 + R3;

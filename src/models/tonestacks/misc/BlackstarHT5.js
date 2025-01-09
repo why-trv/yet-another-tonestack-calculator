@@ -8,21 +8,21 @@ export class BlackstarHT5 extends BaseTonestack {
       name: 'Blackstar HT5',
       components: {
         RIN: 47e3,
-        RT: 47e3,
+        RL: 470e3,
         RB: 100e3,
         RM: 2.2e3,
+        RT: 47e3,
         RISF: 10e3,
         R1: 4.7e3,
         R2: 6.8e3,
         R3: 22e3,
         R4: 1e3,
-        RL: 470e3,
+        CIN: 22e-6,
         C1: 220e-9,
         C2: 470e-9,
         C3: 4.7e-9,
         C4: 220e-9,
         C5: 100e-9,
-        CIN: 22e-6
       },
       controls: {
         RB: {
@@ -50,9 +50,9 @@ export class BlackstarHT5 extends BaseTonestack {
 
     const RI21 = RI12;
 
-    // Transfer function denominator coefficients    
+    // Transfer function denominator coefficients
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 71381 (*, +, -)
     // Optimized operations: 2242 (31.84x less)
 
@@ -551,5 +551,5 @@ return [
     ];
   }
 
-  
+
 }

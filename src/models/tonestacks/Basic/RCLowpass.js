@@ -8,9 +8,9 @@ export class RCLowpass extends BaseTonestack {
       name: 'RC Lowpass',
       components: {
         RIN: 1e3,
+        RL: 1e6,
         RT: 10e3,
         C1: 10e-9,
-        RL: 1e6,
       },
       controls: {
         RT: {

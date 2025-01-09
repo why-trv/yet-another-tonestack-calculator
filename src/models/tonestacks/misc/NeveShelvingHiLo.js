@@ -8,22 +8,22 @@ export class NeveShelvingHiLo extends BaseTonestack {
       name: 'Neve 1073 Shelving Hi/Lo',
       components: {
         RIN: 0,
+        RB: 50e3,
+        RT: 10e3,
+        RF: 0,
         R1: 6.2e3,
         R2: 6.2e3,
         R3: 12e3,
         R4: 620,
         R5: 620,
         R6: 12e3,
-        RB: 50e3,
-        RT: 10e3,
-        RF: 0,
+        CF: 470e-12,
         C1: 15e-9,
         C2: 15e-9,
         C3: 15e-9,
         C4: 22e-9,
         C5: 22e-9,
         C6: 10e-9,
-        CF: 470e-12,
       },
       controls: {
         RB: Tapers.Linear,
@@ -35,7 +35,7 @@ export class NeveShelvingHiLo extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, R3, R4, R5, R6, RF, C1, C2, C3, C4, C5, C6, CF, RT2, RT1, RB2, RB1 
+      RIN, R1, R2, R3, R4, R5, R6, RF, C1, C2, C3, C4, C5, C6, CF, RT2, RT1, RB2, RB1
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
@@ -759,7 +759,7 @@ export class NeveShelvingHiLo extends BaseTonestack {
       ((-1 * RB1 * ((R5 * t677) + (t350 * t557))) + (-1 * RB2 * ((R5 * t685) + (RB1 * ((R5 * t689) + (R6 * ((C6 * t665) + (R3 * ((R1 * t686) + (R2 * t686))) + (R5 * t690) + (t630 * t679))) + (t607 * t686))) + (t325 * t508))) + (-1 * RF * ((RB1 * (t691 + (R6 * (t676 + (R4 * t682) + (R5 * t692))) + (t325 * t350))) + (RB2 * (t693 + (R6 * (t684 + (R4 * t683) + (R5 * t694))) + (RB1 * (t687 + (R3 * (t688 + (C6 * t674))) + (R5 * t695) + (R6 * (t553 + t585 + t596 + t597 + (R3 * t493))))) + (t252 * t505))))) + (-1 * RT1 * ((RB2 * ((R5 * t678) + (t680 * ((R2 * t679) + (R5 * t335))))) + (RF * ((RB2 * ((R6 * (t505 + t683)) + (t401 * t680))) + (t680 * (t450 + t682)))) + (RB1 * t450 * t656))) + (-1 * RT2 * ((RB1 * (t677 + t691)) + (RB2 * (t685 + t693 + (RB1 * (t689 + (R6 * t690))))) + (RF * ((RB1 * ((R3 * t350) + (R6 * t692))) + (RB2 * (t591 + (R6 * t694) + (RB1 * (t601 + t695)))))) + (RT1 * ((R2 * t696) + (RB2 * (t678 + (t335 * t680))) + (RF * (t696 + (R6 * RB2 * t359)))))))),
       (-1 * RB1 * t621 * (t326 + (R5 * t697) + (RF * (t613 + t616)) + (RT1 * ((R5 * t656) + (RF * t618))) + (RT2 * (t607 + t697 + (RF * (t252 + t620)) + (RT1 * (t656 + (R6 * RF)))))))
     ];
-    
+
     return [
       numCoeffs,
       denCoeffs

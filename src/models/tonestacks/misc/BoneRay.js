@@ -8,11 +8,11 @@ export class BoneRay extends BaseTonestack {
       name: 'Bone Ray',
       components: {
         RIN: 38e3,
-        R1: 470e3,
-        R2: 470e3,
+        RL: 1e6,
         RM: 1e6,
         RT: 1e6,
-        RL: 1e6,
+        R1: 470e3,
+        R2: 470e3,
         C1: 220e-12,
         C2: 1e-9,
         C3: 4.7e-9,
@@ -31,7 +31,7 @@ export class BoneRay extends BaseTonestack {
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 2068 (*, +, -)
     // Optimized operations: 275 (7.52x less)
     const t0 = R1*RT2;

@@ -8,22 +8,22 @@ const customDisplayNames = {
   RB1: 'R\u03B21',
   RB12: 'R\u03B212',
   B1: '\u03B21',
-  B2: '\u03B22'    
+  B2: '\u03B22'
 };
 
 export class Wah extends BaseTonestack {
   static definition() {
     return {
       id: 'wah',
-      name: 'Wah',      
+      name: 'Wah',
       components: {
         RIN: 68e3,
+        RW: 100e3,
         RC1: 22e3,
         RE1: 470,
         RE2: 10e3,
         RQ: 33e3,
         RF: 1500,
-        RW: 100e3,
         RB2: 470e3,
         RB1: 470e3,
         RB12: 82e3,
@@ -39,7 +39,7 @@ export class Wah extends BaseTonestack {
       controls: {
         RW: Tapers.Linear
       },
-      magnitudePlotRange: [-24, 24],      
+      magnitudePlotRange: [-24, 24],
       getNotesComponent: () => WahNotes
     };
   }
@@ -113,7 +113,7 @@ export class Wah extends BaseTonestack {
 
     let { RIN, RC1, RE1, RE2, RQ, RF, RW, RB2, RB1, RB12, CIN, CB1, C2, C3, C, L, B1, B2 } = this.components;
     let { rpi1, rpi2 } = this.details;
-    const c = this.getControlTaperedValues(controlValues);           
+    const c = this.getControlTaperedValues(controlValues);
 
     let [RG2, RG1] = splitPotValue(RW, c.RW);
     RG2 += 1;
@@ -122,7 +122,7 @@ export class Wah extends BaseTonestack {
     const CI = CIN;
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 67734 (*, +, -)
     // Optimized operations: 2585 (26.20x less)
     const t0 = RB2*RQ;
@@ -654,5 +654,5 @@ export class Wah extends BaseTonestack {
     ];
   }
 
-  
+
 }

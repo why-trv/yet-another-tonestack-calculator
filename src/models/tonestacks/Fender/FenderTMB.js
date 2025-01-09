@@ -9,14 +9,14 @@ export class FenderTMB extends BaseTonestack {
       schematic: 'FenderTMB',
       components: {
         RIN: 38e3,
-        R1: 100e3,
-        RT: 250e3,
+        RL: 1e6,
         RB: 250e3,
         RM: 10e3,
-        RL: 1e6,
+        RT: 250e3,
+        R1: 100e3,
         C1: 250e-12,
         C2: 100e-9,
-        C3: 47e-9  
+        C3: 47e-9
       },
       controls: {
         RB: {
@@ -31,11 +31,11 @@ export class FenderTMB extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1, C2, C3, RT2, RT1, RM, RB      
+      RIN, R1, RL, C1, C2, C3, RT2, RT1, RM, RB
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 607 (*, +, -)
     // Optimized operations: 108 (5.62x less)
     const t0 = RT1*RT2;

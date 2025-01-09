@@ -8,12 +8,12 @@ export class JamesActiveDualBassCap extends BaseTonestack {
       name: 'James Active Dual Bass Cap',
       components: {
         RIN: 600,
-        R1: 2200,
-        R2: 2200,
-        R3: 2200,
         RB: 10e3,
         RT: 10e3,
         RF: 600,
+        R1: 2200,
+        R2: 2200,
+        R3: 2200,
         CB1: 220e-9,
         CB2: 220e-9,
         CT1: 10e-9,
@@ -29,11 +29,11 @@ export class JamesActiveDualBassCap extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, R3, RF, CB1, CB2, CT1, CT2, RT2, RT1, RB2, RB1      
+      RIN, R1, R2, R3, RF, CB1, CB2, CT1, CT2, RT2, RT1, RB2, RB1
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 1584 (*, +, -)
     // Optimized operations: 224 (7.07x less)
     const t0 = R2 + RT2;

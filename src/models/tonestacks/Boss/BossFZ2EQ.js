@@ -10,15 +10,15 @@ export class BossFZ2EQ extends BaseTonestack {
       description: 'Opamp bias voltage node V<sub>B</sub> is virtually equivalent to ground for the purpose of AC analysis',
       components: {
         RIN: 1e3,
-        RL: 50e3,        
+        RL: 50e3,
+        RB: 50e3,
+        RT: 50e3,
         R1: 100e3,
         R2: 10e3,
         R3: 10e3,
         R4: 3.3e3,
         R5: 3.3e3,
         R6: 100e3,
-        RB: 50e3,
-        RT: 50e3,        
         C1: 47e-12,
         C2: 10e-6,
         C3: 15e-9,
@@ -27,7 +27,7 @@ export class BossFZ2EQ extends BaseTonestack {
       },
       controls: {
         RB: Tapers.Linear,
-        RT: Tapers.Linear,        
+        RT: Tapers.Linear,
       },
       magnitudePlotRange: [-24, 24]
     };
@@ -35,7 +35,7 @@ export class BossFZ2EQ extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, RL, R1, R2, R3, R4, R5, R6, RB2, RB1, RT2, RT1, C1, C2, C3, C4, C5      
+      RIN, RL, R1, R2, R3, R4, R5, R6, RB2, RB1, RT2, RT1, C1, C2, C3, C4, C5
     } = this.extractCoefficientVariables(controlValues);
 
     // Automatic circuit analysis done using QSapecNG.
@@ -115,7 +115,7 @@ export class BossFZ2EQ extends BaseTonestack {
 
     return [
       [b0, b1, b2, b3, b4, b5],
-      [a0, a1, a2, a3, a4, a5]      
+      [a0, a1, a2, a3, a4, a5]
     ];
   }
 }

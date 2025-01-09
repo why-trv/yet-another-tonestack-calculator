@@ -9,10 +9,10 @@ export class DrZ extends BaseTonestack {
       description: 'Ghia / Stangray tonestack. Apparently, they use quite different part values, but the resulting curve is quite similar',
       components: {
         RIN: 38e3,
+        RL: 1e6,
+        RT: 1e6,
         R1: 330e3,
         R2: 330e3,
-        RT: 1e6,
-        RL: 1e6,
         C1: 10e-9,
         C2: 120e-12,
         C3: 4700e-12,
@@ -29,7 +29,7 @@ export class DrZ extends BaseTonestack {
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 301 (*, +, -)
     // Optimized operations: 69 (4.36x less)
     const t0 = R1*RL;

@@ -8,12 +8,12 @@ export class ProJunior extends BaseTonestack {
       name: 'Pro Junior',
       components: {
         RIN: 38e3,
+        RL: 1e6,
         RT: 250e3,
         RV: 250e3,
         R1: 56e3,
         R2: 470e3,
         R3: 100,
-        RL: 1e6,
         C1: 10e-9,
         C2: 22e-12,
         C3: 10e-9,
@@ -28,12 +28,12 @@ export class ProJunior extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, R2, R3, RL, C1, C2, C3, C4, RT2, RT1, RV2, RV1      
+      RIN, R1, R2, R3, RL, C1, C2, C3, C4, RT2, RT1, RV2, RV1
     } = this.extractCoefficientVariables(controlValues);
 
     // Transfer function coefficients
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 2163 (*, +, -)
     // Optimized operations: 191 (11.32x less)
     const t0 = R3 + RL;

@@ -9,12 +9,12 @@ export class Bandmaster6G7 extends BaseTonestack {
       description: 'Vibrato channel tonestack. Normal channel is the same except for the lack of C<sub>4</sub> bright cap. The bright cap is effectively bypassed with R<sub>V</sub> on maximum',
       components: {
         RIN: 38e3,
-        R1: 100e3,
-        R2: 10e3,
+        RL: 1e6,
         RB: 250e3,
         RT: 250e3,
         RV: 500e3,
-        RL: 1e6,
+        R1: 100e3,
+        R2: 10e3,
         C1: 50e-9,
         C2: 0.25e-9,
         C3: 10e-9,
@@ -32,7 +32,7 @@ export class Bandmaster6G7 extends BaseTonestack {
   }
 
   calculateCoefficients(controlValues) {
-    const { 
+    const {
       RIN, R1, R2, RB1, RB2, RT1, RT2, RV1, RV2, RL, C1, C2, C3, C4
     } = this.extractCoefficientVariables(controlValues);
 

@@ -9,11 +9,11 @@ export class Marshall extends Bassman5F6A {
       schematic: 'Bassman5F6-A',
       components: {
         RIN: 1300,
-        R1: 33e3,
-        RT: 220e3,
+        RL: 517e3,
         RB: 1e6,
         RM: 25e3,
-        RL: 517e3,
+        RT: 220e3,
+        R1: 33e3,
         C1: 470e-12,
         C2: 22e-9,
         C3: 22e-9

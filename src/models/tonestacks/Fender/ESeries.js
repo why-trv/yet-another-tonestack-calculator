@@ -6,14 +6,14 @@ export class ESeries extends BaseTonestack {
     return {
       id: 'eser',
       name: 'E-Series',
-      description: 'Found in tweed amps like <a href="https://schematicheaven.net/fenderamps/bandmaster_5e7_schem.pdf" rel="noopener noreferrer">Bandmaster 5E7</a>, <a href="https://schematicheaven.net/fenderamps/twin_5e8a_schem.pdf" rel="noopener noreferrer">Twin 5E8-A</a>, <a href="https://schematicheaven.net/fenderamps/pro_5e5a_schem.pdf" rel="noopener noreferrer">Pro 5E5-A</a>, <a href="https://schematicheaven.net/fenderamps/super_5e4a_schem.pdf" rel="noopener noreferrer">Super 5E4-A</a>. Component values can be slightly different.',      
+      description: 'Found in tweed amps like <a href="https://schematicheaven.net/fenderamps/bandmaster_5e7_schem.pdf" rel="noopener noreferrer">Bandmaster 5E7</a>, <a href="https://schematicheaven.net/fenderamps/twin_5e8a_schem.pdf" rel="noopener noreferrer">Twin 5E8-A</a>, <a href="https://schematicheaven.net/fenderamps/pro_5e5a_schem.pdf" rel="noopener noreferrer">Pro 5E5-A</a>, <a href="https://schematicheaven.net/fenderamps/super_5e4a_schem.pdf" rel="noopener noreferrer">Super 5E4-A</a>. Component values can be slightly different.',
       components: {
         RIN: 1300,
-        R2: 220e3,
         RB: 1e6,
+        RT: 1e6,
+        R2: 220e3,
         R3: 100e3,
         R5: 220e3,
-        RT: 1e6,
         C1: 10e-9,
         C2: 250e-12,
         C3: 100e-9,
@@ -35,7 +35,7 @@ export class ESeries extends BaseTonestack {
     } = this.processComponentValues(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 1746 (*, +, -)
     // Optimized operations: 280 (6.24x less)
     const t0 = RB1*RIN;

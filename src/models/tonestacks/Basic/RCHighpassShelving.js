@@ -8,10 +8,10 @@ export class RCHighpassShelving extends BaseTonestack {
       name: 'RC Highpass Shelving',
       components: {
         RIN: 1e3,
-        C1: 100e-9,
-        RB: 100e3,
-        C2: 100e-9,
         RL: 1e6,
+        RB: 100e3,
+        C1: 100e-9,        
+        C2: 100e-9,        
       },
       controls: {
         RB: {

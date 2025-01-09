@@ -13,6 +13,8 @@ export class BossHM2 extends BaseTonestack {
       components: {
         RIN: 1e3,
         RL: 10e3,
+        RB: 10e3,
+        RT: 10e3,
         R1: 3.3e3,
         R2: 3.3e3,
         R3: 10e3,
@@ -22,8 +24,6 @@ export class BossHM2 extends BaseTonestack {
         R7: 330,
         R8: 100e3,
         R9: 330,
-        RB: 10e3,
-        RT: 10e3,
         C1: 470e-12,
         C2: 10e-6,
         C3: 1.5e-6,

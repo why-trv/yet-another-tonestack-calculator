@@ -8,9 +8,9 @@ export class FramusMidControl extends BaseTonestack {
       name: 'Framus Mid Control',
       components: {
         RIN: 1e3,
-        R1: 100e3,
-        RM: 1e6,
         RL: 1e6,
+        RM: 1e6,
+        R1: 100e3,
         C1: 1e-9,
         C2: 1e-9
       },
@@ -22,11 +22,11 @@ export class FramusMidControl extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1, C2, RM2, RM1      
+      RIN, R1, RL, C1, C2, RM2, RM1
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 96 (*, +, -)
     // Optimized operations: 34 (2.82x less)
     const t0 = R1*RIN;

@@ -8,11 +8,11 @@ export class Bassman5F6A extends BaseTonestack {
       name: 'Bassman 5F6-A',
       components: {
         RIN: 1300,
-        R1: 56e3,
-        RT: 250e3,
+        RL: 1e6,
         RB: 1e6,
         RM: 25e3,
-        RL: 1e6,
+        RT: 250e3,
+        R1: 56e3,
         C1: 250e-12,
         C2: 20e-9,
         C3: 20e-9
@@ -30,11 +30,11 @@ export class Bassman5F6A extends BaseTonestack {
 
   calculateCoefficients(controlValues) {
     const {
-      RIN, R1, RL, C1, C2, C3, RT2, RT1, RM2, RM1, RB      
+      RIN, R1, RL, C1, C2, C3, RT2, RT1, RM2, RM1, RB
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 934 (*, +, -)
     // Optimized operations: 129 (7.24x less)
     const t0 = RT1*RT2;

@@ -8,10 +8,10 @@ export class RCLowpassShelving extends BaseTonestack {
       name: 'RC Lowpass Shelving',
       components: {
         RIN: 1e3,
-        RT: 10e3,
-        C1: 10e-9,
-        R1: 10e3,
         RL: 1e6,
+        RT: 10e3,
+        R1: 10e3,
+        C1: 10e-9,
       },
       controls: {
         RT: {

@@ -8,14 +8,14 @@ export class DumbleRock extends BaseTonestack {
       name: 'Dumble Rock',
       components: {
         RIN: 40e3,
-        RT: 270e3,
+        RL: 1e6,
         RB: 312e3,
         RM: 250e3,
+        RT: 270e3,
         RV: 1e6,
         R1: 150e3,
         R2: 10e3,
         R3: 4.7e6,
-        RL: 1e6,
         C1: 2e-9,
         C2: 100e-9,
         C3: 10e-9,
@@ -47,7 +47,7 @@ export class DumbleRock extends BaseTonestack {
     } = this.extractCoefficientVariables(controlValues);
 
     // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-    // and refactored using sympy to reduce the number of operations. 
+    // and refactored using sympy to reduce the number of operations.
     // Original operations: 24827 (*, +, -)
     // Optimized operations: 1412 (17.58x less)
     const t0 = R3*RIN;

@@ -8,18 +8,18 @@ export class HiwattCP extends BaseTonestack {
       name: 'Hiwatt CP',
       description: 'Schematic found <a href="https://hiwatt.org/Schematics/CP103PreRI.pdf" target="_blank" rel="noopener noreferrer">here</a>. Richard Kuehnel <a href="https://www.ampbooks.com/mobile/classic-circuits/cp103-tonestack/" target="_blank" rel="noopener noreferrer">specifies</a> slightly different potentiometer values',
       components: {
-        RIN: 48.4e3,        
-        RT: 250e3,
+        RIN: 48.4e3,
+        RL: 220e3,
         RB: 500e3,
+        RT: 250e3,
         R1: 100e3,
         R2: 10e3,
-        RL: 220e3,
         C1: 47e-9,
         C2: 220e-12,
         C3: 47e-9
       },
       controls: {
-        RB: Tapers.LogB,        
+        RB: Tapers.LogB,
         RT: Tapers.Linear
       }
     };

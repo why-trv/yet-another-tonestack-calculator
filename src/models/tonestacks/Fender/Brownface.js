@@ -8,12 +8,12 @@ export class Brownface extends BaseTonestack {
       name: 'Brownface',
       components: {
         RIN: 38e3,
-        RT: 350e3,
+        RL: 1e6,
         RB: 250e3,
+        RT: 350e3,
         RTap: 70e3,
         R1: 100e3,
         R2: 6.8e3,
-        RL: 1e6,
         C1: 250e-12,
         C2: 100e-9,
         C3: 100e-9,
@@ -58,7 +58,7 @@ export class Brownface extends BaseTonestack {
 
     if (belowTap) {
       // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-      // and refactored using sympy to reduce the number of operations. 
+      // and refactored using sympy to reduce the number of operations.
       // Original operations: 4494 (*, +, -)
       // Optimized operations: 473 (9.50x less)
       const t0 = RL*RT22;
@@ -173,7 +173,7 @@ export class Brownface extends BaseTonestack {
       var numDRe = 0;
     } else {
       // The coefficient expressions are taken from https://github.com/jatalahd/tsc
-      // and refactored using sympy to reduce the number of operations. 
+      // and refactored using sympy to reduce the number of operations.
       // Original operations: 5376 (*, +, -)
       // Optimized operations: 462 (11.64x less)
       const t0 = RL*RT11;
