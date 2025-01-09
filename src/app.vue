@@ -48,7 +48,7 @@
 import { ref } from 'vue';
 import ErrorBar from '~/components/ErrorBar.vue';
 
-const description = 'Guitar amp and pedal tonestack calculator web app. Tweak controls and component values and compare frequency responses in real time. Inspired by TSC in the web and Duncan Amps TSC.';
+const description = 'Guitar amp and pedal tonestack (tone stack) calculator web app. Tweak controls and component values and compare frequency responses in real time. Inspired by TSC in the web and Duncan Amps TSC.';
 
 useHead({
   titleTemplate: (titleChunk) => {
