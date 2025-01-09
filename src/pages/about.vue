@@ -5,7 +5,7 @@
       <h3>TL;DR</h3>
       <p>
         <strong>Yet Another Tonestack Calculator</strong> (<em>YATSC? </em>&#x1f914;) is a web app based on the legendary <a href="https://www.duncanamps.com/tsc/">Duncan Amps TSC</a> and its web counterpart <a href="https://www.guitarscience.net/tsc/info.htm">TSC in the Web</a>.
-        Most of the tonestack models have been adapted from <a href="https://github.com/jatalahd/tsc">TSC in the Web repo</a> with some modifications, including optimized calculations of the transfer function coefficients, and a couple of new models added. The source code is available in the <a href="https://github.com/why-trv/yet-another-tonestack-calculator">GitHub repo</a>.
+        Most of the tonestack models have been adapted from <a href="https://github.com/jatalahd/tsc">TSC in the Web repo</a> with some modifications, including optimized calculations of the transfer function coefficients, and several new models added. The source code is available in the <a href="https://github.com/why-trv/yet-another-tonestack-calculator">GitHub repo</a>.
       </p>
     </div>
 
