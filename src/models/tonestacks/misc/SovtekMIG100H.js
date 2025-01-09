@@ -10,7 +10,7 @@ export class SovtekMIG100H extends BaseTonestack {
       schematic: 'SovtekMIG100H',
       components: {
         RIN: 77e3,
-        RL: 1e6,
+        RL: 500e3,
         RB: 1e6,
         RM: 10e3,
         RT: 500e3,

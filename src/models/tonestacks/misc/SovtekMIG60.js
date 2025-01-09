@@ -10,7 +10,7 @@ export class SovtekMIG60 extends BaseTonestack {
       schematic: 'SovtekMIG60',
       components: {
         RIN: 77e3,
-        RL: 1e6,
+        RL: 500e3,
         RB: 1e6,
         RM: 25e3,
         RT: 250e3,
