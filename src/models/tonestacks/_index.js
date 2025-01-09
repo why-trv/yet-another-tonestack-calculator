@@ -15,6 +15,8 @@ import { Marshall } from './misc/Marshall';
 import { Vox } from './misc/Vox';
 import { HiwattDR } from './misc/HiwattDR';
 import { HiwattCP } from './misc/HiwattCP';
+import { SovtekMIG60 } from './misc/SovtekMIG60';
+import { SovtekMIG100H } from './misc/SovtekMIG100H';
 import { FramusMidControl } from './misc/FramusMidControl';
 import { Crate } from './misc/Crate'
 import { Aria } from './misc/Aria'
@@ -77,6 +79,8 @@ export const topologies = {
     new Vox(),
     new HiwattDR(),
     new HiwattCP(),
+    new SovtekMIG60(),
+    new SovtekMIG100H(),
     new FramusMidControl(),
     new Crate(),
     new Aria(),
