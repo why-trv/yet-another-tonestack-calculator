@@ -3,10 +3,23 @@
     <h2 class="text-2xl font-bold mt-6 mb-4">About</h2>
     <div class="mb-6">
       <h3>TL;DR</h3>
-      <p>
+      <p class="mb-3">
         <strong>Yet Another Tonestack Calculator</strong> (<em>YATSC? </em>&#x1f914;) is a web app based on the legendary <a href="https://www.duncanamps.com/tsc/">Duncan Amps TSC</a> and its web counterpart <a href="https://www.guitarscience.net/tsc/info.htm">TSC in the Web</a>.
         Most of the tonestack models have been adapted from <a href="https://github.com/jatalahd/tsc">TSC in the Web repo</a> with some modifications, including optimized calculations of the transfer function coefficients, and several new models added. The source code is available in the <a href="https://github.com/why-trv/yet-another-tonestack-calculator">GitHub repo</a>.
       </p>
+      <p class="mb-3">Compared to TSC in the Web, the new models are:</p>
+      <ul class="list-disc list-inside text-base">
+          <li>Deluxe 5E3 (Bright Channel)</li>
+          <li>Bandmaster 6G7</li>
+          <li>Twin 5D8</li>
+          <li>Hiwatt CP103/CP504</li>
+          <li>Sovtek MIG-60</li>
+          <li>Sovtek MIG-100H</li>
+          <li>3 Big Muff derivatives</li>
+          <li>Boss HM-2</li>
+          <li>Boss FZ-2</li>
+          <li>Basic low- and high-pass filters</li>
+        </ul>
     </div>
 
     <div class="mb-6">
