@@ -14,7 +14,7 @@ More info [here](https://tonestack.yuriturov.com/about).
 
 The project was somewhat haphazardly hacked together to just work, so it sure isn't an example of good software engineering practices.
 
-## How to run locally
+## Running Locally
 
 Requirements:
 - Node.js 18.20+ or 20+
@@ -33,14 +33,40 @@ Notes:
 - The prebuild, predev, and pregenerate scripts run scripts/optimize-schematics.js to optimize SVG schematics under src/public/images/schematics.
 - If that folder is empty, the script will simply log "No SVG files found." and continue.
 
-## Regenerating from circuit definitions
+## Developing Circuits: Installing Dependencies
 
-Some of the circuits are defined via [lcapy](https://lcapy.readthedocs.io/en/latest/).
+Some of the circuits are defined via
+[lcapy](https://lcapy.readthedocs.io/en/latest/).
 
-To generate these, eg if you added a new one, install Python requirements:
+
+Read `resources/lcapy/circuits/README.md` for important info on the circuit file format!
+
+Read `resources/lcapy/README.md` for instructions on using the scripts.
+
+If you want to run those scripts - eg. because you added or modified a circuit -
+you will need pdflatex, pdf2svg, and circuitikz (and TeX!) installed on your system.
+
+Follow the [lcapy installation instructions](https://lcapy.readthedocs.io/en/latest/install.html)
+for your platform.
+
+### Example: mac with homebrew
+
+```console
+brew install basictex
+eval "$(/usr/libexec/path_helper)"
+sudo tlmgr update --self
+sudo tlmgr install collection-latexextra
+sudo tlmgr install circuitikz
+brew install pdf2svg
+brew install pdflatex
+```
+
+### Python dependencies
+
+Install these via your preferred python package manager:
+
 - lcapy
 - sympy
 - PyYaml
-
-Then look at `resources/lcapy/README.md` for instructions on using the scripts.
-
+- watchdog
+- pdflatex
