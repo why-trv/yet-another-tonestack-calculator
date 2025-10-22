@@ -1,0 +1,5 @@
+watchdog==6.0.0
+lcapy==1.26
+sympy==1.14.0
+PyYAML==6.0.3
+pdflatex==0.1.3
