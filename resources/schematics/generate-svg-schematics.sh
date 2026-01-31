@@ -26,13 +26,16 @@ echo "--- Converting DVIs to SVGs ---"
 SVG_DIR="$SCRIPT_DIR/../../src/public/images/schematics"
 mkdir -p "$SVG_DIR"
 
+# Export libgs path for dvisvgm
+export LIBGS=/opt/homebrew/lib/libgs.dylib
+
 for file in *.dvi; do
   [ -f "$file" ] || continue
-  noextension="${file%.*}"  
+  noextension="${file%.*}"
   svg_path="$SVG_DIR/$noextension.svg"
-  dvisvgm --no-fonts --libgs=/opt/homebrew/lib/libgs.dylib --optimize --output="$svg_path" "$file"
+  dvisvgm --no-fonts --optimize --output="$svg_path" "$file"
   echo "Generated $noextension.svg"
-  
+
   # Optimize the SVG using svgo
   node -e "
     import { optimize } from 'svgo';
