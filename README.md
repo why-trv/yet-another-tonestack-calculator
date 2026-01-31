@@ -37,9 +37,9 @@ Requirements:
 
 Some of the circuits are defined, automatically analyzed and drawn using [lcapy](https://lcapy.readthedocs.io/en/latest/). (Others were done by hand and drawn directly from `.tex` files.)
 
-Read [`resources/lcapy/circuits/README.md`](../../resources/lcapy/circuits/README.md) for important info on the circuit file format!
+Read [`resources/lcapy/circuits/README.md`](resources/lcapy/circuits/README.md) for important info on the circuit file format!
 
-Read [`resources/lcapy/README.md`](../../resources/lcapy/README.md) for instructions on using the scripts.
+Read [`resources/lcapy/README.md`](resources/lcapy/README.md) for instructions on using the scripts.
 
 If you want to run those scripts - e.g. because you added or modified a circuit -
 you will need ghostscript, pdf2svg, and circuitikz (and TeX!) installed on your system.
