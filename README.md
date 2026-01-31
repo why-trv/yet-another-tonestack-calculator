@@ -20,53 +20,57 @@ Requirements:
 - Node.js 18.20+ or 20+
 - npm
 
-Quick start:
-- npm install
-- npm run dev
+### Quick Start
+- `npm install`
+- `npm run dev`
 - Open the URL printed by Nuxt (typically http://localhost:3000)
 
-Static build and preview:
-- npm run generate
-- npm run preview
+### Static Build and Preview
+- `npm run generate`
+- `npm run preview`
 
-Notes:
-- The prebuild, predev, and pregenerate scripts run scripts/optimize-schematics.js to optimize SVG schematics under src/public/images/schematics.
+### Notes:
+- The `prebuild`, `predev`, and `pregenerate` scripts run `scripts/optimize-schematics.js` to optimize SVG schematics under `src/public/images/schematics`.
 - If that folder is empty, the script will simply log "No SVG files found." and continue.
 
 ## Developing Circuits: Installing Dependencies
 
-Some of the circuits are defined via
-[lcapy](https://lcapy.readthedocs.io/en/latest/).
+Some of the circuits are defined, automatically analyzed and drawn using [lcapy](https://lcapy.readthedocs.io/en/latest/). (Others were done by hand and drawn directly from `.tex` files.)
 
+Read [`resources/lcapy/circuits/README.md`](../../resources/lcapy/circuits/README.md) for important info on the circuit file format!
 
-Read `resources/lcapy/circuits/README.md` for important info on the circuit file format!
+Read [`resources/lcapy/README.md`](../../resources/lcapy/README.md) for instructions on using the scripts.
 
-Read `resources/lcapy/README.md` for instructions on using the scripts.
-
-If you want to run those scripts - eg. because you added or modified a circuit -
-you will need pdflatex, pdf2svg, and circuitikz (and TeX!) installed on your system.
+If you want to run those scripts - e.g. because you added or modified a circuit -
+you will need ghostscript, pdf2svg, and circuitikz (and TeX!) installed on your system.
 
 Follow the [lcapy installation instructions](https://lcapy.readthedocs.io/en/latest/install.html)
 for your platform.
 
-### Example: mac with homebrew
+### Example: macOS with Homebrew
 
-```console
+```bash
 brew install basictex
 eval "$(/usr/libexec/path_helper)"
 sudo tlmgr update --self
-sudo tlmgr install collection-latexextra
+sudo tlmgr install standalone
 sudo tlmgr install circuitikz
+sudo tlmgr install dvisvgm
+brew install ghostscript
 brew install pdf2svg
-brew install pdflatex
 ```
 
 ### Python dependencies
 
 Install these via your preferred python package manager:
-
 - lcapy
 - sympy
 - PyYaml
 - watchdog
 - pdflatex
+
+or 
+
+```bash
+pip install -r requirements.txt
+```
