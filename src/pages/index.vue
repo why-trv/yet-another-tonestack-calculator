@@ -214,7 +214,7 @@
             <!-- Component Values -->
             <div class="min-w-8">
               <div class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-1 gap-x-4 gap-y-1 md:gap-1">
-                <ComponentValueEditor v-for="(value, name) in state.selectedTonestack.components" :key="name"
+                <ComponentValueEditor v-for="name in sidebarComponentNames" :key="name"
                   :name="name" :tonestack="state.selectedTonestack"
                   :highlightColor="store.getTonestackColor(state.selectedTonestackIndex)"
                   v-model="state.selectedTonestack.components[name]" />
@@ -310,6 +310,15 @@ import ShareLinkModal from '../components/ShareLinkModal.vue';
 const store = useStore();
 const state = store.state;
 
+/** Component value fields shown beside the schematic (omit ganged followers; they track the primary). */
+const sidebarComponentNames = computed(() => {
+  const ts = state.selectedTonestack;
+  if (!ts) {
+    return [];
+  }
+  return Object.keys(ts.components).filter((name) => !ts.isGangedFollower(name));
+});
+
 const fileInput = ref(null);
 const isShareLinkModalOpen = ref(false);
 const shareableLink = ref('');
@@ -323,7 +332,7 @@ const visibleComponentNames = computed(() => {
 
   let res = [];
   state.tonestacks.map((ts, index) => {
-    let names = Object.keys(ts.components);
+    let names = Object.keys(ts.components).filter((name) => !ts.isGangedFollower(name));
 
     if (names.length > maxNumComponentsInList) {
       // Gonna show only the first few components
