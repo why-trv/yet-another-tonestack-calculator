@@ -266,8 +266,8 @@ def generate_js_code(analysis_results, input_file, frontmatter, js_dir=None, ove
         for component in sorted_components:
             value = frontmatter['components'][component]
             if value == 0.0:
-                raise ValueError(f"Invalid component {component} can't have value {value}")
-
+                definition += f"{idt4}{component}: 0,\n"
+                continue
             # Format component values with exponent in multiples of 3
             exponent = int(math.log10(abs(value)))
             mantissa = value / (10 ** exponent)
