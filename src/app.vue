@@ -39,14 +39,17 @@
         </div>
       </div>
     </nav>
-    <ErrorBar v-if="errorMessage" :message="errorMessage" @close="clearError" />
+    <InfoBar v-if="showInfo" @close="dismissInfo">
+      <a href="https://guitar.yuriturov.com" target="_blank" class="underline font-medium hover:text-blue-950">Electric Guitar Response Calculator</a> public alpha is now available!
+    </InfoBar>
+    <InfoBar v-if="errorMessage" variant="error" @close="clearError">{{ errorMessage }}</InfoBar>
     <NuxtPage @error="handleError" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import ErrorBar from '~/components/ErrorBar.vue';
+import { ref, onMounted } from 'vue';
+import InfoBar from '~/components/InfoBar.vue';
 
 const description = 'Guitar amp and pedal tonestack (tone stack) calculator web app. Tweak controls and component values and compare frequency responses in real time. Inspired by TSC in the web and Duncan Amps TSC.';
 
@@ -63,6 +66,18 @@ useHead({
     lang: 'en'
   },
 });
+
+const EGRC_ANNOUNCEMENT_KEY = 'egrcAlphaDismissed';
+const showInfo = ref(false);
+
+onMounted(() => {
+  showInfo.value = !localStorage.getItem(EGRC_ANNOUNCEMENT_KEY);
+});
+
+const dismissInfo = () => {
+  showInfo.value = false;
+  localStorage.setItem(EGRC_ANNOUNCEMENT_KEY, '1');
+};
 
 const errorMessage = ref('');
 
