@@ -1,1 +1,78 @@
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="72" y2="270"><stop offset="0" stop-color="#dc2626"/><stop offset="1" stop-color="#dc2626" stop-opacity=".1"/></linearGradient><linearGradient id="b" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="128" y2="342"><stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#10b981" stop-opacity=".1"/></linearGradient><linearGradient id="c" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="293" y2="542"><stop offset="0" stop-color="#2580e8"/><stop offset="1" stop-color="#2580e8" stop-opacity=".1"/></linearGradient><clipPath id="d"><circle cx="256" cy="256" r="256"/></clipPath><g clip-path="url(#d)"><path d="m0 0h512v512h-512z" fill="#fafafa"/><g transform="matrix(1.016 0 0 1.016 -4 26)"><path d="m-3 42.4c20.5 5.9 41 11.7 62.7 20s44.6 19 66.3 30.5 42.2 23.7 58.8 32.2 29.3 13.4 40.4 16.8 20.7 5.2 31.7 5.2 23.5-2 38-7.3c14.6-5.3 31.3-14.1 47.1-22.3 15.8-8.3 30.8-16 47.8-23.6 17-7.5 36-14.9 56.3-20.7 20.2-5.9 41.7-10.2 63.8-13 22.1-2.7 44.8-3.8 67.4-4.9v456.7h-580.3z" fill="url(#a)"/><path d="m.9 98.2c20.6 7.9 41.3 15.9 63 26.7 21.6 10.9 44.2 24.6 65.8 39.1 21.5 14.5 42 29.7 58.9 41.2 16.9 11.4 30.2 19 43.2 24.9 13 5.8 25.6 9.9 39.2 9.7 13.6-.3 28.1-4.9 43.1-11.9s30.6-16.4 45.2-25.2c14.5-8.8 28.1-17.1 43.5-26.1 15.5-9.1 32.9-18.9 51.7-27.4 18.8-8.4 39-15.4 60.1-19.6s43-5.7 65-7.1v389.5h-578.7z" fill="url(#b)"/><path d="m-.8 262.8c20.6-.4 41.3-.8 63.5 2.1s45.9 8.9 68.7 15.8c22.7 6.8 44.5 14.4 61.2 20 16.7 5.7 28.2 9.4 39.4 11.3s22 1.9 32.3.3c10.2-1.6 19.8-4.7 33-9.1 13.2-4.5 30.1-10.3 46.1-15.5 16.1-5.1 31.3-9.5 48.6-13.5 17.2-3.9 36.4-7.4 56.7-10.1s41.8-4.5 63.5-5.7 43.7-1.9 65.6-2.6v256.2h-578.6z" fill="url(#c)"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="redGrad" gradientUnits="userSpaceOnUse" x1="0" y1="101" x2="0" y2="250">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#ef4444" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#fb923c" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" gradientUnits="userSpaceOnUse" x1="0" y1="172" x2="0" y2="346">
+      <stop offset="0%" stop-color="#047857" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#10b981" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#6ee7b7" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" gradientUnits="userSpaceOnUse" x1="0" y1="244" x2="0" y2="512">
+      <stop offset="0%" stop-color="#1250c0" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#2580e8" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#5fb8ef" stop-opacity="0.6"/>
+    </linearGradient>
+    <clipPath id="circle">
+      <circle cx="256" cy="256" r="256"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#circle)">
+    <rect width="512" height="512" fill="#fafafa"/>
+
+    <g transform="translate(-4, 26) scale(1.016)">
+
+    <!-- Curve 1 (largest, behind): red -->
+    <path d="M -20,74 H 28
+      c 18.9,2.0 37.7,4.1 54.4,7.0
+      c 16.7,2.9 31.2,6.7 45.4,11.3
+      c 14.2,4.6 28.1,10.2 41.4,15.5
+      c 13.2,5.4 25.7,10.6 37.4,14.8
+      c 11.8,4.2 22.8,7.4 34.4,9.4
+      c 11.6,2.0 23.8,2.9 36.1,1.9
+      c 12.3,-1.0 24.8,-3.9 37.7,-8.4
+      c 12.9,-4.5 26.3,-10.6 41.2,-18.3
+      c 14.9,-7.7 31.5,-17.0 48.0,-25.1
+      c 16.5,-8.1 33.1,-15.1 43.8,-19.4
+      c 10.7,-4.4 15.7,-6.1 20.6,-7.8
+      H 530 V 512 H -20 Z"
+      fill="url(#redGrad)"  />
+
+    <!-- Curve 2 (middle): green — translated by (38.7, 56.9) -->
+    <path d="M -20,144.0 H 18.7
+      c 20.6,-0.3 41.2,-0.6 60.7,2.0
+      c 19.4,2.6 37.7,8.1 55.7,14.8
+      c 18.0,6.7 35.7,14.5 52.2,23.8
+      c 16.5,9.3 31.9,20.0 46.4,28.9
+      c 14.5,8.9 28.1,15.8 42.1,19.7
+      c 13.9,3.9 28.1,4.8 41.1,2.8
+      c 12.9,-2.0 24.5,-7.0 40.1,-14.5
+      c 15.5,-7.6 34.9,-17.7 52.5,-26.0
+      c 17.6,-8.3 33.2,-14.7 48.9,-19.9
+      c 15.7,-5.2 31.3,-9.3 47.0,-13.3
+      H 530 V 512 H -20 Z"
+      fill="url(#greenGrad)"  />
+
+    <!-- Curve 3 (smallest, on top): blue -->
+    <path d="M -10,215.0 H 5.2
+      c 10.4,-1.5 20.9,-2.9 31.5,-3.8
+      c 10.6,-0.9 21.3,-1.2 34.4,0.3
+      c 13.1,1.5 28.4,4.6 46.1,10.6
+      c 17.7,5.9 37.7,14.7 58.0,25.5
+      c 20.3,10.9 40.9,23.9 60.1,35.8
+      c 19.2,11.9 36.9,22.6 50.1,30.3
+      c 13.2,7.7 21.9,12.3 31.8,16.0
+      c 9.9,3.6 20.9,6.2 32.5,7.0
+      c 11.6,0.7 23.8,-0.4 36.4,-3.8
+      c 12.6,-3.3 25.7,-8.9 38.7,-14.7
+      c 13.1,-5.8 26.1,-11.9 40.3,-18.3
+      c 14.2,-6.4 29.6,-13.1 45.0,-19.7
+      V 512 H 5.2 Z"
+      fill="url(#blueGrad)"  />
+
+    </g>
+  </g>
+</svg>
