@@ -66,7 +66,7 @@
       <h3>Contact Me</h3>
       <p>
         Questions, comments, suggestions, bugs?<br>
-        <NuxtLink to="https://github.com/why-trv/yet-another-tonestack-calculator/issues">Open an issue on GitHub</NuxtLink> or contact me at <a href="mailto:contact@yuriturov.com">contact@yuriturov.com</a>.
+        <NuxtLink to="https://github.com/why-trv/yet-another-tonestack-calculator/issues">Open an issue on GitHub</NuxtLink> or contact me at <a href="mailto:tonestack@yuriturov.com">tonestack@yuriturov.com</a>.
       </p>
     </div>
   </div>
