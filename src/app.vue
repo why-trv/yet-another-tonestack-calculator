@@ -1,30 +1,42 @@
 <template>
-  <div class="min-w-[356px] 2xl:container mx-auto px-4 py-3 overflow-x-hidden">
-    <nav>
-      <div class="mb-3 flex items-center justify-between border-b border-black">
-        <div class="mb-1.5 md:flex-1 flex items-center">
+  <div class="min-w-[356px] 2xl:container mx-auto px-4 pb-12 min-[530px]:pb-3 py-3 overflow-x-hidden">
+    <!-- Mobile logo row: scrolls with page -->
+    <div class="min-[530px]:hidden mb-1.5 pb-1.5 flex items-center border-b border-black">
+      <NuxtLink to="/" class="ring-focus">
+        <img src="~/assets/images/logo-narrow.svg" alt="Yet Another Tonestack Calculator" class="h-8 w-auto opacity-85 hover:opacity-100">
+      </NuxtLink>
+      <div class="ml-auto flex items-center gap-3">
+        <NuxtLink to="/about" activeClass="text-blue-700"
+          class="px-1 font-medium text-gray-800 stroke-gray-800 hover:text-black ring-focus">
+            About
+        </NuxtLink>
+        <NuxtLink to="https://yuriturov.com" target="_blank"
+          class="px-1 font-medium text-gray-800 hover:text-black ring-focus">
+            Projects
+        </NuxtLink>
+        <NuxtLink
+          to="https://ko-fi.com/yuriturov"
+          target="_blank" rel="noopener"
+          class="p-1 font-medium text-gray-800 hover:text-black ring-focus whitespace-nowrap">
+          <img src="~/assets/images/kofi-logo.svg" alt="Ko-fi" class="mb-0.5 h-5 w-auto inline-block">
+          <span class="ml-1">Tip</span>
+        </NuxtLink>
+      </div>
+    </div>
+    <!-- Toolbar: fixed bottom on mobile, inline on desktop -->
+    <nav class="fixed bottom-0 left-0 right-0 min-[530px]:static z-50 bg-[#fbfbfb] border-t min-[530px]:border-t-0 border-black">
+      <div class="py-1.5 min-[530px]:py-0 min-[530px]:mb-3 min-[530px]:border-b min-[530px]:border-black min-[530px]:pb-1 flex items-center justify-center min-[530px]:justify-between">
+        <div class="hidden min-[530px]:flex mb-1.5 md:flex-1 items-center">
           <NuxtLink to="/" class="ring-focus">
-            <!-- This may cause "[Vue warn]: Hydration attribute mismatch", haven't figured it out yet -->
             <picture class="h-8 w-auto opacity-85 hover:opacity-100">
-              <source srcset="~/assets/images/logo-abbrev.svg" media="(max-width: 500px)">
               <source srcset="~/assets/images/logo-narrow.svg" media="(max-width: 1024px)">
               <source srcset="~/assets/images/logo.svg">
               <img src="~/assets/images/logo-narrow.svg" alt="Yet Another Tonestack Calculator">
             </picture>
-            <!-- So here's an alternative if anything goes wrong: -->
-            <!-- <img src="~/assets/images/logo.svg"
-                 alt="Yet Another Tonestack Calculator"
-                 class="hidden lg:block h-8 w-auto opacity-85 hover:opacity-100">
-            <img src="~/assets/images/logo-narrow.svg"
-                 alt="Yet Another Tonestack Calculator"
-                 class="hidden xs:block lg:hidden h-8 w-auto opacity-85 hover:opacity-100">
-            <img src="~/assets/images/logo-abbrev.svg"
-                 alt="Yet Another Tonestack Calculator"
-                 class="block xs:hidden h-8 w-auto opacity-85 hover:opacity-100"> -->
           </NuxtLink>
         </div>
-        <div id="nav-slot" class="flex justify-center"></div>
-        <div class="md:flex-1 flex justify-end gap-3 sm:gap-4 items-center">
+        <div id="nav-slot" class="flex-1 min-[530px]:flex-none flex justify-center"></div>
+        <div class="hidden min-[530px]:flex md:flex-1 justify-end gap-3 sm:gap-4 items-center">
           <NuxtLink to="/about" activeClass="text-blue-700"
             class="px-1 font-medium text-gray-800 stroke-gray-800 hover:text-black ring-focus">
               About

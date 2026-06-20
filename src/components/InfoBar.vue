@@ -1,5 +1,5 @@
 <template>
-  <div class="text-sm px-3 pr-8 py-2 relative -mt-1 mb-2" :class="styles[variant]?.bar" :role="variant === 'error' ? 'alert' : 'status'">
+  <div class="text-sm px-3 pr-8 py-2 relative min-[530px]:-mt-1 mb-2" :class="styles[variant]?.bar" :role="variant === 'error' ? 'alert' : 'status'">
     <span class="block sm:inline">
       <slot />
     </span>
