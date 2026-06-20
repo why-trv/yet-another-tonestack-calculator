@@ -26,15 +26,19 @@
         <div id="nav-slot" class="flex justify-center"></div>
         <div class="md:flex-1 flex justify-end gap-3 sm:gap-4 items-center">
           <NuxtLink to="/about" activeClass="text-blue-700"
-            class="px-1 text-gray-800 stroke-gray-800 hover:text-black ring-focus">
+            class="px-1 font-medium text-gray-800 stroke-gray-800 hover:text-black ring-focus">
               About
+          </NuxtLink>
+          <NuxtLink to="https://yuriturov.com" target="_blank"
+            class="px-1 font-medium text-gray-800 hover:text-black ring-focus">
+              Projects
           </NuxtLink>
           <NuxtLink
             to="https://ko-fi.com/yuriturov"
-            target="_blank"
-            class="p-1 text-gray-800 hover:text-black ring-focus">
+            target="_blank" rel="noopener"
+            class="p-1 font-medium text-gray-800 hover:text-black ring-focus whitespace-nowrap">
             <img src="~/assets/images/kofi-logo.svg" alt="Ko-fi" class="mb-0.5 h-5 w-auto inline-block">
-            <span class="ml-1 hidden sm:inline">Support me on Ko-fi</span>
+            <span class="ml-1">Tip</span>
           </NuxtLink>
         </div>
       </div>
