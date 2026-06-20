@@ -20,7 +20,7 @@ export class Marshall extends Bassman5F6A {
       },
       controls: {
         RB: {
-          taper: Tapers.LogB,
+          taper: Tapers['10A'],
           role: PotRole.VR
         },
         RM: Tapers.Linear,

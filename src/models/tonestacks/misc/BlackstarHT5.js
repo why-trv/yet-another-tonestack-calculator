@@ -26,7 +26,7 @@ export class BlackstarHT5 extends BaseTonestack {
       },
       controls: {
         RB: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           role: PotRole.VR,
         },
         RM: {
@@ -34,7 +34,7 @@ export class BlackstarHT5 extends BaseTonestack {
           role: PotRole.VR,
         },
         RT: Tapers.Linear,
-        RISF: Tapers.LogA
+        RISF: Tapers['30A']
       }
     };
   }

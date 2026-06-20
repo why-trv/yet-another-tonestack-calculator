@@ -20,8 +20,8 @@ export class JamesPassiveDualBassCap extends BaseTonestack {
         CT2: 3300e-12,
       },
       controls: {
-        RB: Tapers.LogB,
-        RT: Tapers.LogB
+        RB: Tapers['10A'],
+        RT: Tapers['10A']
       }
     };
   }

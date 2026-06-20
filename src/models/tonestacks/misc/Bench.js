@@ -19,9 +19,9 @@ export class Bench extends BaseTonestack {
         L2: 20
       },
       controls: {
-        RB: Tapers.LogB,
-        RM: Tapers.LogB,
-        RT: Tapers.LogB
+        RB: Tapers['10A'],
+        RM: Tapers['10A'],
+        RT: Tapers['10A']
       }
     };
   }

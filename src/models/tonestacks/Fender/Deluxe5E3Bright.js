@@ -20,9 +20,9 @@ export class Deluxe5E3Bright extends BaseTonestack {
         C4: 5e-9
       },
       controls: {
-        RT: Tapers.LogA,
-        RVB: Tapers.LogA,
-        RVN: Tapers.LogA
+        RT: Tapers['30A'],
+        RVB: Tapers['30A'],
+        RVN: Tapers['30A']
       }
     };
   }

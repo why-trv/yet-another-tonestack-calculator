@@ -12,6 +12,13 @@ import {
 
 import { toRaw } from 'vue';
 
+const LEGACY_TAPER_IDS = { A: '30A', B: '10A', C: '30C' };
+
+function findTaperById(id) {
+  const mapped = LEGACY_TAPER_IDS[id] || id;
+  return Object.values(Tapers).find(t => t.id === mapped);
+}
+
 const colorPalette = [
   '#1d4ed8', '#dc2626', '#059669', '#f97316', '#6b21a8',
   '#60a5fa', '#f472b6', '#34d399', '#eab308', '#a855f7'
@@ -401,7 +408,7 @@ function setStateFromSavedData(data) {
         // This is a control (potentiometer)
         ts.setComponentValue(name, value.value);
 
-        const taper = Object.values(Tapers).find(taper => taper.id === value.taper);
+        const taper = findTaperById(value.taper);
         if (taper) {
           ts.controls[name] = taper;
         }
@@ -449,7 +456,7 @@ function setStateFromCompactSavedData(data) {
         // This is a control (potentiometer)
         ts.setComponentValue(name, value[0]);
 
-        const taper = Object.values(Tapers).find(taper => taper.id === value[1]);
+        const taper = findTaperById(value[1]);
         if (taper) {
           ts.controls[name] = taper;
         }

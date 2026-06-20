@@ -20,8 +20,8 @@ export class ESeries extends BaseTonestack {
         C4: 5e-9,
       },
       controls: {
-        RB: Tapers.LogA,
-        RT: Tapers.LogA
+        RB: Tapers['30A'],
+        RT: Tapers['30A']
       }
     };
   }

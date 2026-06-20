@@ -14,7 +14,7 @@ export class RCHighpass extends BaseTonestack {
       },
       controls: {
         RB: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           role: PotRole.VR,
         },
       }

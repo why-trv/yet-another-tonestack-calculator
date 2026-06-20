@@ -18,8 +18,8 @@ export class Vox extends BaseTonestack {
         C3: 22e-9
       },
       controls: {
-        RB: Tapers.LogA,
-        RT: Tapers.LogA
+        RB: Tapers['30A'],
+        RT: Tapers['30A']
       }
     };
   }

@@ -20,7 +20,7 @@ export class ProJunior extends BaseTonestack {
         C4: 3.3e-9
       },
       controls: {
-        RT: Tapers.LogA,
+        RT: Tapers['30A'],
         RV: Tapers.Linear
       }
     };

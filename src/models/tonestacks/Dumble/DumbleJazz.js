@@ -26,14 +26,14 @@ export class DumbleJazz extends BaseTonestack {
         C7: 1e-9
       },
       controls: {
-        RB: Tapers.LogB,
+        RB: Tapers['10A'],
         RM: {
-          taper: Tapers.LogB,
+          taper: Tapers['10A'],
           role: PotRole.VR
         },
-        RT: Tapers.LogA,
+        RT: Tapers['30A'],
         RV: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           default: 1
         }
       }

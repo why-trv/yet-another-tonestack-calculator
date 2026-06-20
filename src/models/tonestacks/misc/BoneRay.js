@@ -19,7 +19,7 @@ export class BoneRay extends BaseTonestack {
         C4: 4.7e-9
       },
       controls: {
-        RM: Tapers.LogB,
+        RM: Tapers['10A'],
         RT: Tapers.Linear
       }
     };

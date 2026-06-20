@@ -18,7 +18,7 @@ export class DrZ extends BaseTonestack {
         C3: 4700e-12,
       },
       controls: {
-        RT: Tapers.LogA
+        RT: Tapers['30A']
       }
     };
   }

@@ -19,7 +19,7 @@ export class HiwattCP extends BaseTonestack {
         C3: 47e-9
       },
       controls: {
-        RB: Tapers.LogB,
+        RB: Tapers['10A'],
         RT: Tapers.Linear
       }
     };

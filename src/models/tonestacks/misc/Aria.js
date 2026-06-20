@@ -21,9 +21,9 @@ export class Aria extends BaseTonestack {
         CB1: 220e-9
       },
       controls: {
-        RB: Tapers.LogB,
-        RM: Tapers.LogB,
-        RT: Tapers.LogB
+        RB: Tapers['10A'],
+        RM: Tapers['10A'],
+        RT: Tapers['10A']
       },
       magnitudePlotRange: [-60, 0]
     };

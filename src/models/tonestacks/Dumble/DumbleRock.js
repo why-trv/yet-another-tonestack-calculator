@@ -25,16 +25,16 @@ export class DumbleRock extends BaseTonestack {
       },
       controls: {
         RB: {
-          taper: Tapers.LogB,
+          taper: Tapers['10A'],
           role: PotRole.VR
         },
         RM: {
-          taper: Tapers.LogB,
+          taper: Tapers['10A'],
           role: PotRole.VR
         },
-        RT: Tapers.LogA,
+        RT: Tapers['30A'],
         RV: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           default: 1
         }
       }

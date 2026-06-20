@@ -17,7 +17,7 @@ export class SWTC2 extends BaseTonestack {
       },
       controls: {
         RT: Tapers.Linear,
-        RV: Tapers.LogA,
+        RV: Tapers['30A'],
       }
     };
   }

@@ -1,31 +1,47 @@
 import { areApproximatelyEqual, defineEnum } from "./js";
 
-// A collection of potentiometer taper models.
-// NB: These use normalized input range of 0..1, not 0..10
+// Potentiometer taper models using piecewise-linear approximation.
+// Input range is normalized 0..1 (not 0..10).
+// Log (A) tapers are defined by their midpoint percentage: e.g. 10A means 10% of
+// total resistance at the midpoint. Reverse log (C) tapers are the mirror image.
+// Dead zones at both ends model real-world pots where the first and last few
+// percent of travel produce no change.
+const DEAD_ZONE_LO = 0.08;
+const DEAD_ZONE_HI = 0.06;
+const ACTIVE_RANGE = 1 - DEAD_ZONE_LO - DEAD_ZONE_HI;
+
+function withDeadZones(fn) {
+  return (x) => {
+    if (x <= DEAD_ZONE_LO) return 0;
+    if (x >= 1 - DEAD_ZONE_HI) return 1;
+    return fn((x - DEAD_ZONE_LO) / ACTIVE_RANGE);
+  };
+}
+
+function logTaper(p) {
+  const a = 2 * p, b = 2 - a;
+  return withDeadZones((x) => x < 0.5 ? x * a : x * b + a - 1);
+}
+
+function revLogTaper(p) {
+  const a = 2 - 2 * p, b = 2 * p;
+  return withDeadZones((x) => x < 0.5 ? x * a : x * b + 1 - b);
+}
+
 const Tapers = defineEnum({
-  Linear: {
-    id: 'L',
-    name: 'Linear',
-    positionToValue: (x) => x
-  },
-  // logA potentiometer model as defined in the original TSC
-  LogA: {
-    id: 'A',
-    name: 'LogA',
-    positionToValue: (x) => x < 0.5 ? x * 0.6 : x * 1.4 - 0.4
-  },
-  // logB potentiometer model as defined in the original TSC
-  LogB: {
-    id: 'B',
-    name: 'LogB',
-    positionToValue: (x) => x < 0.5 ? x * 0.2 : x * 1.8 - 0.8
-  },
-  // logC potentiometer model as inverse of logA (anti-log taper)
-  LogC: {
-    id: 'C',
-    name: 'LogC',
-    positionToValue: (x) => x < 0.5 ? x * 1.4 : x * 0.6 + 0.4
-  }
+  Linear: { id: 'L',   name: 'Linear', positionToValue: withDeadZones((x) => x) },
+  '05A':  { id: '05A', name: '05A',    positionToValue: logTaper(0.05) },
+  '10A':  { id: '10A', name: '10A',    positionToValue: logTaper(0.10) },
+  '15A':  { id: '15A', name: '15A',    positionToValue: logTaper(0.15) },
+  '20A':  { id: '20A', name: '20A',    positionToValue: logTaper(0.20) },
+  '25A':  { id: '25A', name: '25A',    positionToValue: logTaper(0.25) },
+  '30A':  { id: '30A', name: '30A',    positionToValue: logTaper(0.30) },
+  '05C':  { id: '05C', name: '05C',    positionToValue: revLogTaper(0.05) },
+  '10C':  { id: '10C', name: '10C',    positionToValue: revLogTaper(0.10) },
+  '15C':  { id: '15C', name: '15C',    positionToValue: revLogTaper(0.15) },
+  '20C':  { id: '20C', name: '20C',    positionToValue: revLogTaper(0.20) },
+  '25C':  { id: '25C', name: '25C',    positionToValue: revLogTaper(0.25) },
+  '30C':  { id: '30C', name: '30C',    positionToValue: revLogTaper(0.30) },
 });
 
 const PotRole = defineEnum({

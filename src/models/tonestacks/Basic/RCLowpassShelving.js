@@ -15,7 +15,7 @@ export class RCLowpassShelving extends BaseTonestack {
       },
       controls: {
         RT: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           role: PotRole.VR,
           reverse: true,
         },

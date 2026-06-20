@@ -21,7 +21,7 @@ export class Bandmaster6G7 extends BaseTonestack {
         C4: 47e-12,
       },
       controls: {
-        RB: Tapers.LogA,
+        RB: Tapers['30A'],
         RT: Tapers.Linear,
         RV: {
           taper: Tapers.Linear,

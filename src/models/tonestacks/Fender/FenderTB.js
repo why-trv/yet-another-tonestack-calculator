@@ -21,10 +21,10 @@ export class FenderTB extends FenderTMB {
       },
       controls: {
         RB: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           role: PotRole.VR
         },
-        RT: Tapers.LogA
+        RT: Tapers['30A']
       }
     };
   }

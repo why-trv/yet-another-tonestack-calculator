@@ -23,8 +23,8 @@ export class Twin5D8 extends BaseTonestack {
         CT2: 3e-9,
       },
       controls: {
-        RB: Tapers.LogA,
-        RT: Tapers.LogA,
+        RB: Tapers['30A'],
+        RT: Tapers['30A'],
       }
     };
   }

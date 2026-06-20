@@ -24,7 +24,7 @@ export class HiwattDR extends BaseTonestack {
       },
       controls: {
         RB: {
-          taper: Tapers.LogB,
+          taper: Tapers['10A'],
           role: PotRole.VR
         },
         RM: {

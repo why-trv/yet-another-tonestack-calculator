@@ -10,12 +10,12 @@ export class RCHighpassShelving extends BaseTonestack {
         RIN: 1e3,
         RL: 1e6,
         RB: 100e3,
-        C1: 100e-9,        
-        C2: 100e-9,        
+        C1: 100e-9,
+        C2: 100e-9,
       },
       controls: {
         RB: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           role: PotRole.VR,
         },
       }
@@ -30,7 +30,7 @@ export class RCHighpassShelving extends BaseTonestack {
     const b0 = 0;
     const b1 = t0;
     const b2 = C2*RB*t0;
-    
+
     const a0 = 1;
     const a1 = C1*(RIN + RL) + C2*(RB + RL);
     const a2 = C1*C2*(RB*RIN + RL*(RB + RIN));

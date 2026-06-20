@@ -21,8 +21,8 @@ export class BaxandallPassiveDualBassCap extends BaseTonestack {
         C3: 330e-12,
       },
       controls: {
-        RB: Tapers.LogB,
-        RT: Tapers.LogB
+        RB: Tapers['10A'],
+        RT: Tapers['10A']
       }
     };
   }

@@ -19,7 +19,7 @@ export class Bassman5F6A extends BaseTonestack {
       },
       controls: {
         RB: {
-          taper: Tapers.LogA,
+          taper: Tapers['30A'],
           role: PotRole.VR
         },
         RM: Tapers.Linear,

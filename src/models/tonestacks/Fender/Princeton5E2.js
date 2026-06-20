@@ -17,8 +17,8 @@ export class Princeton5E2 extends BaseTonestack {
         C3: 20e-9
       },
       controls: {
-        RT: Tapers.LogA,
-        RV: Tapers.LogA
+        RT: Tapers['30A'],
+        RV: Tapers['30A']
       }
     };
   }
