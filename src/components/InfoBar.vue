@@ -20,14 +20,15 @@ defineProps({
   variant: {
     type: String,
     default: 'info',
-    validator: (v) => ['info', 'error'].includes(v)
+    validator: (v) => ['info', 'warning', 'error'].includes(v)
   }
 });
 
 defineEmits(['close']);
 
 const styles = {
-  info:  { bar: 'bg-blue-100 text-blue-800', icon: 'text-blue-800' },
-  error: { bar: 'bg-red-100 text-red-700',   icon: 'text-red-700' },
+  info:    { bar: 'bg-blue-100 text-blue-800',     icon: 'text-blue-800' },
+  warning: { bar: 'bg-orange-100 text-orange-800', icon: 'text-orange-800' },
+  error:   { bar: 'bg-red-100 text-red-700',       icon: 'text-red-700' },
 };
 </script>

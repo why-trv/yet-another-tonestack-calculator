@@ -55,6 +55,9 @@
         </div>
       </div>
     </nav>
+    <InfoBar v-if="showTaperUpdate" variant="warning" @close="dismissTaperUpdate">
+      <strong class="font-bold">Heads-up:</strong> Pot taper models and naming have changed — existing responses may look slightly different. If you are a new user, feel free to skip this. <NuxtLink to="/posts/2026-06-20-taper-update" class="underline font-medium hover:text-orange-950">Read more</NuxtLink>
+    </InfoBar>
     <InfoBar v-if="showInfo" @close="dismissInfo">
       <a href="https://guitar.yuriturov.com" target="_blank" class="underline font-medium hover:text-blue-950">Electric Guitar Response Calculator</a> public alpha is now available — see and compare the effects of pickups, their placement and combinations, wiring, cables, pluck position, and more!
     </InfoBar>
@@ -83,12 +86,21 @@ useHead({
   },
 });
 
+const TAPER_UPDATE_KEY = 'taperUpdateDismissed';
+const showTaperUpdate = ref(false);
+
 const EGRC_ANNOUNCEMENT_KEY = 'egrcAlphaDismissed';
 const showInfo = ref(false);
 
 onMounted(() => {
+  showTaperUpdate.value = !localStorage.getItem(TAPER_UPDATE_KEY);
   showInfo.value = !localStorage.getItem(EGRC_ANNOUNCEMENT_KEY);
 });
+
+const dismissTaperUpdate = () => {
+  showTaperUpdate.value = false;
+  localStorage.setItem(TAPER_UPDATE_KEY, '1');
+};
 
 const dismissInfo = () => {
   showInfo.value = false;
