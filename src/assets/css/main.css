@@ -10,7 +10,7 @@
   strong {
     @apply font-medium;
   }
-
+  
   /* @font-face {
     font-family: 'retni-sans';
     font-style: normal;
@@ -93,7 +93,8 @@
 
   input[type="range"] {
     -webkit-appearance: none;  
-    @apply h-1.5 bg-gray-100 border border-solid border-gray-700;
+    @apply bg-gray-100 border border-solid border-gray-700;
+    height: 0.3125rem;
     outline: none;
   }
   
