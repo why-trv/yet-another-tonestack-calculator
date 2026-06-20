@@ -29,9 +29,9 @@
             class="px-1 text-gray-800 stroke-gray-800 hover:text-black ring-focus">
               About
           </NuxtLink>
-          <NuxtLink 
-            to="https://ko-fi.com/yuriturov" 
-            target="_blank" 
+          <NuxtLink
+            to="https://ko-fi.com/yuriturov"
+            target="_blank"
             class="p-1 text-gray-800 hover:text-black ring-focus">
             <img src="~/assets/images/kofi-logo.svg" alt="Ko-fi" class="mb-0.5 h-5 w-auto inline-block">
             <span class="ml-1 hidden sm:inline">Support me on Ko-fi</span>
@@ -40,7 +40,7 @@
       </div>
     </nav>
     <InfoBar v-if="showInfo" @close="dismissInfo">
-      <a href="https://guitar.yuriturov.com" target="_blank" class="underline font-medium hover:text-blue-950">Electric Guitar Response Calculator</a> public alpha is now available!
+      <a href="https://guitar.yuriturov.com" target="_blank" class="underline font-medium hover:text-blue-950">Electric Guitar Response Calculator</a> public alpha is now available — see and compare the effects of pickups, their placement and combinations, wiring, cables, pluck position, and more!
     </InfoBar>
     <InfoBar v-if="errorMessage" variant="error" @close="clearError">{{ errorMessage }}</InfoBar>
     <NuxtPage @error="handleError" />

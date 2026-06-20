@@ -60,8 +60,8 @@
     <div class="mb-3 border-b border-gray-400">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mb-3">
         <div v-for="(ts, index) in state.tonestacks" :key="index"
-          class="rounded-none text-sm overflow-hidden border cursor-pointer ring-focus"
-          :class="state.selectedTonestackIndex === index ? 'border-indigo-400 bg-indigo-50' : 'border-gray-300'"
+          class="rounded-none text-sm overflow-hidden border border-gray-300 cursor-pointer ring-focus"
+          :style="state.selectedTonestackIndex === index ? { borderColor: store.getTonestackColor(index), backgroundColor: store.getTonestackColor(index) + '12' } : {}"
           @click="store.selectTonestack(index)">
           <div class="flex justify-between space-x-2 items-center p-1.5">
             <div class="flex items-center space-x-2">
@@ -79,7 +79,8 @@
             <div class="flex space-x-2">
               <!-- Toggle visibility button -->
               <button @click.stop="store.toggleTonestackVisibility(index)"
-                class="text-gray-600 hover:text-blue-500 ring-focus"
+                class="tonestack-color-hover text-gray-600 ring-focus"
+                :style="{ '--tonestack-color': store.getTonestackColor(index) }"
                 :title="ts.visible ? 'Hide response' : 'Show response'">
                 <svg class="stroke-current h-5 w-5" role="button" xmlns="http://www.w3.org/2000/svg" fill="none"
                   viewBox="0 0 24 24" height="24" width="24">
@@ -139,7 +140,8 @@
         </div>
         <!-- New Instance Button -->
         <div @click="store.addTonestack()" tabindex="0"
-          class="p-1 bg-gray-100 rounded-none text-sm flex items-center justify-center cursor-pointer hover:bg-gray-200 border border-gray-50 ring-focus">
+          class="add-tonestack-btn p-1 bg-gray-100 rounded-none text-sm flex items-center justify-center cursor-pointer border border-dashed border-gray-300 ring-focus transition-colors"
+          :style="{ '--tonestack-color': store.getTonestackColor(state.tonestacks.length) }">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
@@ -391,6 +393,16 @@ function clearCurrentState() {
 
 .topology-select::-ms-expand {
   display: none;
+}
+
+.tonestack-color-hover:hover {
+  color: var(--tonestack-color);
+}
+
+.add-tonestack-btn:hover {
+  border-style: solid;
+  border-color: var(--tonestack-color);
+  background-color: color-mix(in srgb, var(--tonestack-color) 10%, transparent);
 }
 
 .tooltip {
