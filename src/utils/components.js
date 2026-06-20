@@ -6,30 +6,40 @@ import { areApproximatelyEqual, defineEnum } from "./js";
 // total resistance at the midpoint. Reverse log (C) tapers are the mirror image.
 // Dead zones at both ends model real-world pots where the first and last few
 // percent of travel produce no change.
-const DEAD_ZONE_LO = 0.08;
-const DEAD_ZONE_HI = 0.06;
-const ACTIVE_RANGE = 1 - DEAD_ZONE_LO - DEAD_ZONE_HI;
+const DEFAULT_DEAD_ZONE_LO = 0.08;
+const DEFAULT_DEAD_ZONE_HI = 0.06;
+const BREAKPOINT = 0.6;
 
-function withDeadZones(fn) {
+function logTaper(p, dzLo = DEFAULT_DEAD_ZONE_LO, dzHi = DEFAULT_DEAD_ZONE_HI) {
+  const activeRange = 1 - dzLo - dzHi;
+  const im = (0.5 - dzLo) / activeRange;
+  const yb = p * BREAKPOINT / im;
+  const s1 = yb / BREAKPOINT;
+  const s2 = (1 - yb) / (1 - BREAKPOINT);
   return (x) => {
-    if (x <= DEAD_ZONE_LO) return 0;
-    if (x >= 1 - DEAD_ZONE_HI) return 1;
-    return fn((x - DEAD_ZONE_LO) / ACTIVE_RANGE);
+    if (x <= dzLo) return 0;
+    if (x >= 1 - dzHi) return 1;
+    const t = (x - dzLo) / activeRange;
+    return t < BREAKPOINT ? t * s1 : (t - BREAKPOINT) * s2 + yb;
   };
 }
 
-function logTaper(p) {
-  const a = 2 * p, b = 2 - a;
-  return withDeadZones((x) => x < 0.5 ? x * a : x * b + a - 1);
+function revLogTaper(p, dzLo = DEFAULT_DEAD_ZONE_LO, dzHi = DEFAULT_DEAD_ZONE_HI) {
+  const log = logTaper(p, dzHi, dzLo);
+  return (x) => 1 - log(1 - x);
 }
 
-function revLogTaper(p) {
-  const a = 2 - 2 * p, b = 2 * p;
-  return withDeadZones((x) => x < 0.5 ? x * a : x * b + 1 - b);
+function linearTaper(dzLo = DEFAULT_DEAD_ZONE_LO, dzHi = DEFAULT_DEAD_ZONE_HI) {
+  const activeRange = 1 - dzLo - dzHi;
+  return (x) => {
+    if (x <= dzLo) return 0;
+    if (x >= 1 - dzHi) return 1;
+    return (x - dzLo) / activeRange;
+  };
 }
 
 const Tapers = defineEnum({
-  Linear: { id: 'L',   name: 'Linear', positionToValue: withDeadZones((x) => x) },
+  Linear: { id: 'L',   name: 'Linear', positionToValue: linearTaper() },
   '05A':  { id: '05A', name: '05A',    positionToValue: logTaper(0.05) },
   '10A':  { id: '10A', name: '10A',    positionToValue: logTaper(0.10) },
   '15A':  { id: '15A', name: '15A',    positionToValue: logTaper(0.15) },
