@@ -36,12 +36,14 @@ const Tapers = defineEnum({
   '20A':  { id: '20A', name: '20A',    positionToValue: logTaper(0.20) },
   '25A':  { id: '25A', name: '25A',    positionToValue: logTaper(0.25) },
   '30A':  { id: '30A', name: '30A',    positionToValue: logTaper(0.30) },
+  '35A':  { id: '35A', name: '35A',    positionToValue: logTaper(0.35) },
   '05C':  { id: '05C', name: '05C',    positionToValue: revLogTaper(0.05) },
   '10C':  { id: '10C', name: '10C',    positionToValue: revLogTaper(0.10) },
   '15C':  { id: '15C', name: '15C',    positionToValue: revLogTaper(0.15) },
   '20C':  { id: '20C', name: '20C',    positionToValue: revLogTaper(0.20) },
   '25C':  { id: '25C', name: '25C',    positionToValue: revLogTaper(0.25) },
   '30C':  { id: '30C', name: '30C',    positionToValue: revLogTaper(0.30) },
+  '35C':  { id: '35C', name: '35C',    positionToValue: revLogTaper(0.35) },
 });
 
 const PotRole = defineEnum({
