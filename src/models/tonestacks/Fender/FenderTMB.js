@@ -20,7 +20,7 @@ export class FenderTMB extends BaseTonestack {
       },
       controls: {
         RB: {
-          taper: Tapers['30A'],
+          taper: Tapers['10A'],
           role: PotRole.VR
         },
         RM: Tapers.Linear,
