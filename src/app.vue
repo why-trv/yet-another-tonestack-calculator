@@ -70,7 +70,7 @@
 import { ref, onMounted } from 'vue';
 import InfoBar from '~/components/InfoBar.vue';
 
-const description = 'Guitar amp and pedal tonestack (tone stack) calculator web app. Tweak controls and component values and compare frequency responses in real time. Inspired by TSC in the web and Duncan Amps TSC.';
+const description = 'Interactive tonestack (tone stack) calculator for guitar amps and pedals. Compare frequency response curves of Fender, Marshall, Vox, Hiwatt, and more while tweaking controls and component values in real time.';
 
 useHead({
   titleTemplate: (titleChunk) => {
