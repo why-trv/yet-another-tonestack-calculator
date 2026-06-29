@@ -32,6 +32,21 @@ Frontmatter is optional. If it's there, it defines the properties to be returned
 
 For controls, it's enough to specify just the taper. By default, YATSC should think it's a pot, and the variable resistor role will be inferred if the netlist component has a `variable` option set.
 
+### Ganged controls (dual-gang, one slider)
+
+When two or more `variable` resistors or pots must track the same UI position (e.g. a dual-gang frequency control), declare **`gangedControls`** in frontmatter:
+
+- **Primary** — mapping key: the component name that has the `controls:` entry and the single slider.
+- **Followers** — list value: netlist names that mirror the primary’s resistance; each must **not** have its own `controls:` entry.
+
+Taper and `reverse` apply only to the primary; followers receive the same numeric values as the primary at runtime.
+
+Symbolic analysis substitutes each follower’s symbol with the primary’s so the generated transfer function uses one variable per gang. The netlist is unchanged (still separate branches).
+
+Example: [`Basic/SallenKeyLowpass.sch`](Basic/SallenKeyLowpass.sch).
+
+The analysis cache key includes `gangedControls`; change only ganging without changing the netlist still forces re-analysis (or use `--force`).
+
 ## Netlist
 The netlist is mostly in `lcapy` format, but with some considerations:
 
@@ -47,3 +62,9 @@ The netlist is mostly in `lcapy` format, but with some considerations:
 ## Component Values
 
 Component values can be specified in any of (or both, but don't do it) netlist (inline) and YAML frontmatter, with frontmatter taking precedence over the netlist. The former is more concise though, and it's easier to see that all components have values.
+
+## Global attributes not supported
+
+Currently because of implementation details, there is no way to provide global
+drawing control attributes such as
+`;help_lines=1` that you might see in lcapy netlist docs.
