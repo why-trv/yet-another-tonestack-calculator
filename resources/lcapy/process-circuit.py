@@ -92,6 +92,75 @@ def draw_circuit(cct, input_file, formats=None, draft=False):
         if fmt == 'svg':
             optimize_svg(output_file)
 
+def normalize_ganged_controls(raw):
+    """Return dict primary -> [followers, ...]. Accepts list or single string per primary."""
+    if not raw:
+        return {}
+    if not isinstance(raw, dict):
+        print(f"\033[1;33mWarning: gangedControls must be a mapping (primary -> followers); ignoring.\033[0m")
+        return {}
+    out = {}
+    for primary, followers in raw.items():
+        primary_s = str(primary)
+        if isinstance(followers, str):
+            followers = [followers]
+        elif isinstance(followers, list):
+            followers = [str(x) for x in followers]
+        else:
+            print(f"\033[1;33mWarning: gangedControls[{primary_s}] must be a list or string; skipping.\033[0m")
+            continue
+        out[primary_s] = followers
+    return out
+
+
+def validate_and_index_ganged_controls(ganged, controls_keys, cct):
+    """
+    Build follower -> primary index; print warnings for invalid frontmatter.
+    controls_keys: set of names under YAML controls (model aliases), or None if no controls block.
+    """
+    follower_to_primary = {}
+    for primary, followers in ganged.items():
+        if primary in followers:
+            print(f"\033[1;33mWarning: gangedControls primary {primary} cannot list itself as a follower.\033[0m")
+        for f in followers:
+            if f in follower_to_primary:
+                print(f"\033[1;33mWarning: gangedControls follower {f} is listed more than once; "
+                      f"keeping {follower_to_primary[f]} over {primary}.\033[0m")
+                continue
+            follower_to_primary[f] = primary
+    primaries = set(ganged.keys())
+    for primary in primaries:
+        if primary in follower_to_primary:
+            print(f"\033[1;33mWarning: {primary} is both a gangedControls primary and a follower of "
+                  f"{follower_to_primary[primary]}.\033[0m")
+    for f, p in follower_to_primary.items():
+        if f in primaries:
+            print(f"\033[1;33mWarning: {f} is both a primary and a follower (of {p}).\033[0m")
+    if controls_keys is not None:
+        for f in follower_to_primary:
+            if f in controls_keys:
+                print(f"\033[1;33mWarning: follower {f} should not have its own controls: entry "
+                      f"(it tracks primary {follower_to_primary[f]}).\033[0m")
+        for primary in ganged:
+            if primary not in controls_keys:
+                print(f"\033[1;33mWarning: gangedControls primary {primary} has no controls: entry.\033[0m")
+    for primary, followers in ganged.items():
+        for name in (primary, *followers):
+            found = False
+            for cpt in cct.cpts:
+                if cpt_alias(cpt) == name:
+                    found = True
+                    break
+            if not found:
+                print(f"\033[1;33mWarning: gangedControls name {name} does not match any RV/variable-R component.\033[0m")
+    return follower_to_primary
+
+
+def ganged_cache_extra(frontmatter):
+    g = frontmatter.get('gangedControls') or {}
+    return json.dumps({'gangedControls': g}, sort_keys=True)
+
+
 def sort_symbols(symbols):
     def custom_sort_key(symbol):
         symbol_str = str(symbol)
@@ -294,7 +363,20 @@ def generate_js_code(analysis_results, input_file, frontmatter, js_dir=None, ove
                 definition += f"{idt4}}},\n"
             else:
                 definition += f"{idt4}{control}: Tapers.{control_info},\n"
-        definition += f"{idt3}}}\n"
+        if frontmatter.get('gangedControls'):
+            definition += f"{idt3}}},\n"
+        else:
+            definition += f"{idt3}}}\n"
+
+    ganged = frontmatter.get('gangedControls') or {}
+    if ganged:
+        definition += f"{idt3}gangedControls: {{\n"
+        sorted_primaries = sorted(ganged.keys())
+        for primary in sorted_primaries:
+            followers = ganged[primary]
+            followers_js = ', '.join([f"'{f}'" for f in followers])
+            definition += f"{idt4}{primary}: [{followers_js}],\n"
+        definition += f"{idt3}}},\n"
 
     definition += f"{idt2}}}"
 
@@ -550,6 +632,11 @@ def main():
 
     frontmatter['components'] = components
 
+    ganged = normalize_ganged_controls(frontmatter.get('gangedControls'))
+    frontmatter['gangedControls'] = ganged
+    controls_keys = set(frontmatter['controls'].keys()) if 'controls' in frontmatter else None
+    follower_to_primary = validate_and_index_ganged_controls(ganged, controls_keys, cct)
+
     if 'controls' in frontmatter:
         controls = frontmatter['controls']
 
@@ -572,10 +659,12 @@ def main():
                     controls[alias]['reverse'] = True
 
             if is_vr or cpt.startswith('RV'):
-                if not cpt_alias(cpt) in controls:
-                    print(f"\033[1;33mWarning: no control is defined for {cpt} in the frontmatter!\033[0m")
+                if alias in controls:
+                    assigned_controls.remove(alias)
+                elif alias in follower_to_primary:
+                    pass
                 else:
-                    assigned_controls.remove(cpt_alias(cpt))
+                    print(f"\033[1;33mWarning: no control is defined for {cpt} in the frontmatter!\033[0m")
 
         if len(assigned_controls) > 0:
             print(f"\033[1;33mWarning: no component is defined for controls: {', '.join(assigned_controls)}!\033[0m")
@@ -591,7 +680,8 @@ def main():
 
     if args.analyze:
         current_netlist = anCct.netlist()
-        current_netlist_hash = hashlib.md5(current_netlist.encode()).hexdigest()
+        cache_key = current_netlist + '\n' + ganged_cache_extra(frontmatter)
+        current_netlist_hash = hashlib.md5(cache_key.encode()).hexdigest()
 
         # Collect substitutions for component names
         # (e.g. replace R_V with RV in the final expressions)
@@ -600,10 +690,13 @@ def main():
             if '_' in cpt:
                 subs[cpt] = cpt_alias(cpt)
 
+        for follower, primary in follower_to_primary.items():
+            subs[follower] = primary
+
         if not args.force and os.path.exists(netlist_file) and os.path.exists(analysis_file):
             with open(netlist_file, 'r') as f:
                 saved_netlist = f.read()
-            saved_netlist_hash = hashlib.md5(saved_netlist.encode()).hexdigest()
+            saved_netlist_hash = hashlib.md5((saved_netlist + '\n' + ganged_cache_extra(frontmatter)).encode()).hexdigest()
 
             if current_netlist_hash == saved_netlist_hash:
                 print("Netlist hasn't changed. Using previous analysis results...")

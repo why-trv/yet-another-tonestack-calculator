@@ -53,6 +53,15 @@ export class BaseTonestack {
     this.controls = controls;
     this.controlOptions = options;
     this.controlValues = cv;
+
+    this.gangedFollowerNames = new Set();
+    if (def.gangedControls) {
+      for (const followers of Object.values(def.gangedControls)) {
+        for (const f of followers) {
+          this.gangedFollowerNames.add(f);
+        }
+      }
+    }
   }
 
   newInstance() {
@@ -98,6 +107,11 @@ export class BaseTonestack {
 
   isControl(name) {
     return this.controls.hasOwnProperty(name);
+  }
+
+  /** Ganged followers track a primary control; hide from component editors (nominal value still in `components`). */
+  isGangedFollower(name) {
+    return this.gangedFollowerNames.has(name);
   }
 
   // Get control values with applied potentiometer tapers
@@ -173,6 +187,22 @@ export class BaseTonestack {
         res[name] = value2; // Redundant property with the same value as <name>2
       } else {
         res[name] = this.components[name];
+      }
+    }
+
+    const ganged = this.constructor.definition().gangedControls;
+    if (ganged) {
+      for (const primary of Object.keys(ganged)) {
+        const followers = ganged[primary];
+        for (const follower of followers) {
+          res[follower] = res[primary];
+          const k1 = `${primary}1`;
+          const k2 = `${primary}2`;
+          if (Object.prototype.hasOwnProperty.call(res, k1)) {
+            res[`${follower}1`] = res[k1];
+            res[`${follower}2`] = res[k2];
+          }
+        }
       }
     }
 
