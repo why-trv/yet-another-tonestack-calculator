@@ -362,7 +362,7 @@ def generate_js_code(analysis_results, input_file, frontmatter, js_dir=None, ove
                     definition += f"{idt5}default: {control_info['default']},\n"
                 definition += f"{idt4}}},\n"
             else:
-                definition += f"{idt4}{control}: Tapers.{control_info},\n"
+                definition += f"{idt4}{control}: Tapers['{control_info}'],\n"
         if frontmatter.get('gangedControls'):
             definition += f"{idt3}}},\n"
         else:
