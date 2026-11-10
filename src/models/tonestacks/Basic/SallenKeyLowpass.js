@@ -22,7 +22,7 @@ export class SallenKeyLowpass extends BaseTonestack {
       },
       controls: {
         R1A: {
-          taper: Tapers.LogC,
+          taper: Tapers['10C'],
           role: PotRole.VR,
           reverse: true,
         },
