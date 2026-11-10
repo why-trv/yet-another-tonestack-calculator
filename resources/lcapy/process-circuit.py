@@ -284,7 +284,7 @@ def generate_js_code(analysis_results, input_file, frontmatter, js_dir=None, ove
         for control, control_info in frontmatter['controls'].items():
             if isinstance(control_info, dict):
                 taper = control_info.get('taper', 'Linear')                
-                definition += f"{idt4}{control}: {{\n{idt5}taper: Tapers.{taper},\n"
+                definition += f"{idt4}{control}: {{\n{idt5}taper: Tapers['{taper}'],\n"
                 if 'role' in control_info:
                     definition += f"{idt5}role: PotRole.{control_info['role']},\n"
                 if 'reverse' in control_info:
